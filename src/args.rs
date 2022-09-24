@@ -1,5 +1,7 @@
-use clap:: {
-    Args,
+pub mod core_args;
+
+use core_args::CoreCommand;
+use clap::{
     Parser,
     Subcommand
 };
@@ -19,18 +21,3 @@ pub enum Vyper {
     // Plugin(PluginCommand)
 }
 
-#[derive(Debug, Args)]
-pub struct CoreCommand {
-    #[clap(subcommand)]
-    pub command : CoreSubcommand
-}
-
-#[derive(Debug, Subcommand)]
-pub enum CoreSubcommand {
-    Fetch(FetchTranche),
-}
-
-#[derive(Debug, Args)]
-pub struct FetchTranche {
-    pub tranche_id: u32
-}
