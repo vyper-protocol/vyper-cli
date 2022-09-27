@@ -1,11 +1,16 @@
-use clap::{
-    Args,
-    Subcommand
+use {
+    clap::{
+        Args,
+        Subcommand
+    },
+    anchor_client:: {
+        solana_sdk::{
+            pubkey::Pubkey
+        }
+    }
 };
 
-use solana_program::{
-    pubkey::Pubkey,
-};
+
 
 #[derive(Debug, Args)]
 pub struct CoreCommand {
