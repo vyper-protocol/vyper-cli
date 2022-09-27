@@ -11,4 +11,4 @@ anchor-client = "0.24.2"
 solana-cli-config = "1.9.13"
 bs58 = "0.4.0"
 borsh = "0.9.3"
-vyper-core = { git = "https://github.com/vyper-protocol/vyper-core", branch = "main",features = ["no-entrypoint"] }
+vyper-core = { git = "https://github.com/vyper-protocol/vyper-core", branch = "main", features = ["no-entrypoint"] }
