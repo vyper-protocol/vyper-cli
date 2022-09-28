@@ -17,6 +17,8 @@ pub struct VyperCliArgs {
 
 #[derive(Debug, Subcommand)]
 pub enum Vyper {
+    
+    /// Used to access vyper core commands
     Core(CoreCommand),
     // Plugin(PluginCommand)
 }

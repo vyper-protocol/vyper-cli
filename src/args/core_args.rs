@@ -20,10 +20,12 @@ pub struct CoreCommand {
 
 #[derive(Debug, Subcommand)]
 pub enum CoreSubcommand {
+    /// Gets the configuration of tranche from given public key.
     Fetch(FetchTranche),
 }
 
 #[derive(Debug, Args)]
 pub struct FetchTranche {
+    /// Public key of tranche configuration.
     pub tranche_id: Pubkey
 }

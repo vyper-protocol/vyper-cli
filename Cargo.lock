@@ -3492,6 +3492,7 @@ dependencies = [
  "borsh",
  "bs58 0.4.0",
  "clap 3.2.22",
+ "console",
  "solana-cli-config",
  "vyper-core",
 ]
