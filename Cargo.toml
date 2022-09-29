@@ -13,3 +13,5 @@ bs58 = "0.4.0"
 borsh = "0.9.3"
 vyper-core = { git = "https://github.com/vyper-protocol/vyper-core", branch = "main", features = ["no-entrypoint"] }
 console = "0.15.1"
+rust_decimal = "1.26"
+rust_decimal_macros = "1.26"

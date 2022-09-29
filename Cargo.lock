@@ -3493,6 +3493,8 @@ dependencies = [
  "bs58 0.4.0",
  "clap 3.2.22",
  "console",
+ "rust_decimal",
+ "rust_decimal_macros",
  "solana-cli-config",
  "vyper-core",
 ]
