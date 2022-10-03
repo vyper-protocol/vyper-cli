@@ -1,3 +1,5 @@
+use std::process::exit;
+
 mod args;
 mod ops;
 mod utils;
@@ -17,6 +19,7 @@ use {
     },
     solana_cli_config::{CONFIG_FILE, Config},
     std::rc::Rc,
+    utils::println_error
 };
 
 
@@ -28,9 +31,31 @@ fn main() {
     let args = VyperCliArgs::parse();
 
     // getting the config file and key-pair
-    let config_file = CONFIG_FILE.as_ref().expect("Could not read the config file");
-    let cli_config = Config::load(&config_file).expect("Could not load the config file");
-    let key_pair = read_keypair_file(&cli_config.keypair_path).expect("Could not find keypair in the config file");
+    let config_file = CONFIG_FILE.as_ref();
+    let config_file = match config_file {
+        Some(file) => file,
+        None => {
+            println_error("Could not read the config file");
+            exit(1);
+        }
+    };
+    let cli_config = Config::load(&config_file);
+    let cli_config = match cli_config {
+        Ok(config) => config,
+        Err(_) => {
+            println_error("Could not load the config file");
+            exit(1);
+        }
+    };
+
+    let key_pair = read_keypair_file(&cli_config.keypair_path);
+    let key_pair = match key_pair {
+        Ok(keys) => keys,
+        Err(_) => {
+            println_error("Could not find keypair in the config file");
+            exit(1);
+        }
+    };
 
     // setting the cluster and keypair
     let current_cluster = Cluster::Custom(cli_config.json_rpc_url,cli_config.websocket_url);
