@@ -1,5 +1,4 @@
 use std::process::exit;
-
 mod args;
 mod ops;
 mod utils;
@@ -17,9 +16,12 @@ use {
             pubkey:: Pubkey
         },
     },
-    solana_cli_config::{CONFIG_FILE, Config},
+    solana_cli_config::Config,
     std::rc::Rc,
-    utils::println_error
+    utils::{
+        println_error,
+        get_solana_config
+    }
 };
 
 
@@ -30,25 +32,36 @@ fn main() {
     // parsing arguments
     let args = VyperCliArgs::parse();
 
-    // getting the config file and key-pair
-    let config_file = CONFIG_FILE.as_ref();
-    let config_file = match config_file {
-        Some(file) => file,
+    // getting the config file
+    let mut cli_config:Option<Config> = None;
+
+    let current_cluster = match args.config_override.cluster {
+        Some(cluster) => cluster,
         None => {
-            println_error("Could not read the config file");
-            exit(1);
-        }
-    };
-    let cli_config = Config::load(&config_file);
-    let cli_config = match cli_config {
-        Ok(config) => config,
-        Err(_) => {
-            println_error("Could not load the config file");
-            exit(1);
+            cli_config = Some(get_solana_config());
+            match &cli_config {
+                Some(solana_config) => Cluster::Custom(solana_config.json_rpc_url.clone(),solana_config.websocket_url.clone()),
+                None=> {
+                    println_error("Could not find a config file or --cluster option");
+                    exit(1);
+                }
+            }
         }
     };
 
-    let key_pair = read_keypair_file(&cli_config.keypair_path);
+    let keypair_path = match args.config_override.wallet {
+        Some(keypair) => keypair,
+        None => {
+            match &cli_config {
+                Some(solana_config)=> solana_config.keypair_path.clone(),
+                None => {
+                    get_solana_config().keypair_path
+                }
+            }
+        }
+    };
+
+    let key_pair = read_keypair_file(&keypair_path);
     let key_pair = match key_pair {
         Ok(keys) => keys,
         Err(_) => {
@@ -57,19 +70,15 @@ fn main() {
         }
     };
 
-    // setting the cluster and keypair
-    let current_cluster = Cluster::Custom(cli_config.json_rpc_url,cli_config.websocket_url);
+
     let client = Client::new(current_cluster, Rc::new(key_pair));
-
-    
-
     match args.vyper {
         Vyper::Core(core) => {
             // vyper core program
             let core_program_id: Pubkey = Pubkey::new(&bs58::decode(&VYPER_CORE_ID).into_vec().expect("Invalid vyper core program id"));
             let core_program = client.program(core_program_id);
             // core command handler
-            handle_core_command(core,&core_program)
+            handle_core_command(core,&core_program);
         }
     }
 }

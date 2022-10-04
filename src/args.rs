@@ -1,6 +1,8 @@
 pub mod core_args;
-
+pub mod config_args;
 use core_args::CoreCommand;
+use config_args::ConfigOptions;
+
 use clap::{
     Parser,
     Subcommand
@@ -12,7 +14,10 @@ use clap::{
 pub struct VyperCliArgs {
 
     #[clap(subcommand)]
-    pub vyper: Vyper
+    pub vyper: Vyper,
+
+    #[clap(flatten)]
+    pub config_override: ConfigOptions,
 }
 
 #[derive(Debug, Subcommand)]

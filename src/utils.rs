@@ -7,6 +7,11 @@ use rust_decimal::{
     Decimal
 };
 
+use std::process::exit;
+use solana_cli_config::{CONFIG_FILE, Config};
+
+
+
 pub fn println_name_value<T:Debug>(name: &str, value: &T) {
     println!(
         "{} : {:?} ",
@@ -74,5 +79,25 @@ pub fn println_error(err: &str) {
         style("error").red().bold(),
         style(err)
     );
+}
+
+pub fn get_solana_config() -> Config {
+    let config_file = CONFIG_FILE.as_ref();
+    let config_file = match config_file {
+        Some(file) => file,
+        None => {
+            println_error("Could not read the config file");
+            exit(1);
+        }
+    };
+    let cli_config = Config::load(&config_file);
+    let cli_config = match cli_config {
+        Ok(config) => config,
+        Err(_) => {
+            println_error("Could not load the config file");
+            exit(1);
+        }
+    };
+    return cli_config;
 }
 
