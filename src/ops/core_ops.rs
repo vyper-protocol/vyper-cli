@@ -1,10 +1,12 @@
 use {
+    std::process::exit,
     crate::args::core_args,
     crate::utils::{
         println_name_value,
         println_version,
         println_tranche_fair_value,
         println_reserve_fair_value,
+        println_error
     },
     core_args:: {
         CoreCommand,
@@ -12,6 +14,7 @@ use {
     },
     anchor_client::{
         Program,
+        ClientError
     },
     vyper_core:: {
         state::TrancheConfig
@@ -24,7 +27,21 @@ pub fn handle_core_command(core_command: CoreCommand, program: &Program) {
     let command = core_command.command;
     match command {
         CoreSubcommand::Fetch(fetch_tranche) => {
-            let account: TrancheConfig = program.account(fetch_tranche.tranche_id).expect("Could not find tranche with given publickey");
+            let account:Result<TrancheConfig,ClientError> = program.account(fetch_tranche.tranche_id);
+            let account = match account {
+                Ok(tranche_config) => (tranche_config),
+                Err(err) => {
+                    match err {
+                        ClientError::AccountNotFound => println_error("Could not find tranche cofiguration with given public key"),
+                        ClientError::AnchorError(_) => println_error("Anchor not working"),
+                        ClientError::ProgramError(_) => println_error("Vyper core program is not working"),
+                        ClientError::SolanaClientError(_) => println_error("Solana client is not working"),
+                        ClientError::SolanaClientPubsubError(_) => println_error("Solana client is not working") ,
+                        ClientError::LogParseError(_)=> println_error("Could not parse the given public key")
+                    }
+                    exit(1);
+                }
+            };
             println_name_value("reserve mint",&account.reserve_mint);
             println_name_value("reserve",&account.reserve);
             println_name_value("deposited quantity", &account.tranche_data.deposited_quantity);

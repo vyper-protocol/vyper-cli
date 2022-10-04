@@ -67,3 +67,12 @@ pub fn println_reserve_fair_value(name: &str, fair_value: &ReserveFairValue) {
     println!("{:?} }}",fair_value.slot_tracking);
 }
 
+
+pub fn println_error(err: &str) {
+    println!(
+        "{} : {}",
+        style("error").red().bold(),
+        style(err)
+    );
+}
+
