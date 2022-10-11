@@ -90,14 +90,13 @@ pub fn get_solana_config() -> Config {
             exit(1);
         }
     };
-    let cli_config = Config::load(&config_file);
-    let cli_config = match cli_config {
+    let cli_config = Config::load(config_file);
+    match cli_config {
         Ok(config) => config,
         Err(_) => {
             println_error("Could not load the config file");
             exit(1);
         }
-    };
-    return cli_config;
+    }
 }
 

@@ -29,27 +29,31 @@ jobs:
         with:
           command: check
 
-  # cargo_test:
-  #   name: cargo test
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - uses: actions-rs/toolchain@v1
-  #       with:
-  #         profile: minimal
-  #         toolchain: stable
-  #         override: true
-  #     - uses: actions-rs/cargo@v1
-  #       with:
-  #         command: test
+  cargo_test:
+    name: cargo test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install libssl-dev libudev-dev
+        run: sudo apt-get install libssl-dev libudev-dev
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - uses: actions-rs/cargo@v1
+        with:
+          command: test
 
-  # clippy_check:
-  #   name: clippy check
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v1
-  #     - run: rustup component add clippy
-  #     - uses: actions-rs/clippy-check@v1
-  #       with:
-  #         token: ${{ secrets.GITHUB_TOKEN }}
-  #         args: --all-features
+  clippy_check:
+    name: clippy check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install libssl-dev libudev-dev
+        run: sudo apt-get install libssl-dev libudev-dev
+      - uses: actions/checkout@v1
+      - run: rustup component add clippy
+      - uses: actions-rs/clippy-check@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          args: --all-features
