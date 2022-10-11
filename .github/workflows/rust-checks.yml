@@ -17,6 +17,8 @@ jobs:
     name: cargo check
     runs-on: ubuntu-latest
     steps:
+      - name: Install libssl-dev libudev-dev
+        run: sudo apt-get install libssl-dev libudev-dev
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
         with:
