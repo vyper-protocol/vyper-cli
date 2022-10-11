@@ -1,7 +1,7 @@
 use {
     std::process::exit,
-    crate::args::redeem_plugin_args,
-    redeem_plugin_args::redeem_logic_forward_args:: {
+    crate::args::redeem_logic_plugin_args,
+    redeem_logic_plugin_args::redeem_logic_forward_args:: {
         RedeemLogicForwardCommand,
         RedeemLogicForwardSubcommand
     },

@@ -8,7 +8,7 @@ use {
     clap::Parser,
     args::Vyper,
     ops::core_ops::handle_core_command,
-    ops::redeem_plugin_ops::{
+    ops::redeem_logic_plugin_ops::{
         redeem_logic_forward_ops::handle_redeem_logic_forward_command,
     },
     anchor_client::{

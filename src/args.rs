@@ -1,10 +1,10 @@
 pub mod core_args;
 pub mod config_args;
-pub mod redeem_plugin_args;
+pub mod redeem_logic_plugin_args;
 use {
     core_args::CoreCommand,
     config_args::ConfigOptions,
-    redeem_plugin_args:: {
+    redeem_logic_plugin_args:: {
         redeem_logic_forward_args::RedeemLogicForwardCommand,
     },
     clap::{
