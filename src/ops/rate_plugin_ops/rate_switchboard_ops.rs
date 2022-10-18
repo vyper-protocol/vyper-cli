@@ -41,7 +41,7 @@ pub fn handle_rate_switchboard_command(redeem_logic_command: RateSwitchboardComm
                 }
             };
             print!("{} : [",style("fair value").bold());
-            println_fair_value(account.fair_value);
+            println_fair_value(&account.fair_value);
             println!("]");
             println_name_value("refreshed slot",&account.refreshed_slot);
             println_switchboard_aggregators("switchboard aggregators", &account.switchboard_aggregators)

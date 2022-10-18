@@ -1,7 +1,7 @@
 use console::style;
 use std::fmt::{Debug, Display};
 use vyper_core::state::{
-    TrancheFairValue, ReserveFairValue
+    SlotTracking
 };
 use rust_decimal::{
     Decimal,
@@ -34,38 +34,15 @@ pub fn println_version<T:Display>(name: &str, value: &[T]) {
     );
 }
 
-
-pub fn println_tranche_fair_value(name: &str, fair_value: &TrancheFairValue) {
+pub fn println_name_fair_value(name: &str, fair_value: &[[u8;16]], slot: &SlotTracking) {
     print!(
         "{} : {{ value: [",
         style(name).bold(),
     );
-    let mut first: bool = true;
-    for value in fair_value.value {
-        if !first {
-            print!(",");
-        }
-        print!(
-            "{}",
-            style(&Decimal::deserialize(value)),
-        );
-        first=false;
-    }
+    println_fair_value(&fair_value);
     print!("], slot_tracking: ",);
-    println!("{:?} }}",fair_value.slot_tracking);
+    println!("{:?} }}",slot);
 }
-
-
-pub fn println_reserve_fair_value(name: &str, fair_value: &ReserveFairValue) {
-    print!(
-        "{} : {{ value: [",
-        style(name).bold(),
-    );
-    println_fair_value(fair_value.value);
-    print!("], slot_tracking: ",);
-    println!("{:?} }}",fair_value.slot_tracking);
-}
-
 
 pub fn println_error(err: &str) {
     println!(
@@ -94,7 +71,7 @@ pub fn get_solana_config() -> Config {
     }
 }
 
-pub fn println_fair_value(fair_value: [[u8; 16]; 10]) {
+pub fn println_fair_value(fair_value: &[[u8; 16]]) {
     let mut first: bool = true;
     for value in fair_value {
         if !first {
@@ -102,7 +79,7 @@ pub fn println_fair_value(fair_value: [[u8; 16]; 10]) {
         }
         print!(
             "{}",
-            style(&Decimal::deserialize(value)),
+            style(&Decimal::deserialize(*value)),
         );
         first=false;
     }
@@ -113,11 +90,16 @@ pub fn println_switchboard_aggregators(name: &str, aggregators: &[Option<Pubkey>
         "{} : [",
         style(name).bold(),
     );
+    let mut first: bool = true;
     for value in aggregators {
-        match value {
-            Some(key) => print!("{},",key),
-            None => print!("")
+        if !first {
+            print!(",");
         }
+        match value {
+            Some(key) => print!("{}",key),
+            None => break
+        }
+        first=false;
     }
     println!("]")
 }
