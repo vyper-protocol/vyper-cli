@@ -4,7 +4,11 @@ use vyper_core::state::{
     TrancheFairValue, ReserveFairValue
 };
 use rust_decimal::{
-    Decimal
+    Decimal,
+};
+
+use anchor_client::solana_sdk::{
+        pubkey:: Pubkey
 };
 
 use std::process::exit;
@@ -57,17 +61,7 @@ pub fn println_reserve_fair_value(name: &str, fair_value: &ReserveFairValue) {
         "{} : {{ value: [",
         style(name).bold(),
     );
-    let mut first: bool = true;
-    for value in fair_value.value {
-        if !first {
-            print!(",");
-        }
-        print!(
-            "{}",
-            style(&Decimal::deserialize(value)),
-        );
-        first=false;
-    }
+    println_fair_value(fair_value.value);
     print!("], slot_tracking: ",);
     println!("{:?} }}",fair_value.slot_tracking);
 }
@@ -98,5 +92,33 @@ pub fn get_solana_config() -> Config {
             exit(1);
         }
     }
+}
+
+pub fn println_fair_value(fair_value: [[u8; 16]; 10]) {
+    let mut first: bool = true;
+    for value in fair_value {
+        if !first {
+            print!(",");
+        }
+        print!(
+            "{}",
+            style(&Decimal::deserialize(value)),
+        );
+        first=false;
+    }
+}
+
+pub fn println_switchboard_aggregators(name: &str, aggregators: &[Option<Pubkey>; 10]) {
+    print!(
+        "{} : [",
+        style(name).bold(),
+    );
+    for value in aggregators {
+        match value {
+            Some(key) => print!("{},",key),
+            None => print!("")
+        }
+    }
+    println!("]")
 }
 

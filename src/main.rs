@@ -11,6 +11,9 @@ use {
     ops::redeem_logic_plugin_ops::{
         redeem_logic_forward_ops::handle_redeem_logic_forward_command,
     },
+    ops::rate_plugin_ops::{
+        rate_switchboard_ops::handle_rate_switchboard_command
+    },
     anchor_client::{
         Client,
         Cluster,
@@ -30,6 +33,7 @@ use {
 
 const VYPER_CORE_ID: &str = "vyPErCcGJKQQBeeQ59gXcWrDyU4vBrq8qQfacwmsAsp";
 const REDEEM_LOGIC_FORWARD: &str = "BrpV1re8MshA8qskKVxcEG8zXG3vf2uLX6myeTKAyhsK";
+const RATE_SWITCHBOARD: &str  = "2hGXiH1oEQwjCXRx8bNdHTi49ScZp7Mj2bxcjxtULKe1";
 
 fn main() {
 
@@ -86,10 +90,17 @@ fn main() {
         },
         Vyper::RedeemLogicForward(redeem_logic_command) => {
             // redem logic forward program
-            let redeem_logic_forward_program_id: Pubkey = Pubkey::new(&bs58::decode(&REDEEM_LOGIC_FORWARD).into_vec().expect("Invalid vyper core program id"));
+            let redeem_logic_forward_program_id: Pubkey = Pubkey::new(&bs58::decode(&REDEEM_LOGIC_FORWARD).into_vec().expect("Invalid redeem logic forward program id"));
             let redeem_logic_forward_program = client.program(redeem_logic_forward_program_id);
             // command handler
             handle_redeem_logic_forward_command(redeem_logic_command, &redeem_logic_forward_program);
+        },
+        Vyper::RateSwitchboard(rate_switchboard_command) => {
+             // rate switchboard program
+             let rate_switchboard_program_id: Pubkey = Pubkey::new(&bs58::decode(&RATE_SWITCHBOARD).into_vec().expect("Invalid rate switchboard program id"));
+             let rate_switchboard_program = client.program(rate_switchboard_program_id);
+             // command handler
+             handle_rate_switchboard_command(rate_switchboard_command, &rate_switchboard_program);
         }
     }
 }
