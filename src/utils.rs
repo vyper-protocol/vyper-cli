@@ -92,11 +92,15 @@ pub fn println_switchboard_aggregators(name: &str, aggregators: &[Option<Pubkey>
     );
     let mut first: bool = true;
     for value in aggregators {
-        if !first {
-            print!(",");
-        }
         match value {
-            Some(key) => print!("{}",key),
+            Some(key) => {
+                if !first {
+                    print!(",{}",key)
+                }
+                else {
+                    print!("{}",key);
+                }
+            }
             None => break
         }
         first=false;
