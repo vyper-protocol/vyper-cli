@@ -17,3 +17,4 @@ rate-switchboard = { git = "https://github.com/vyper-protocol/vyper-core", branc
 console = "0.15.1"
 rust_decimal = "1.26"
 rust_decimal_macros = "1.26"
+vyper-otc = { git = "https://github.com/vyper-protocol/vyper-otc", branch = "main", features = ["no-entrypoint"] }

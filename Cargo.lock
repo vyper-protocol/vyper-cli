@@ -2035,7 +2035,7 @@ dependencies = [
  "rust_decimal",
  "rust_decimal_macros",
  "switchboard-v2",
- "vyper-utils",
+ "vyper-utils 0.1.0 (git+https://github.com/vyper-protocol/vyper-core?branch=main)",
 ]
 
 [[package]]
@@ -2070,8 +2070,8 @@ dependencies = [
  "anchor-lang",
  "rust_decimal",
  "rust_decimal_macros",
- "vyper-macros",
- "vyper-utils",
+ "vyper-macros 0.1.0 (git+https://github.com/vyper-protocol/vyper-core?branch=main)",
+ "vyper-utils 0.1.0 (git+https://github.com/vyper-protocol/vyper-core?branch=main)",
 ]
 
 [[package]]
@@ -3540,7 +3540,8 @@ dependencies = [
  "rust_decimal",
  "rust_decimal_macros",
  "solana-cli-config",
- "vyper-core",
+ "vyper-core 0.1.0 (git+https://github.com/vyper-protocol/vyper-core?branch=main)",
+ "vyper-otc",
 ]
 
 [[package]]
@@ -3555,8 +3556,24 @@ dependencies = [
  "rust_decimal",
  "rust_decimal_macros",
  "solana-security-txt",
- "vyper-macros",
- "vyper-utils",
+ "vyper-macros 0.1.0 (git+https://github.com/vyper-protocol/vyper-core?branch=main)",
+ "vyper-utils 0.1.0 (git+https://github.com/vyper-protocol/vyper-core?branch=main)",
+]
+
+[[package]]
+name = "vyper-core"
+version = "0.1.0"
+source = "git+https://github.com/vyper-protocol/vyper-otc?branch=main#d40413fed3f5175e50e0fd06631040086cbe31cb"
+dependencies = [
+ "anchor-lang",
+ "anchor-spl",
+ "bitflags",
+ "boolinator",
+ "rust_decimal",
+ "rust_decimal_macros",
+ "solana-security-txt",
+ "vyper-macros 0.1.0 (git+https://github.com/vyper-protocol/vyper-otc?branch=main)",
+ "vyper-utils 0.1.0 (git+https://github.com/vyper-protocol/vyper-otc?branch=main)",
 ]
 
 [[package]]
@@ -3569,9 +3586,39 @@ dependencies = [
 ]
 
 [[package]]
+name = "vyper-macros"
+version = "0.1.0"
+source = "git+https://github.com/vyper-protocol/vyper-otc?branch=main#d40413fed3f5175e50e0fd06631040086cbe31cb"
+dependencies = [
+ "quote 1.0.21",
+ "syn 1.0.101",
+]
+
+[[package]]
+name = "vyper-otc"
+version = "0.1.1"
+source = "git+https://github.com/vyper-protocol/vyper-otc?branch=main#d40413fed3f5175e50e0fd06631040086cbe31cb"
+dependencies = [
+ "anchor-lang",
+ "anchor-spl",
+ "vyper-core 0.1.0 (git+https://github.com/vyper-protocol/vyper-otc?branch=main)",
+]
+
+[[package]]
 name = "vyper-utils"
 version = "0.1.0"
 source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#772c72a8b5c7fe29784a64a4cf25aeae58a60447"
+dependencies = [
+ "anchor-lang",
+ "anchor-spl",
+ "rust_decimal",
+ "rust_decimal_macros",
+]
+
+[[package]]
+name = "vyper-utils"
+version = "0.1.0"
+source = "git+https://github.com/vyper-protocol/vyper-otc?branch=main#d40413fed3f5175e50e0fd06631040086cbe31cb"
 dependencies = [
  "anchor-lang",
  "anchor-spl",
