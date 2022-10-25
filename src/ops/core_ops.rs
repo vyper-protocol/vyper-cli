@@ -4,8 +4,7 @@ use {
     crate::utils::{
         println_name_value,
         println_version,
-        println_tranche_fair_value,
-        println_reserve_fair_value,
+        println_name_fair_value,
         println_error
     },
     core_args:: {
@@ -45,8 +44,8 @@ pub fn handle_core_command(core_command: CoreCommand, program: &Program) {
             println_name_value("reserve mint",&account.reserve_mint);
             println_name_value("reserve",&account.reserve);
             println_name_value("deposited quantity", &account.tranche_data.deposited_quantity);
-            println_reserve_fair_value("reserve fair value",  &account.tranche_data.reserve_fair_value);
-            println_tranche_fair_value("tranche fair value", &account.tranche_data.tranche_fair_value);
+            println_name_fair_value("reserve fair value",  &account.tranche_data.reserve_fair_value.value,&account.tranche_data.reserve_fair_value.slot_tracking);
+            println_name_fair_value("tranche fair value", &account.tranche_data.tranche_fair_value.value,&&account.tranche_data.tranche_fair_value.slot_tracking);
             println_name_value("halt_flags", &account.tranche_data.get_halt_flags().expect("Could not get tranche halt flags"));
             println_name_value("owner restricted ix", &account.tranche_data.get_owner_restricted_ixs().expect("Could not get owner restricted ix"));
             println_name_value("deposited cap", &account.tranche_data.deposit_cap);

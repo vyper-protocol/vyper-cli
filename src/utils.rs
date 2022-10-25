@@ -1,10 +1,14 @@
 use console::style;
 use std::fmt::{Debug, Display};
 use vyper_core::state::{
-    TrancheFairValue, ReserveFairValue
+    SlotTracking
 };
 use rust_decimal::{
-    Decimal
+    Decimal,
+};
+
+use anchor_client::solana_sdk::{
+        pubkey:: Pubkey
 };
 
 use std::process::exit;
@@ -30,48 +34,15 @@ pub fn println_version<T:Display>(name: &str, value: &[T]) {
     );
 }
 
-
-pub fn println_tranche_fair_value(name: &str, fair_value: &TrancheFairValue) {
+pub fn println_name_fair_value(name: &str, fair_value: &[[u8;16]], slot: &SlotTracking) {
     print!(
         "{} : {{ value: [",
         style(name).bold(),
     );
-    let mut first: bool = true;
-    for value in fair_value.value {
-        if !first {
-            print!(",");
-        }
-        print!(
-            "{}",
-            style(&Decimal::deserialize(value)),
-        );
-        first=false;
-    }
+    println_fair_value(&fair_value);
     print!("], slot_tracking: ",);
-    println!("{:?} }}",fair_value.slot_tracking);
+    println!("{:?} }}",slot);
 }
-
-
-pub fn println_reserve_fair_value(name: &str, fair_value: &ReserveFairValue) {
-    print!(
-        "{} : {{ value: [",
-        style(name).bold(),
-    );
-    let mut first: bool = true;
-    for value in fair_value.value {
-        if !first {
-            print!(",");
-        }
-        print!(
-            "{}",
-            style(&Decimal::deserialize(value)),
-        );
-        first=false;
-    }
-    print!("], slot_tracking: ",);
-    println!("{:?} }}",fair_value.slot_tracking);
-}
-
 
 pub fn println_error(err: &str) {
     println!(
@@ -98,5 +69,42 @@ pub fn get_solana_config() -> Config {
             exit(1);
         }
     }
+}
+
+pub fn println_fair_value(fair_value: &[[u8; 16]]) {
+    let mut first: bool = true;
+    for value in fair_value {
+        if !first {
+            print!(",");
+        }
+        print!(
+            "{}",
+            style(&Decimal::deserialize(*value)),
+        );
+        first=false;
+    }
+}
+
+pub fn println_switchboard_aggregators(name: &str, aggregators: &[Option<Pubkey>; 10]) {
+    print!(
+        "{} : [",
+        style(name).bold(),
+    );
+    let mut first: bool = true;
+    for value in aggregators {
+        match value {
+            Some(key) => {
+                if !first {
+                    print!(",{}",key)
+                }
+                else {
+                    print!("{}",key);
+                }
+            }
+            None => break
+        }
+        first=false;
+    }
+    println!("]")
 }
 
