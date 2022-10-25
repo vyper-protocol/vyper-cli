@@ -1,5 +1,5 @@
-use anchor_client::Cluster;
 use {
+    anchor_client::Cluster,
     clap::{
         Parser
     },

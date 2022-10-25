@@ -8,6 +8,9 @@ use {
     clap::Parser,
     args::Vyper,
     ops::core_ops::handle_core_command,
+    ops::redeem_logic_plugin_ops::{
+        redeem_logic_forward_ops::handle_redeem_logic_forward_command,
+    },
     anchor_client::{
         Client,
         Cluster,
@@ -26,6 +29,7 @@ use {
 
 
 const VYPER_CORE_ID: &str = "vyPErCcGJKQQBeeQ59gXcWrDyU4vBrq8qQfacwmsAsp";
+const REDEEM_LOGIC_FORWARD: &str = "BrpV1re8MshA8qskKVxcEG8zXG3vf2uLX6myeTKAyhsK";
 
 fn main() {
 
@@ -79,6 +83,13 @@ fn main() {
             let core_program = client.program(core_program_id);
             // core command handler
             handle_core_command(core,&core_program);
+        },
+        Vyper::RedeemLogicForward(redeem_logic_command) => {
+            // redem logic forward program
+            let redeem_logic_forward_program_id: Pubkey = Pubkey::new(&bs58::decode(&REDEEM_LOGIC_FORWARD).into_vec().expect("Invalid vyper core program id"));
+            let redeem_logic_forward_program = client.program(redeem_logic_forward_program_id);
+            // command handler
+            handle_redeem_logic_forward_command(redeem_logic_command, &redeem_logic_forward_program);
         }
     }
 }

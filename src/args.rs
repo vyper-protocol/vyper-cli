@@ -1,12 +1,18 @@
 pub mod core_args;
 pub mod config_args;
-use core_args::CoreCommand;
-use config_args::ConfigOptions;
-
-use clap::{
-    Parser,
-    Subcommand
+pub mod redeem_logic_plugin_args;
+use {
+    core_args::CoreCommand,
+    config_args::ConfigOptions,
+    redeem_logic_plugin_args:: {
+        redeem_logic_forward_args::RedeemLogicForwardCommand,
+    },
+    clap::{
+        Parser,
+        Subcommand
+    }
 };
+
 
 #[derive(Debug, Parser)]
 #[clap(name = "vyper-cli")]
@@ -25,6 +31,7 @@ pub enum Vyper {
     
     /// Used to access vyper core commands
     Core(CoreCommand),
-    // Plugin(PluginCommand)
+    /// Used to access redeem logic forward commands
+    RedeemLogicForward(RedeemLogicForwardCommand)
 }
 
