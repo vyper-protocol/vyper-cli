@@ -29,7 +29,7 @@ pub fn handle_core_command(core_command: CoreCommand, program: &Program) {
         CoreSubcommand::Fetch(fetch_tranche) => {
             let account:Result<TrancheConfig,ClientError> = program.account(fetch_tranche.tranche_id);
             let account = match account {
-                Ok(tranche_config) => (tranche_config),
+                Ok(tranche_config) => tranche_config,
                 Err(err) => {
                     match err {
                         ClientError::AccountNotFound => println_error("Could not find tranche cofiguration with given public key"),
