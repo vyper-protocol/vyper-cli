@@ -105,7 +105,7 @@ fn main() {
              handle_rate_switchboard_command(rate_switchboard_command, &rate_switchboard_program);
         },
         Vyper::RedeemLogicSettleForward(redeem_logic_command) => {
-            // redem logic forward program
+            // redem logic settle forward program
             let redeem_logic_settle_forward_program_id: Pubkey = Pubkey::new(&bs58::decode(&REDEEM_LOGIC_SETTLE_FORWARD).into_vec().expect("Invalid redeem logic forward program id"));
             let redeem_logic_settle_forward_program = client.program(redeem_logic_settle_forward_program_id);
             // command handler
