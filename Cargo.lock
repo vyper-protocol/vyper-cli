@@ -2029,7 +2029,7 @@ dependencies = [
 [[package]]
 name = "rate-switchboard"
 version = "0.1.1"
-source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#772c72a8b5c7fe29784a64a4cf25aeae58a60447"
+source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#b67b24fe75752429027046be1af3f283d53d76a8"
 dependencies = [
  "anchor-lang",
  "rust_decimal",
@@ -2065,7 +2065,19 @@ dependencies = [
 [[package]]
 name = "redeem-logic-forward"
 version = "0.1.1"
-source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#772c72a8b5c7fe29784a64a4cf25aeae58a60447"
+source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#b67b24fe75752429027046be1af3f283d53d76a8"
+dependencies = [
+ "anchor-lang",
+ "rust_decimal",
+ "rust_decimal_macros",
+ "vyper-macros",
+ "vyper-utils",
+]
+
+[[package]]
+name = "redeem-logic-settled-forward"
+version = "0.1.1"
+source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#b67b24fe75752429027046be1af3f283d53d76a8"
 dependencies = [
  "anchor-lang",
  "rust_decimal",
@@ -3537,6 +3549,7 @@ dependencies = [
  "console",
  "rate-switchboard",
  "redeem-logic-forward",
+ "redeem-logic-settled-forward",
  "rust_decimal",
  "rust_decimal_macros",
  "solana-cli-config",
@@ -3546,7 +3559,7 @@ dependencies = [
 [[package]]
 name = "vyper-core"
 version = "0.1.0"
-source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#772c72a8b5c7fe29784a64a4cf25aeae58a60447"
+source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#b67b24fe75752429027046be1af3f283d53d76a8"
 dependencies = [
  "anchor-lang",
  "anchor-spl",
@@ -3562,7 +3575,7 @@ dependencies = [
 [[package]]
 name = "vyper-macros"
 version = "0.1.0"
-source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#772c72a8b5c7fe29784a64a4cf25aeae58a60447"
+source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#b67b24fe75752429027046be1af3f283d53d76a8"
 dependencies = [
  "quote 1.0.21",
  "syn 1.0.101",
@@ -3571,7 +3584,7 @@ dependencies = [
 [[package]]
 name = "vyper-utils"
 version = "0.1.0"
-source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#772c72a8b5c7fe29784a64a4cf25aeae58a60447"
+source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#b67b24fe75752429027046be1af3f283d53d76a8"
 dependencies = [
  "anchor-lang",
  "anchor-spl",
