@@ -2,7 +2,10 @@ name: deploy cargo docs
 on:
   push:
     branches:
-      - dev
+      - "dev"
+    paths:
+      - "**.rs"
+      - "**.toml"
 
 jobs:
   deploy:
