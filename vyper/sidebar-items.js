@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":[["RATE_SWITCHBOARD",""],["REDEEM_LOGIC_FORWARD",""],["VYPER_CORE_ID",""]],"fn":[["main",""]],"mod":[["args",""],["ops",""],["utils",""]]};
