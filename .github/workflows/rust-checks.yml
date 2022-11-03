@@ -1,4 +1,4 @@
-name: Rust Checks
+name: rust checks
 on:
   push:
     branches:
