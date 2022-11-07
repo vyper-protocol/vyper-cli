@@ -30,12 +30,12 @@ pub fn handle_rate_switchboard_command(redeem_logic_command: RateSwitchboardComm
                 Ok(rate_state) => rate_state,
                 Err(err) => {
                     match err {
-                        ClientError::AccountNotFound => println_error("Could not find a state with given public key"),
-                        ClientError::AnchorError(_) => println_error("Anchor not working"),
-                        ClientError::ProgramError(_) => println_error("Rate Switchboard program is not working"),
-                        ClientError::SolanaClientError(_) => println_error("Solana client is not working"),
-                        ClientError::SolanaClientPubsubError(_) => println_error("Solana client is not working") ,
-                        ClientError::LogParseError(_)=> println_error("Could not parse the given public key")
+                        ClientError::AccountNotFound => println_error("Could not find a rate switchboard state with given public key"),
+                        ClientError::AnchorError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::ProgramError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::SolanaClientError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::SolanaClientPubsubError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::LogParseError(err)=> println_error(&err)
                     }
                     exit(1);
                 }

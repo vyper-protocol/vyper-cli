@@ -39,7 +39,7 @@ pub fn println_name_fair_value(name: &str, fair_value: &[[u8;16]], slot: &SlotTr
         "{} : {{ value: [",
         style(name).bold(),
     );
-    println_fair_value(&fair_value);
+    println_fair_value(fair_value);
     print!("], slot_tracking: ",);
     println!("{:?} }}",slot);
 }
