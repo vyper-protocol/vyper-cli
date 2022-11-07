@@ -13,16 +13,16 @@ use {
 
 
 #[derive(Debug, Args)]
-pub struct RedeemLogicForwardCommand {
+pub struct RedeemLogicSettleForwardCommand {
     #[clap(subcommand)]
-    pub command : RedeemLogicForwardSubcommand
+    pub command : RedeemLogicSettleForwardSubcommand
 }
 
 #[derive(Debug, Subcommand)]
-pub enum RedeemLogicForwardSubcommand {
-    /// Gets the state of redeem logic forward plugin from the given public key.
+pub enum RedeemLogicSettleForwardSubcommand {
+    /// Gets the state of redeem logic settle forward plugin from the given public key.
     Fetch(FetchState),
-    /// Creates a redeem logic forward state with given configuration
+    /// Creates a redeem logic settle forward state with given configuration
     Create(PluginState)
 }
 
@@ -43,5 +43,8 @@ pub struct PluginState {
     /// linear value for plugin
     #[clap(long="linear", parse(try_from_str))]
     pub is_linear: bool,
+    /// standard value for plugin
+    #[clap(long="standard", parse(try_from_str))]
+    pub is_standard: bool,
     
 }
