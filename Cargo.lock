@@ -2087,6 +2087,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "redeem-logic-vanilla-option"
+version = "0.1.1"
+source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#b67b24fe75752429027046be1af3f283d53d76a8"
+dependencies = [
+ "anchor-lang",
+ "rust_decimal",
+ "rust_decimal_macros",
+ "vyper-macros",
+ "vyper-utils",
+]
+
+[[package]]
 name = "redox_syscall"
 version = "0.2.16"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3550,6 +3562,7 @@ dependencies = [
  "rate-switchboard",
  "redeem-logic-forward",
  "redeem-logic-settled-forward",
+ "redeem-logic-vanilla-option",
  "rust_decimal",
  "rust_decimal_macros",
  "solana-cli-config",

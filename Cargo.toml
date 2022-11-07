@@ -18,3 +18,4 @@ console = "0.15.1"
 rust_decimal = "1.26"
 rust_decimal_macros = "1.26"
 redeem-logic-settled-forward = { git = "https://github.com/vyper-protocol/vyper-core", branch = "main", features = ["no-entrypoint"] }
+redeem-logic-vanilla-option = { git = "https://github.com/vyper-protocol/vyper-core", branch = "main", features = ["no-entrypoint"] }
