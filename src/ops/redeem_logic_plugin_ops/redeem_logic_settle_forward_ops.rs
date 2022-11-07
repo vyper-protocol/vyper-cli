@@ -26,6 +26,7 @@ use {
     rust_decimal::{
         Decimal
     },
+    console::style
 };
 
 
@@ -39,12 +40,12 @@ pub fn handle_redeem_logic_settle_forward_command(redeem_logic_command: RedeemLo
                 Ok(redeem_config) => redeem_config,
                 Err(err) => {
                     match err {
-                        ClientError::AccountNotFound => println_error("Could not find a state with given public key"),
-                        ClientError::AnchorError(_) => println_error("Anchor not working"),
-                        ClientError::ProgramError(_) => println_error("Redeem Logic Settle Forward program is not working"),
-                        ClientError::SolanaClientError(_) => println_error("Solana client is not working"),
-                        ClientError::SolanaClientPubsubError(_) => println_error("Solana client is not working") ,
-                        ClientError::LogParseError(_)=> println_error("Could not parse the given public key")
+                        ClientError::AccountNotFound => println_error("Could not find redeem logic settle forward state with given public key"),
+                        ClientError::AnchorError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::ProgramError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::SolanaClientError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::SolanaClientPubsubError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::LogParseError(err)=> println_error(&err)
                     }
                     exit(1);
                 }   
@@ -73,11 +74,11 @@ pub fn handle_redeem_logic_settle_forward_command(redeem_logic_command: RedeemLo
                 Err(err) => {
                     match err {
                         ClientError::AccountNotFound => println_error("Could not find a state with given public key"),
-                        ClientError::AnchorError(_) => println_error("Anchor not working"),
-                        ClientError::ProgramError(_) => println_error("Redeem Logic Settle Forward program is not working"),
-                        ClientError::SolanaClientError(_) => println_error("Solana client is not working"),
-                        ClientError::SolanaClientPubsubError(_) => println_error("Solana client is not working") ,
-                        ClientError::LogParseError(_)=> println_error("Could not parse the given input")
+                        ClientError::AnchorError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::ProgramError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::SolanaClientError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::SolanaClientPubsubError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::LogParseError(err)=> println_error(&err)
                     }
                     exit(1);
                 }

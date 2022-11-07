@@ -37,7 +37,7 @@ pub struct PluginState {
     #[clap(long)]
     /// notional value for plugin 
     pub notional: u64,
-    /// strike value for plugim
+    /// strike value for plugin
     #[clap(long)]
     pub strike: f64,
     /// linear value for plugin
