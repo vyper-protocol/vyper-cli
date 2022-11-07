@@ -17,7 +17,8 @@ use {
     },
     vyper_core:: {
         state::TrancheConfig
-    }
+    },
+    console::style
 };
 
 
@@ -32,11 +33,11 @@ pub fn handle_core_command(core_command: CoreCommand, program: &Program) {
                 Err(err) => {
                     match err {
                         ClientError::AccountNotFound => println_error("Could not find tranche cofiguration with given public key"),
-                        ClientError::AnchorError(_) => println_error("Anchor not working"),
-                        ClientError::ProgramError(_) => println_error("Vyper core program is not working"),
-                        ClientError::SolanaClientError(_) => println_error("Solana client is not working"),
-                        ClientError::SolanaClientPubsubError(_) => println_error("Solana client is not working") ,
-                        ClientError::LogParseError(_)=> println_error("Could not parse the given public key")
+                        ClientError::AnchorError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::ProgramError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::SolanaClientError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::SolanaClientPubsubError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::LogParseError(err)=> println_error(&err)
                     }
                     exit(1);
                 }
@@ -45,7 +46,7 @@ pub fn handle_core_command(core_command: CoreCommand, program: &Program) {
             println_name_value("reserve",&account.reserve);
             println_name_value("deposited quantity", &account.tranche_data.deposited_quantity);
             println_name_fair_value("reserve fair value",  &account.tranche_data.reserve_fair_value.value,&account.tranche_data.reserve_fair_value.slot_tracking);
-            println_name_fair_value("tranche fair value", &account.tranche_data.tranche_fair_value.value,&&account.tranche_data.tranche_fair_value.slot_tracking);
+            println_name_fair_value("tranche fair value", &account.tranche_data.tranche_fair_value.value,&account.tranche_data.tranche_fair_value.slot_tracking);
             println_name_value("halt_flags", &account.tranche_data.get_halt_flags().expect("Could not get tranche halt flags"));
             println_name_value("owner restricted ix", &account.tranche_data.get_owner_restricted_ixs().expect("Could not get owner restricted ix"));
             println_name_value("deposited cap", &account.tranche_data.deposit_cap);
