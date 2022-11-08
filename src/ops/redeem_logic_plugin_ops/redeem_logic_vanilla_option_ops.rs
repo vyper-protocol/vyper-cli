@@ -26,6 +26,7 @@ use {
     rust_decimal::{
         Decimal
     },
+    console::style
 };
 
 
@@ -39,20 +40,20 @@ pub fn handle_redeem_logic_vanilla_option_command(redeem_logic_command: RedeemLo
                 Ok(redeem_config) => redeem_config,
                 Err(err) => {
                     match err {
-                        ClientError::AccountNotFound => println_error("Could not find a state with given public key"),
-                        ClientError::AnchorError(_) => println_error("Anchor not working"),
-                        ClientError::ProgramError(_) => println_error("Redeem Logic Vanilla Option program is not working"),
-                        ClientError::SolanaClientError(_) => println_error("Solana client is not working"),
-                        ClientError::SolanaClientPubsubError(_) => println_error("Solana client is not working") ,
-                        ClientError::LogParseError(_)=> println_error("Could not parse the given public key")
+                        ClientError::AccountNotFound => println_error("Could not find a redeem logic vanilla option state with given public key"),
+                        ClientError::AnchorError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::ProgramError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::SolanaClientError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::SolanaClientPubsubError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::LogParseError(err)=> println_error(&err)
                     }
                     exit(1);
                 }   
             };
+            println_name_value("notional", &account.notional);
             println_name_value("is_linear", &account.is_linear);
             println_name_value("is_call", &account.is_call);
             println_name_value("strike",&Decimal::deserialize(account.strike));
-            println_name_value("owner", &account.owner);
         },
         RedeemLogicVanillaOptionSubcommand::Create(plugin_state) => {
             let plugin_config =  Keypair::new();
@@ -61,22 +62,21 @@ pub fn handle_redeem_logic_vanilla_option_command(redeem_logic_command: RedeemLo
                 .signer(&plugin_config)
                 .accounts(InitializeContext {
                     redeem_logic_config: plugin_config.pubkey(),
-                    owner: authority,
                     payer: authority,
                     system_program: system_program::ID,
                 })
-                .args(Initialize { is_call: plugin_state.is_call, is_linear:plugin_state.is_linear, strike:plugin_state.strike})
+                .args(Initialize { notional: plugin_state.notional, is_call: plugin_state.is_call, is_linear:plugin_state.is_linear, strike:plugin_state.strike})
                 .send(); 
             let signature = match signature {
                 Ok(transaction) => transaction,
                 Err(err) => {
                     match err {
-                        ClientError::AccountNotFound => println_error("Could not find a state with given public key"),
-                        ClientError::AnchorError(_) => println_error("Anchor not working"),
-                        ClientError::ProgramError(_) => println_error("Redeem Logic Vanilla Option program is not working"),
-                        ClientError::SolanaClientError(_) => println_error("Solana client is not working"),
-                        ClientError::SolanaClientPubsubError(_) => println_error("Solana client is not working") ,
-                        ClientError::LogParseError(_)=> println_error("Could not parse the given input")
+                        ClientError::AccountNotFound => println_error("Could not find a redeem logic vanilla option state with given public key"),
+                        ClientError::AnchorError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::ProgramError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::SolanaClientError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::SolanaClientPubsubError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::LogParseError(err)=> println_error(&err)
                     }
                     exit(1);
                 }

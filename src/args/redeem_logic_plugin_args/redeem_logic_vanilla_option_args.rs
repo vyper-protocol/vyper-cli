@@ -34,7 +34,10 @@ pub struct FetchState {
 
 #[derive(Debug, Args)]
 pub struct PluginState {
-    /// strike value for plugim
+    #[clap(long)]
+    /// notinal value for plugin
+    pub notional: u64,
+    /// strike value for plugin
     #[clap(long)]
     pub strike: f64,
     /// linear value for plugin
