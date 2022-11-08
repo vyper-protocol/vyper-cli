@@ -6,16 +6,16 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+vyper-core = { git = "https://github.com/vyper-protocol/vyper-core", features = ["no-entrypoint"], tag="vyper_core_mainnet_v0.1.0" }
+redeem-logic-forward = { git = "https://github.com/vyper-protocol/vyper-core", features = ["no-entrypoint"], tag="redeem_logic_settled_forward_mainnet_v0.1.0" }
+redeem-logic-settled-forward = { git = "https://github.com/vyper-protocol/vyper-core", features = ["no-entrypoint"], tag="redeem_logic_settled_forward_mainnet_v0.1.1" }
+redeem-logic-vanilla-option = { git = "https://github.com/vyper-protocol/vyper-core", features = ["no-entrypoint"], tag="redeem_logic_vanilla_option_mainnet_v1.0.0" }
+rate-switchboard = { git = "https://github.com/vyper-protocol/vyper-core", features = ["no-entrypoint"], tag="rate_switchboard_mainnet_v0.1.1" }
 clap = { version = "3.2.22", features = ["derive"] }
 anchor-client = "0.24.2"
 solana-cli-config = "1.9.13"
 bs58 = "0.4.0"
 borsh = "0.9.3"
-vyper-core = { git = "https://github.com/vyper-protocol/vyper-core", branch = "main", features = ["no-entrypoint"] }
-redeem-logic-forward = { git = "https://github.com/vyper-protocol/vyper-core", branch = "main", features = ["no-entrypoint"] }
-rate-switchboard = { git = "https://github.com/vyper-protocol/vyper-core", branch = "main", features = ["no-entrypoint"] }
 console = "0.15.1"
 rust_decimal = "1.26"
 rust_decimal_macros = "1.26"
-redeem-logic-settled-forward = { git = "https://github.com/vyper-protocol/vyper-core", branch = "main", features = ["no-entrypoint"] }
-redeem-logic-vanilla-option = { git = "https://github.com/vyper-protocol/vyper-core", branch = "main", features = ["no-entrypoint"] }
