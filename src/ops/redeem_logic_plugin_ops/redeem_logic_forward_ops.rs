@@ -27,7 +27,7 @@ pub fn handle_redeem_logic_forward_command(redeem_logic_command: RedeemLogicForw
         RedeemLogicForwardSubcommand::Fetch(fetch_state) => {
             let account:Result<RedeemLogicConfig,ClientError> = program.account(fetch_state.state_id);
             let account = match account {
-                Ok(redeem_config) => (redeem_config),
+                Ok(redeem_config) => redeem_config,
                 Err(err) => {
                     match err {
                         ClientError::AccountNotFound => println_error("Could not find a state with given public key"),
@@ -43,7 +43,6 @@ pub fn handle_redeem_logic_forward_command(redeem_logic_command: RedeemLogicForw
             println_name_value("notional", &account.notional);
             println_name_value("is_linear", &account.is_linear);
             println_name_value("strike",&Decimal::deserialize(account.strike));
-            println_name_value("owner", &account.owner);
         }
     }
 }
