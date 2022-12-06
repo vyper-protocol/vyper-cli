@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":[["RedeemLogicForwardSubcommand",""]],"struct":[["FetchState",""],["RedeemLogicForwardCommand",""]]};
+window.SIDEBAR_ITEMS = {"enum":[["RedeemLogicForwardSubcommand",""]],"struct":[["FetchState",""],["PluginState",""],["RedeemLogicForwardCommand",""]]};

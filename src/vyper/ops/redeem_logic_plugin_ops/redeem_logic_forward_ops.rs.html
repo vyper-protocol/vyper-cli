@@ -46,6 +46,45 @@
 <span id="46">46</span>
 <span id="47">47</span>
 <span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
+<span id="59">59</span>
+<span id="60">60</span>
+<span id="61">61</span>
+<span id="62">62</span>
+<span id="63">63</span>
+<span id="64">64</span>
+<span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
+<span id="86">86</span>
+<span id="87">87</span>
 </pre><pre class="rust"><code><span class="kw">use </span>{
     std::process::exit,
     <span class="kw">crate</span>::args::redeem_logic_plugin_args,
@@ -56,15 +95,25 @@
     anchor_client::{
         Program,
         ClientError,
+        solana_sdk:: {
+            signer::keypair::Keypair,
+            signer::Signer,
+            system_program
+        }
     },
-    redeem_logic_forward::RedeemLogicConfig,
+    redeem_logic_forward:: {
+        RedeemLogicConfig,
+        accounts::InitializeContext,
+        instruction::Initialize,
+    },
     <span class="kw">crate</span>::utils:: {
         println_name_value,
         println_error
     },
     rust_decimal::{
         Decimal
-    }
+    },
+    console::style
 };
 
 
@@ -78,19 +127,48 @@
                 <span class="prelude-val">Ok</span>(redeem_config) =&gt; redeem_config,
                 <span class="prelude-val">Err</span>(err) =&gt; {
                     <span class="kw">match </span>err {
-                        ClientError::AccountNotFound =&gt; println_error(<span class="string">&quot;Could not find a state with given public key&quot;</span>),
-                        ClientError::AnchorError(<span class="kw">_</span>) =&gt; println_error(<span class="string">&quot;Anchor not working&quot;</span>),
-                        ClientError::ProgramError(<span class="kw">_</span>) =&gt; println_error(<span class="string">&quot;Redeem Logic Forward program is not working&quot;</span>),
-                        ClientError::SolanaClientError(<span class="kw">_</span>) =&gt; println_error(<span class="string">&quot;Solana client is not working&quot;</span>),
-                        ClientError::SolanaClientPubsubError(<span class="kw">_</span>) =&gt; println_error(<span class="string">&quot;Solana client is not working&quot;</span>) ,
-                        ClientError::LogParseError(<span class="kw">_</span>)=&gt; println_error(<span class="string">&quot;Could not parse the given public key&quot;</span>)
+                        ClientError::AccountNotFound =&gt; println_error(<span class="string">&quot;Could not find a redeem logic forward plugin state with given public key&quot;</span>),
+                        ClientError::AnchorError(err) =&gt; <span class="macro">println!</span>(<span class="string">&quot;{} : {}&quot;</span>,style(<span class="string">&quot;error&quot;</span>).red().bold(),err),
+                        ClientError::ProgramError(err) =&gt; <span class="macro">println!</span>(<span class="string">&quot;{} : {}&quot;</span>,style(<span class="string">&quot;error&quot;</span>).red().bold(),err),
+                        ClientError::SolanaClientError(err) =&gt; <span class="macro">println!</span>(<span class="string">&quot;{} : {}&quot;</span>,style(<span class="string">&quot;error&quot;</span>).red().bold(),err),
+                        ClientError::SolanaClientPubsubError(err) =&gt; <span class="macro">println!</span>(<span class="string">&quot;{} : {}&quot;</span>,style(<span class="string">&quot;error&quot;</span>).red().bold(),err),
+                        ClientError::LogParseError(err)=&gt; println_error(<span class="kw-2">&amp;</span>err)
                     }
                     exit(<span class="number">1</span>);
-                }
+                }   
             };
             println_name_value(<span class="string">&quot;notional&quot;</span>, <span class="kw-2">&amp;</span>account.notional);
             println_name_value(<span class="string">&quot;is_linear&quot;</span>, <span class="kw-2">&amp;</span>account.is_linear);
             println_name_value(<span class="string">&quot;strike&quot;</span>,<span class="kw-2">&amp;</span>Decimal::deserialize(account.strike));
+        },
+        RedeemLogicForwardSubcommand::Create(plugin_state) =&gt; {
+            <span class="kw">let </span>plugin_config =  Keypair::new();
+            <span class="kw">let </span>authority = program.payer();
+            <span class="kw">let </span>signature = program.request()
+                .signer(<span class="kw-2">&amp;</span>plugin_config)
+                .accounts(InitializeContext {
+                    redeem_logic_config: plugin_config.pubkey(),
+                    payer: authority,
+                    system_program: system_program::ID,
+                })
+                .args(Initialize { notional: plugin_state.notional,is_linear:plugin_state.is_linear, strike:plugin_state.strike})
+                .send(); 
+            <span class="kw">let </span>signature = <span class="kw">match </span>signature {
+                <span class="prelude-val">Ok</span>(transaction) =&gt; transaction,
+                <span class="prelude-val">Err</span>(err) =&gt; {
+                    <span class="kw">match </span>err {
+                        ClientError::AccountNotFound =&gt; println_error(<span class="string">&quot;Could not find a state with given public key&quot;</span>),
+                        ClientError::AnchorError(err) =&gt; <span class="macro">println!</span>(<span class="string">&quot;{} : {}&quot;</span>,style(<span class="string">&quot;error&quot;</span>).red().bold(),err),
+                        ClientError::ProgramError(err) =&gt; <span class="macro">println!</span>(<span class="string">&quot;{} : {}&quot;</span>,style(<span class="string">&quot;error&quot;</span>).red().bold(),err),
+                        ClientError::SolanaClientError(err) =&gt; <span class="macro">println!</span>(<span class="string">&quot;{} : {}&quot;</span>,style(<span class="string">&quot;error&quot;</span>).red().bold(),err),
+                        ClientError::SolanaClientPubsubError(err) =&gt; <span class="macro">println!</span>(<span class="string">&quot;{} : {}&quot;</span>,style(<span class="string">&quot;error&quot;</span>).red().bold(),err),
+                        ClientError::LogParseError(err)=&gt; println_error(<span class="kw-2">&amp;</span>err)
+                    }
+                    exit(<span class="number">1</span>);
+                }
+            };
+            println_name_value(<span class="string">&quot;Redeem Logic Forward State successfully create at&quot;</span>, <span class="kw-2">&amp;</span>plugin_config.pubkey());
+            println_name_value(<span class="string">&quot;Transaction Id&quot;</span>, <span class="kw-2">&amp;</span>signature);                                       
         }
     }
 }</code></pre></div>

@@ -29,6 +29,22 @@
 <span id="29">29</span>
 <span id="30">30</span>
 <span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
 </pre><pre class="rust"><code><span class="kw">use </span>{
     clap::{
         Args,
@@ -53,11 +69,27 @@
 </span><span class="kw">pub enum </span>RedeemLogicForwardSubcommand {
     <span class="doccomment">/// Gets the state of redeem logic forward plugin from the given public key.
     </span>Fetch(FetchState),
+    <span class="doccomment">/// Creates a redeem logic forward state with given configuration
+    </span>Create(PluginState)
 }
 
 <span class="attribute">#[derive(Debug, Args)]
 </span><span class="kw">pub struct </span>FetchState {
     <span class="doccomment">/// Public key of state of plugin.
     </span><span class="kw">pub </span>state_id: Pubkey
+}
+
+<span class="attribute">#[derive(Debug, Args)]
+</span><span class="kw">pub struct </span>PluginState {
+    <span class="attribute">#[clap(long)]
+    </span><span class="doccomment">/// notional value for plugin 
+    </span><span class="kw">pub </span>notional: u64,
+    <span class="doccomment">/// strike value for plugim
+    </span><span class="attribute">#[clap(long)]
+    </span><span class="kw">pub </span>strike: f64,
+    <span class="doccomment">/// linear value for plugin
+    </span><span class="attribute">#[clap(long=<span class="string">&quot;linear&quot;</span>, parse(try_from_str))]
+    </span><span class="kw">pub </span>is_linear: bool,
+    
 }</code></pre></div>
 </section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="vyper" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

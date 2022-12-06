@@ -64,6 +64,7 @@
 <span id="64">64</span>
 <span id="65">65</span>
 <span id="66">66</span>
+<span id="67">67</span>
 </pre><pre class="rust"><code><span class="kw">use </span>{
     std::process::exit,
     <span class="kw">crate</span>::args::core_args,
@@ -83,7 +84,8 @@
     },
     vyper_core:: {
         state::TrancheConfig
-    }
+    },
+    console::style
 };
 
 
@@ -98,11 +100,11 @@
                 <span class="prelude-val">Err</span>(err) =&gt; {
                     <span class="kw">match </span>err {
                         ClientError::AccountNotFound =&gt; println_error(<span class="string">&quot;Could not find tranche cofiguration with given public key&quot;</span>),
-                        ClientError::AnchorError(<span class="kw">_</span>) =&gt; println_error(<span class="string">&quot;Anchor not working&quot;</span>),
-                        ClientError::ProgramError(<span class="kw">_</span>) =&gt; println_error(<span class="string">&quot;Vyper core program is not working&quot;</span>),
-                        ClientError::SolanaClientError(<span class="kw">_</span>) =&gt; println_error(<span class="string">&quot;Solana client is not working&quot;</span>),
-                        ClientError::SolanaClientPubsubError(<span class="kw">_</span>) =&gt; println_error(<span class="string">&quot;Solana client is not working&quot;</span>) ,
-                        ClientError::LogParseError(<span class="kw">_</span>)=&gt; println_error(<span class="string">&quot;Could not parse the given public key&quot;</span>)
+                        ClientError::AnchorError(err) =&gt; <span class="macro">println!</span>(<span class="string">&quot;{} : {}&quot;</span>,style(<span class="string">&quot;error&quot;</span>).red().bold(),err),
+                        ClientError::ProgramError(err) =&gt; <span class="macro">println!</span>(<span class="string">&quot;{} : {}&quot;</span>,style(<span class="string">&quot;error&quot;</span>).red().bold(),err),
+                        ClientError::SolanaClientError(err) =&gt; <span class="macro">println!</span>(<span class="string">&quot;{} : {}&quot;</span>,style(<span class="string">&quot;error&quot;</span>).red().bold(),err),
+                        ClientError::SolanaClientPubsubError(err) =&gt; <span class="macro">println!</span>(<span class="string">&quot;{} : {}&quot;</span>,style(<span class="string">&quot;error&quot;</span>).red().bold(),err),
+                        ClientError::LogParseError(err)=&gt; println_error(<span class="kw-2">&amp;</span>err)
                     }
                     exit(<span class="number">1</span>);
                 }
