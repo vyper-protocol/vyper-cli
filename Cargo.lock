@@ -2217,12 +2217,13 @@ dependencies = [
 
 [[package]]
 name = "redeem-logic-settled-forward"
-version = "0.1.1"
-source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#b67b24fe75752429027046be1af3f283d53d76a8"
+version = "1.0.0"
+source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#da36b6af40d89582636ef361327a186b53c9f0a6"
 dependencies = [
  "anchor-lang",
  "rust_decimal",
  "rust_decimal_macros",
+ "solana-security-txt",
  "vyper-macros 0.1.0 (git+https://github.com/vyper-protocol/vyper-core?branch=main)",
  "vyper-utils 0.1.0 (git+https://github.com/vyper-protocol/vyper-core?branch=main)",
 ]
@@ -3777,7 +3778,7 @@ dependencies = [
 [[package]]
 name = "vyper-macros"
 version = "0.1.0"
-source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#772c72a8b5c7fe29784a64a4cf25aeae58a60447"
+source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#da36b6af40d89582636ef361327a186b53c9f0a6"
 dependencies = [
  "quote 1.0.21",
  "syn 1.0.105",
@@ -3797,7 +3798,7 @@ dependencies = [
 [[package]]
 name = "vyper-utils"
 version = "0.1.0"
-source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#772c72a8b5c7fe29784a64a4cf25aeae58a60447"
+source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#da36b6af40d89582636ef361327a186b53c9f0a6"
 dependencies = [
  "anchor-lang",
  "anchor-spl",
