@@ -53,7 +53,6 @@ pub fn handle_redeem_logic_forward_command(redeem_logic_command: RedeemLogicForw
             println_name_value("notional", &account.notional);
             println_name_value("is_linear", &account.is_linear);
             println_name_value("strike",&Decimal::deserialize(account.strike));
-            println_name_value("owner", &account.owner);
         },
         RedeemLogicForwardSubcommand::Create(plugin_state) => {
             let plugin_config =  Keypair::new();
@@ -62,7 +61,6 @@ pub fn handle_redeem_logic_forward_command(redeem_logic_command: RedeemLogicForw
                 .signer(&plugin_config)
                 .accounts(InitializeContext {
                     redeem_logic_config: plugin_config.pubkey(),
-                    owner: authority,
                     payer: authority,
                     system_program: system_program::ID,
                 })
