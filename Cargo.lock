@@ -2029,11 +2029,12 @@ dependencies = [
 [[package]]
 name = "rate-switchboard"
 version = "0.1.1"
-source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#772c72a8b5c7fe29784a64a4cf25aeae58a60447"
+source = "git+https://github.com/vyper-protocol/vyper-core?branch=dev#2fa059ea7f9f106a7240f70c767f436034b8de0f"
 dependencies = [
  "anchor-lang",
  "rust_decimal",
  "rust_decimal_macros",
+ "solana-security-txt",
  "switchboard-v2",
  "vyper-utils",
 ]
@@ -2064,12 +2065,13 @@ dependencies = [
 
 [[package]]
 name = "redeem-logic-forward"
-version = "0.1.1"
-source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#772c72a8b5c7fe29784a64a4cf25aeae58a60447"
+version = "1.0.0"
+source = "git+https://github.com/vyper-protocol/vyper-core?branch=dev#2fa059ea7f9f106a7240f70c767f436034b8de0f"
 dependencies = [
  "anchor-lang",
  "rust_decimal",
  "rust_decimal_macros",
+ "solana-security-txt",
  "vyper-macros",
  "vyper-utils",
 ]
@@ -3546,7 +3548,7 @@ dependencies = [
 [[package]]
 name = "vyper-core"
 version = "0.1.0"
-source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#772c72a8b5c7fe29784a64a4cf25aeae58a60447"
+source = "git+https://github.com/vyper-protocol/vyper-core?branch=dev#2fa059ea7f9f106a7240f70c767f436034b8de0f"
 dependencies = [
  "anchor-lang",
  "anchor-spl",
@@ -3562,7 +3564,7 @@ dependencies = [
 [[package]]
 name = "vyper-macros"
 version = "0.1.0"
-source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#772c72a8b5c7fe29784a64a4cf25aeae58a60447"
+source = "git+https://github.com/vyper-protocol/vyper-core?branch=dev#2fa059ea7f9f106a7240f70c767f436034b8de0f"
 dependencies = [
  "quote 1.0.21",
  "syn 1.0.101",
@@ -3571,7 +3573,7 @@ dependencies = [
 [[package]]
 name = "vyper-utils"
 version = "0.1.0"
-source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#772c72a8b5c7fe29784a64a4cf25aeae58a60447"
+source = "git+https://github.com/vyper-protocol/vyper-core?branch=dev#2fa059ea7f9f106a7240f70c767f436034b8de0f"
 dependencies = [
  "anchor-lang",
  "anchor-spl",
