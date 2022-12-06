@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/main.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>main.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../vyper/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../vyper/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../vyper/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/main.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>main.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../vyper/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../vyper/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../vyper/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -104,111 +104,111 @@
 <span id="104">104</span>
 <span id="105">105</span>
 <span id="106">106</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::process::exit</span>;
-<span class="kw">mod</span> <span class="ident">args</span>;
-<span class="kw">mod</span> <span class="ident">ops</span>;
-<span class="kw">mod</span> <span class="ident">utils</span>;
+</pre><pre class="rust"><code><span class="kw">use </span>std::process::exit;
+<span class="kw">mod </span>args;
+<span class="kw">mod </span>ops;
+<span class="kw">mod </span>utils;
 
-<span class="kw">use</span> {
-    <span class="ident">args::VyperCliArgs</span>,
-    <span class="ident">clap::Parser</span>,
-    <span class="ident">args::Vyper</span>,
-    <span class="ident">ops::core_ops::handle_core_command</span>,
-    <span class="ident">ops::redeem_logic_plugin_ops</span>::{
-        <span class="ident">redeem_logic_forward_ops::handle_redeem_logic_forward_command</span>,
+<span class="kw">use </span>{
+    args::VyperCliArgs,
+    clap::Parser,
+    args::Vyper,
+    ops::core_ops::handle_core_command,
+    ops::redeem_logic_plugin_ops::{
+        redeem_logic_forward_ops::handle_redeem_logic_forward_command,
     },
-    <span class="ident">ops::rate_plugin_ops</span>::{
-        <span class="ident">rate_switchboard_ops::handle_rate_switchboard_command</span>
+    ops::rate_plugin_ops::{
+        rate_switchboard_ops::handle_rate_switchboard_command
     },
-    <span class="ident">anchor_client</span>::{
-        <span class="ident">Client</span>,
-        <span class="ident">Cluster</span>,
-        <span class="ident">solana_sdk</span>::{
-            <span class="ident">signer::keypair::read_keypair_file</span>,
-            <span class="ident">pubkey</span>:: <span class="ident">Pubkey</span>
+    anchor_client::{
+        Client,
+        Cluster,
+        solana_sdk::{
+            signer::keypair::read_keypair_file,
+            pubkey:: Pubkey
         },
     },
-    <span class="ident">solana_cli_config::Config</span>,
-    <span class="ident">std::rc::Rc</span>,
-    <span class="ident">utils</span>::{
-        <span class="ident">println_error</span>,
-        <span class="ident">get_solana_config</span>
+    solana_cli_config::Config,
+    std::rc::Rc,
+    utils::{
+        println_error,
+        get_solana_config
     }
 };
 
 
-<span class="kw">const</span> <span class="ident">VYPER_CORE_ID</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;vyPErCcGJKQQBeeQ59gXcWrDyU4vBrq8qQfacwmsAsp&quot;</span>;
-<span class="kw">const</span> <span class="ident">REDEEM_LOGIC_FORWARD</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;BrpV1re8MshA8qskKVxcEG8zXG3vf2uLX6myeTKAyhsK&quot;</span>;
-<span class="kw">const</span> <span class="ident">RATE_SWITCHBOARD</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>  <span class="op">=</span> <span class="string">&quot;2hGXiH1oEQwjCXRx8bNdHTi49ScZp7Mj2bxcjxtULKe1&quot;</span>;
+<span class="kw">const </span>VYPER_CORE_ID: <span class="kw-2">&amp;</span>str = <span class="string">&quot;vyPErCcGJKQQBeeQ59gXcWrDyU4vBrq8qQfacwmsAsp&quot;</span>;
+<span class="kw">const </span>REDEEM_LOGIC_FORWARD: <span class="kw-2">&amp;</span>str = <span class="string">&quot;BrpV1re8MshA8qskKVxcEG8zXG3vf2uLX6myeTKAyhsK&quot;</span>;
+<span class="kw">const </span>RATE_SWITCHBOARD: <span class="kw-2">&amp;</span>str  = <span class="string">&quot;2hGXiH1oEQwjCXRx8bNdHTi49ScZp7Mj2bxcjxtULKe1&quot;</span>;
 
-<span class="kw">fn</span> <span class="ident">main</span>() {
+<span class="kw">fn </span>main() {
 
-    <span class="comment">// parsing arguments</span>
-    <span class="kw">let</span> <span class="ident">args</span> <span class="op">=</span> <span class="ident">VyperCliArgs::parse</span>();
+    <span class="comment">// parsing arguments
+    </span><span class="kw">let </span>args = VyperCliArgs::parse();
 
-    <span class="comment">// getting the config file</span>
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cli_config</span>:<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Config</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+    <span class="comment">// getting the config file
+    </span><span class="kw">let </span><span class="kw-2">mut </span>cli_config:<span class="prelude-ty">Option</span>&lt;Config&gt; = <span class="prelude-val">None</span>;
 
-    <span class="kw">let</span> <span class="ident">current_cluster</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">args</span>.<span class="ident">config_override</span>.<span class="ident">cluster</span> {
-        <span class="prelude-val">Some</span>(<span class="ident">cluster</span>) =&gt; <span class="ident">cluster</span>,
-        <span class="prelude-val">None</span> =&gt; {
-            <span class="ident">cli_config</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">get_solana_config</span>());
-            <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">cli_config</span> {
-                <span class="prelude-val">Some</span>(<span class="ident">solana_config</span>) =&gt; <span class="ident">Cluster::Custom</span>(<span class="ident">solana_config</span>.<span class="ident">json_rpc_url</span>.<span class="ident">clone</span>(),<span class="ident">solana_config</span>.<span class="ident">websocket_url</span>.<span class="ident">clone</span>()),
+    <span class="kw">let </span>current_cluster = <span class="kw">match </span>args.config_override.cluster {
+        <span class="prelude-val">Some</span>(cluster) =&gt; cluster,
+        <span class="prelude-val">None </span>=&gt; {
+            cli_config = <span class="prelude-val">Some</span>(get_solana_config());
+            <span class="kw">match </span><span class="kw-2">&amp;</span>cli_config {
+                <span class="prelude-val">Some</span>(solana_config) =&gt; Cluster::Custom(solana_config.json_rpc_url.clone(),solana_config.websocket_url.clone()),
                 <span class="prelude-val">None</span>=&gt; {
-                    <span class="ident">println_error</span>(<span class="string">&quot;Could not find a config file or --cluster option&quot;</span>);
-                    <span class="ident">exit</span>(<span class="number">1</span>);
+                    println_error(<span class="string">&quot;Could not find a config file or --cluster option&quot;</span>);
+                    exit(<span class="number">1</span>);
                 }
             }
         }
     };
 
-    <span class="kw">let</span> <span class="ident">keypair_path</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">args</span>.<span class="ident">config_override</span>.<span class="ident">wallet</span> {
-        <span class="prelude-val">Some</span>(<span class="ident">keypair</span>) =&gt; <span class="ident">keypair</span>,
-        <span class="prelude-val">None</span> =&gt; {
-            <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">cli_config</span> {
-                <span class="prelude-val">Some</span>(<span class="ident">solana_config</span>)=&gt; <span class="ident">solana_config</span>.<span class="ident">keypair_path</span>.<span class="ident">clone</span>(),
-                <span class="prelude-val">None</span> =&gt; {
-                    <span class="ident">get_solana_config</span>().<span class="ident">keypair_path</span>
+    <span class="kw">let </span>keypair_path = <span class="kw">match </span>args.config_override.wallet {
+        <span class="prelude-val">Some</span>(keypair) =&gt; keypair,
+        <span class="prelude-val">None </span>=&gt; {
+            <span class="kw">match </span><span class="kw-2">&amp;</span>cli_config {
+                <span class="prelude-val">Some</span>(solana_config)=&gt; solana_config.keypair_path.clone(),
+                <span class="prelude-val">None </span>=&gt; {
+                    get_solana_config().keypair_path
                 }
             }
         }
     };
 
-    <span class="kw">let</span> <span class="ident">key_pair</span> <span class="op">=</span> <span class="ident">read_keypair_file</span>(<span class="kw-2">&amp;</span><span class="ident">keypair_path</span>);
-    <span class="kw">let</span> <span class="ident">key_pair</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">key_pair</span> {
-        <span class="prelude-val">Ok</span>(<span class="ident">keys</span>) =&gt; <span class="ident">keys</span>,
+    <span class="kw">let </span>key_pair = read_keypair_file(<span class="kw-2">&amp;</span>keypair_path);
+    <span class="kw">let </span>key_pair = <span class="kw">match </span>key_pair {
+        <span class="prelude-val">Ok</span>(keys) =&gt; keys,
         <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; {
-            <span class="ident">println_error</span>(<span class="string">&quot;Could not find keypair in the config file&quot;</span>);
-            <span class="ident">exit</span>(<span class="number">1</span>);
+            println_error(<span class="string">&quot;Could not find keypair in the config file&quot;</span>);
+            exit(<span class="number">1</span>);
         }
     };
 
 
-    <span class="kw">let</span> <span class="ident">client</span> <span class="op">=</span> <span class="ident">Client::new</span>(<span class="ident">current_cluster</span>, <span class="ident">Rc::new</span>(<span class="ident">key_pair</span>));
-    <span class="kw">match</span> <span class="ident">args</span>.<span class="ident">vyper</span> {
-        <span class="ident">Vyper::Core</span>(<span class="ident">core</span>) =&gt; {
-            <span class="comment">// vyper core program</span>
-            <span class="kw">let</span> <span class="ident">core_program_id</span>: <span class="ident">Pubkey</span> <span class="op">=</span> <span class="ident">Pubkey::new</span>(<span class="kw-2">&amp;</span><span class="ident">bs58::decode</span>(<span class="kw-2">&amp;</span><span class="ident">VYPER_CORE_ID</span>).<span class="ident">into_vec</span>().<span class="ident">expect</span>(<span class="string">&quot;Invalid vyper core program id&quot;</span>));
-            <span class="kw">let</span> <span class="ident">core_program</span> <span class="op">=</span> <span class="ident">client</span>.<span class="ident">program</span>(<span class="ident">core_program_id</span>);
-            <span class="comment">// core command handler</span>
-            <span class="ident">handle_core_command</span>(<span class="ident">core</span>,<span class="kw-2">&amp;</span><span class="ident">core_program</span>);
+    <span class="kw">let </span>client = Client::new(current_cluster, Rc::new(key_pair));
+    <span class="kw">match </span>args.vyper {
+        Vyper::Core(core) =&gt; {
+            <span class="comment">// vyper core program
+            </span><span class="kw">let </span>core_program_id: Pubkey = Pubkey::new(<span class="kw-2">&amp;</span>bs58::decode(<span class="kw-2">&amp;</span>VYPER_CORE_ID).into_vec().expect(<span class="string">&quot;Invalid vyper core program id&quot;</span>));
+            <span class="kw">let </span>core_program = client.program(core_program_id);
+            <span class="comment">// core command handler
+            </span>handle_core_command(core,<span class="kw-2">&amp;</span>core_program);
         },
-        <span class="ident">Vyper::RedeemLogicForward</span>(<span class="ident">redeem_logic_command</span>) =&gt; {
-            <span class="comment">// redem logic forward program</span>
-            <span class="kw">let</span> <span class="ident">redeem_logic_forward_program_id</span>: <span class="ident">Pubkey</span> <span class="op">=</span> <span class="ident">Pubkey::new</span>(<span class="kw-2">&amp;</span><span class="ident">bs58::decode</span>(<span class="kw-2">&amp;</span><span class="ident">REDEEM_LOGIC_FORWARD</span>).<span class="ident">into_vec</span>().<span class="ident">expect</span>(<span class="string">&quot;Invalid redeem logic forward program id&quot;</span>));
-            <span class="kw">let</span> <span class="ident">redeem_logic_forward_program</span> <span class="op">=</span> <span class="ident">client</span>.<span class="ident">program</span>(<span class="ident">redeem_logic_forward_program_id</span>);
-            <span class="comment">// command handler</span>
-            <span class="ident">handle_redeem_logic_forward_command</span>(<span class="ident">redeem_logic_command</span>, <span class="kw-2">&amp;</span><span class="ident">redeem_logic_forward_program</span>);
+        Vyper::RedeemLogicForward(redeem_logic_command) =&gt; {
+            <span class="comment">// redem logic forward program
+            </span><span class="kw">let </span>redeem_logic_forward_program_id: Pubkey = Pubkey::new(<span class="kw-2">&amp;</span>bs58::decode(<span class="kw-2">&amp;</span>REDEEM_LOGIC_FORWARD).into_vec().expect(<span class="string">&quot;Invalid redeem logic forward program id&quot;</span>));
+            <span class="kw">let </span>redeem_logic_forward_program = client.program(redeem_logic_forward_program_id);
+            <span class="comment">// command handler
+            </span>handle_redeem_logic_forward_command(redeem_logic_command, <span class="kw-2">&amp;</span>redeem_logic_forward_program);
         },
-        <span class="ident">Vyper::RateSwitchboard</span>(<span class="ident">rate_switchboard_command</span>) =&gt; {
-             <span class="comment">// rate switchboard program</span>
-             <span class="kw">let</span> <span class="ident">rate_switchboard_program_id</span>: <span class="ident">Pubkey</span> <span class="op">=</span> <span class="ident">Pubkey::new</span>(<span class="kw-2">&amp;</span><span class="ident">bs58::decode</span>(<span class="kw-2">&amp;</span><span class="ident">RATE_SWITCHBOARD</span>).<span class="ident">into_vec</span>().<span class="ident">expect</span>(<span class="string">&quot;Invalid rate switchboard program id&quot;</span>));
-             <span class="kw">let</span> <span class="ident">rate_switchboard_program</span> <span class="op">=</span> <span class="ident">client</span>.<span class="ident">program</span>(<span class="ident">rate_switchboard_program_id</span>);
-             <span class="comment">// command handler</span>
-             <span class="ident">handle_rate_switchboard_command</span>(<span class="ident">rate_switchboard_command</span>, <span class="kw-2">&amp;</span><span class="ident">rate_switchboard_program</span>);
+        Vyper::RateSwitchboard(rate_switchboard_command) =&gt; {
+             <span class="comment">// rate switchboard program
+             </span><span class="kw">let </span>rate_switchboard_program_id: Pubkey = Pubkey::new(<span class="kw-2">&amp;</span>bs58::decode(<span class="kw-2">&amp;</span>RATE_SWITCHBOARD).into_vec().expect(<span class="string">&quot;Invalid rate switchboard program id&quot;</span>));
+             <span class="kw">let </span>rate_switchboard_program = client.program(rate_switchboard_program_id);
+             <span class="comment">// command handler
+             </span>handle_rate_switchboard_command(rate_switchboard_command, <span class="kw-2">&amp;</span>rate_switchboard_program);
         }
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="vyper" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="vyper" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

@@ -1,3 +1,3 @@
-(function() {var implementors = {};
-implementors["vyper"] = [{"text":"impl Parser for <a class=\"struct\" href=\"vyper/args/config_args/struct.ConfigOptions.html\" title=\"struct vyper::args::config_args::ConfigOptions\">ConfigOptions</a>","synthetic":false,"types":["vyper::args::config_args::ConfigOptions"]},{"text":"impl Parser for <a class=\"struct\" href=\"vyper/args/struct.VyperCliArgs.html\" title=\"struct vyper::args::VyperCliArgs\">VyperCliArgs</a>","synthetic":false,"types":["vyper::args::VyperCliArgs"]}];
-if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
+(function() {var implementors = {
+"vyper":[["impl Parser for <a class=\"struct\" href=\"vyper/args/config_args/struct.ConfigOptions.html\" title=\"struct vyper::args::config_args::ConfigOptions\">ConfigOptions</a>"],["impl Parser for <a class=\"struct\" href=\"vyper/args/struct.VyperCliArgs.html\" title=\"struct vyper::args::VyperCliArgs\">VyperCliArgs</a>"]]
+};if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
