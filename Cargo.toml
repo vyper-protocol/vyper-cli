@@ -11,9 +11,9 @@ anchor-client = "0.24.2"
 solana-cli-config = "1.9.13"
 bs58 = "0.4.0"
 borsh = "0.9.3"
-vyper-core = { git = "https://github.com/vyper-protocol/vyper-core", branch = "main", features = ["no-entrypoint"] }
-redeem-logic-forward = { git = "https://github.com/vyper-protocol/vyper-core", branch = "main", features = ["no-entrypoint"] }
-rate-switchboard = { git = "https://github.com/vyper-protocol/vyper-core", branch = "main", features = ["no-entrypoint"] }
+vyper-core = { git = "https://github.com/vyper-protocol/vyper-core", branch = "dev", features = ["no-entrypoint"] }
+redeem-logic-forward = { git = "https://github.com/vyper-protocol/vyper-core", branch = "dev", features = ["no-entrypoint"] }
+rate-switchboard = { git = "https://github.com/vyper-protocol/vyper-core", branch = "dev", features = ["no-entrypoint"] }
 console = "0.15.1"
 rust_decimal = "1.26"
 rust_decimal_macros = "1.26"
