@@ -64,11 +64,7 @@ dependencies = [
  "proc-macro2 1.0.47",
  "quote 1.0.21",
  "regex",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
 ]
 
 [[package]]
@@ -83,11 +79,7 @@ dependencies = [
  "proc-macro2 1.0.47",
  "quote 1.0.21",
  "rustversion",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
 ]
 
 [[package]]
@@ -98,11 +90,7 @@ checksum = "dc632c540913dd051a78b00587cc47f57013d303163ddfaf4fa18717f7ccc1e0"
 dependencies = [
  "anchor-syn",
  "proc-macro2 1.0.47",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
 ]
 
 [[package]]
@@ -114,11 +102,7 @@ dependencies = [
  "anchor-syn",
  "proc-macro2 1.0.47",
  "quote 1.0.21",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
 ]
 
 [[package]]
@@ -131,11 +115,7 @@ dependencies = [
  "anyhow",
  "proc-macro2 1.0.47",
  "quote 1.0.21",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
 ]
 
 [[package]]
@@ -149,11 +129,7 @@ dependencies = [
  "heck 0.3.3",
  "proc-macro2 1.0.47",
  "quote 1.0.21",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
 ]
 
 [[package]]
@@ -166,11 +142,7 @@ dependencies = [
  "anyhow",
  "proc-macro2 1.0.47",
  "quote 1.0.21",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
 ]
 
 [[package]]
@@ -183,11 +155,7 @@ dependencies = [
  "anyhow",
  "proc-macro2 1.0.47",
  "quote 1.0.21",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
 ]
 
 [[package]]
@@ -217,11 +185,7 @@ dependencies = [
  "anyhow",
  "proc-macro2 1.0.47",
  "quote 1.0.21",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
 ]
 
 [[package]]
@@ -275,11 +239,7 @@ dependencies = [
  "serde",
  "serde_json",
  "sha2",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
  "thiserror",
 ]
 
@@ -455,11 +415,7 @@ dependencies = [
  "borsh-schema-derive-internal",
  "proc-macro-crate 0.1.5",
  "proc-macro2 1.0.47",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
 ]
 
 [[package]]
@@ -470,11 +426,7 @@ checksum = "5449c28a7b352f2d1e592a8a28bf139bc71afb0764a14f3c02500935d8c44065"
 dependencies = [
  "proc-macro2 1.0.47",
  "quote 1.0.21",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
 ]
 
 [[package]]
@@ -485,11 +437,7 @@ checksum = "cdbd5696d8bfa21d53d9fe39a714a18538bad11492a42d066dbbc395fb1951c0"
 dependencies = [
  "proc-macro2 1.0.47",
  "quote 1.0.21",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
 ]
 
 [[package]]
@@ -558,11 +506,7 @@ checksum = "5fe233b960f12f8007e3db2d136e3cb1c291bfd7396e384ee76025fc1a3932b4"
 dependencies = [
  "proc-macro2 1.0.47",
  "quote 1.0.21",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
 ]
 
 [[package]]
@@ -610,15 +554,9 @@ dependencies = [
 
 [[package]]
 name = "cc"
-<<<<<<< HEAD
-version = "1.0.74"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "581f5dba903aac52ea3feb5ec4810848460ee833876f1f9b0fdeab1f19091574"
-=======
 version = "1.0.77"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e9f73505338f7d905b19d18738976aae232eb46b8efc15554ffc56deb5d9ebe4"
->>>>>>> feat/redeem-forward-settle
 dependencies = [
  "jobserver",
 ]
@@ -687,11 +625,7 @@ dependencies = [
  "proc-macro-error",
  "proc-macro2 1.0.47",
  "quote 1.0.21",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
 ]
 
 [[package]]
@@ -881,15 +815,9 @@ dependencies = [
 
 [[package]]
 name = "cxx"
-<<<<<<< HEAD
-version = "1.0.81"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "97abf9f0eca9e52b7f81b945524e76710e6cb2366aead23b7d4fbf72e281f888"
-=======
 version = "1.0.83"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bdf07d07d6531bfcdbe9b8b739b104610c6508dcc4d63b410585faf338241daf"
->>>>>>> feat/redeem-forward-settle
 dependencies = [
  "cc",
  "cxxbridge-flags",
@@ -899,15 +827,9 @@ dependencies = [
 
 [[package]]
 name = "cxx-build"
-<<<<<<< HEAD
-version = "1.0.81"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7cc32cc5fea1d894b77d269ddb9f192110069a8a9c1f1d441195fba90553dea3"
-=======
 version = "1.0.83"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d2eb5b96ecdc99f72657332953d4d9c50135af1bac34277801cc3937906ebd39"
->>>>>>> feat/redeem-forward-settle
 dependencies = [
  "cc",
  "codespan-reporting",
@@ -915,30 +837,11 @@ dependencies = [
  "proc-macro2 1.0.47",
  "quote 1.0.21",
  "scratch",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
 ]
 
 [[package]]
 name = "cxxbridge-flags"
-<<<<<<< HEAD
-version = "1.0.81"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8ca220e4794c934dc6b1207c3b42856ad4c302f2df1712e9f8d2eec5afaacf1f"
-
-[[package]]
-name = "cxxbridge-macro"
-version = "1.0.81"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b846f081361125bfc8dc9d3940c84e1fd83ba54bbca7b17cd29483c828be0704"
-dependencies = [
- "proc-macro2 1.0.47",
- "quote 1.0.21",
- "syn 1.0.103",
-=======
 version = "1.0.83"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ac040a39517fd1674e0f32177648334b0f4074625b5588a64519804ba0553b12"
@@ -952,7 +855,6 @@ dependencies = [
  "proc-macro2 1.0.47",
  "quote 1.0.21",
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
 ]
 
 [[package]]
@@ -1148,11 +1050,7 @@ checksum = "aa4da3c766cd7a0db8242e326e9e4e081edd567072893ed320008189715366a4"
 dependencies = [
  "proc-macro2 1.0.47",
  "quote 1.0.21",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
  "synstructure",
 ]
 
@@ -1173,9 +1071,9 @@ checksum = "835a3dc7d1ec9e75e2b5fb4ba75396837112d2060b03f7d43bc1897c7f7211da"
 
 [[package]]
 name = "filetime"
-version = "0.2.18"
+version = "0.2.19"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4b9663d381d07ae25dc88dbdf27df458faa83a9b25336bcac83d5e452b5fc9d3"
+checksum = "4e884668cd0c7480504233e951174ddc3b382f7c2666e3b7310b5c4e7b0c37f9"
 dependencies = [
  "cfg-if",
  "libc",
@@ -1270,11 +1168,7 @@ checksum = "bdfb8ce053d86b91919aad980c220b1fb8401a9394410e1c289ed7e66b61835d"
 dependencies = [
  "proc-macro2 1.0.47",
  "quote 1.0.21",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
 ]
 
 [[package]]
@@ -1538,9 +1432,9 @@ dependencies = [
 
 [[package]]
 name = "hyper-rustls"
-version = "0.23.1"
+version = "0.23.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "59df7c4e19c950e6e0e868dcc0a300b09a9b88e9ec55bd879ca819087a77355d"
+checksum = "1788965e61b367cd03a62950836d5cd41560c3577d90e40e0819373194d1661c"
 dependencies = [
  "http",
  "hyper",
@@ -1622,9 +1516,9 @@ dependencies = [
 
 [[package]]
 name = "ipnet"
-version = "2.5.1"
+version = "2.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f88c5561171189e69df9d98bcf18fd5f9558300f7ea7b801eb8a0fd748bd8745"
+checksum = "ec947b7a4ce12e3b87e353abae7ce124d025b6c7d6c5aea5cc0bcf92e9510ded"
 
 [[package]]
 name = "itertools"
@@ -1691,15 +1585,9 @@ checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 
 [[package]]
 name = "libc"
-<<<<<<< HEAD
-version = "0.2.137"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fc7fcc620a3bff7cdd7a365be3376c97191aeaccc2a603e600951e452615bf89"
-=======
 version = "0.2.138"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "db6d7e329c562c5dfab7a46a2afabc8b987ab9a4834c9d1ca04dc54c1546cef8"
->>>>>>> feat/redeem-forward-settle
 
 [[package]]
 name = "libloading"
@@ -1902,11 +1790,7 @@ checksum = "876a53fff98e03a936a674b29568b0e605f06b29372c2489ff4de23f1949743d"
 dependencies = [
  "proc-macro2 1.0.47",
  "quote 1.0.21",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
 ]
 
 [[package]]
@@ -1956,11 +1840,7 @@ dependencies = [
  "proc-macro-crate 1.2.1",
  "proc-macro2 1.0.47",
  "quote 1.0.21",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
 ]
 
 [[package]]
@@ -1992,15 +1872,9 @@ checksum = "624a8340c38c1b80fd549087862da4ba43e08858af025b236e509b6649fc13d5"
 
 [[package]]
 name = "os_str_bytes"
-<<<<<<< HEAD
-version = "6.3.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3baf96e39c5359d2eb0dd6ccb42c62b91d9678aa68160d261b9e0ccbf9e9dea9"
-=======
 version = "6.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9b7820b9daea5457c9f21c69448905d723fbd21136ccf521748f23fd49e723ee"
->>>>>>> feat/redeem-forward-settle
 
 [[package]]
 name = "ouroboros"
@@ -2023,11 +1897,7 @@ dependencies = [
  "proc-macro-error",
  "proc-macro2 1.0.47",
  "quote 1.0.21",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
 ]
 
 [[package]]
@@ -2132,11 +2002,7 @@ dependencies = [
  "proc-macro-error-attr",
  "proc-macro2 1.0.47",
  "quote 1.0.21",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
  "version_check",
 ]
 
@@ -2177,11 +2043,7 @@ checksum = "4bf29726d67464d49fa6224a1d07936a8c08bb3fba727c7493f6cf1616fdaada"
 dependencies = [
  "proc-macro2 1.0.47",
  "quote 1.0.21",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
  "version_check",
  "yansi",
 ]
@@ -2307,31 +2169,22 @@ dependencies = [
 [[package]]
 name = "rate-switchboard"
 version = "0.1.1"
-<<<<<<< HEAD
-source = "git+https://github.com/vyper-protocol/vyper-core?tag=rate_switchboard_mainnet_v0.1.1#c5768fb22d33cb14730e031ed124eaa177550b61"
-=======
 source = "git+https://github.com/vyper-protocol/vyper-core?branch=dev#2fa059ea7f9f106a7240f70c767f436034b8de0f"
->>>>>>> feat/redeem-forward-settle
 dependencies = [
  "anchor-lang",
  "rust_decimal",
  "rust_decimal_macros",
  "solana-security-txt",
  "switchboard-v2",
-<<<<<<< HEAD
- "vyper-utils 0.1.0 (git+https://github.com/vyper-protocol/vyper-core?tag=rate_switchboard_mainnet_v0.1.1)",
-=======
- "vyper-utils 0.1.0 (git+https://github.com/vyper-protocol/vyper-core?branch=dev)",
->>>>>>> feat/redeem-forward-settle
+ "vyper-utils",
 ]
 
 [[package]]
 name = "rayon"
-version = "1.6.0"
+version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1e060280438193c554f654141c9ea9417886713b7acd75974c85b18a69a88e0b"
+checksum = "6db3a213adf02b3bcfd2d3846bb41cb22857d131789e01df434fb7e7bc0759b7"
 dependencies = [
- "crossbeam-deque",
  "either",
  "rayon-core",
 ]
@@ -2350,60 +2203,41 @@ dependencies = [
 
 [[package]]
 name = "redeem-logic-forward"
-<<<<<<< HEAD
-version = "0.1.1"
-source = "git+https://github.com/vyper-protocol/vyper-core?tag=redeem_logic_settled_forward_mainnet_v0.1.0#04804762119b9f7c41139b87b2d242775d84634a"
-=======
 version = "1.0.0"
 source = "git+https://github.com/vyper-protocol/vyper-core?branch=dev#2fa059ea7f9f106a7240f70c767f436034b8de0f"
->>>>>>> feat/redeem-forward-settle
 dependencies = [
  "anchor-lang",
  "rust_decimal",
  "rust_decimal_macros",
-<<<<<<< HEAD
- "vyper-macros 0.1.0 (git+https://github.com/vyper-protocol/vyper-core?tag=redeem_logic_settled_forward_mainnet_v0.1.0)",
- "vyper-utils 0.1.0 (git+https://github.com/vyper-protocol/vyper-core?tag=redeem_logic_settled_forward_mainnet_v0.1.0)",
-=======
  "solana-security-txt",
- "vyper-macros 0.1.0 (git+https://github.com/vyper-protocol/vyper-core?branch=dev)",
- "vyper-utils 0.1.0 (git+https://github.com/vyper-protocol/vyper-core?branch=dev)",
->>>>>>> feat/redeem-forward-settle
+ "vyper-macros",
+ "vyper-utils",
 ]
 
 [[package]]
 name = "redeem-logic-settled-forward"
-<<<<<<< HEAD
-version = "0.1.1"
-source = "git+https://github.com/vyper-protocol/vyper-core?tag=redeem_logic_settled_forward_mainnet_v0.1.1#b67b24fe75752429027046be1af3f283d53d76a8"
-dependencies = [
- "anchor-lang",
- "rust_decimal",
- "rust_decimal_macros",
- "vyper-macros 0.1.0 (git+https://github.com/vyper-protocol/vyper-core?tag=redeem_logic_settled_forward_mainnet_v0.1.1)",
- "vyper-utils 0.1.0 (git+https://github.com/vyper-protocol/vyper-core?tag=redeem_logic_settled_forward_mainnet_v0.1.1)",
-]
-
-[[package]]
-name = "redeem-logic-vanilla-option"
 version = "1.0.0"
-source = "git+https://github.com/vyper-protocol/vyper-core?tag=redeem_logic_vanilla_option_mainnet_v1.0.0#acce7862f48107b40729bfd204b3a5fc633950e0"
-=======
-version = "1.0.0"
-source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#da36b6af40d89582636ef361327a186b53c9f0a6"
->>>>>>> feat/redeem-forward-settle
+source = "git+https://github.com/vyper-protocol/vyper-core?branch=dev#2fa059ea7f9f106a7240f70c767f436034b8de0f"
 dependencies = [
  "anchor-lang",
  "rust_decimal",
  "rust_decimal_macros",
  "solana-security-txt",
-<<<<<<< HEAD
- "vyper-macros 0.1.0 (git+https://github.com/vyper-protocol/vyper-core?tag=redeem_logic_vanilla_option_mainnet_v1.0.0)",
- "vyper-utils 0.1.0 (git+https://github.com/vyper-protocol/vyper-core?tag=redeem_logic_vanilla_option_mainnet_v1.0.0)",
-=======
- "vyper-macros 0.1.0 (git+https://github.com/vyper-protocol/vyper-core?branch=main)",
- "vyper-utils 0.1.0 (git+https://github.com/vyper-protocol/vyper-core?branch=main)",
->>>>>>> feat/redeem-forward-settle
+ "vyper-macros",
+ "vyper-utils",
+]
+
+[[package]]
+name = "redeem-logic-vanilla-option"
+version = "2.0.0"
+source = "git+https://github.com/vyper-protocol/vyper-core?branch=dev#2fa059ea7f9f106a7240f70c767f436034b8de0f"
+dependencies = [
+ "anchor-lang",
+ "rust_decimal",
+ "rust_decimal_macros",
+ "solana-security-txt",
+ "vyper-macros",
+ "vyper-utils",
 ]
 
 [[package]]
@@ -2677,15 +2511,9 @@ checksum = "e25dfac463d778e353db5be2449d1cce89bd6fd23c9f1ea21310ce6e5a1b29c4"
 
 [[package]]
 name = "serde"
-<<<<<<< HEAD
-version = "1.0.147"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d193d69bae983fc11a79df82342761dfbf28a99fc8d203dca4c3c1b590948965"
-=======
 version = "1.0.149"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "256b9932320c590e707b94576e3cc1f7c9024d0ee6612dfbcf1cb106cbe8e055"
->>>>>>> feat/redeem-forward-settle
 dependencies = [
  "serde_derive",
 ]
@@ -2701,15 +2529,6 @@ dependencies = [
 
 [[package]]
 name = "serde_derive"
-<<<<<<< HEAD
-version = "1.0.147"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4f1d362ca8fc9c3e3a7484440752472d68a6caa98f1ab81d99b5dfe517cec852"
-dependencies = [
- "proc-macro2 1.0.47",
- "quote 1.0.21",
- "syn 1.0.103",
-=======
 version = "1.0.149"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b4eae9b04cbffdfd550eb462ed33bc6a1b68c935127d008b27444d08380f94e4"
@@ -2717,20 +2536,13 @@ dependencies = [
  "proc-macro2 1.0.47",
  "quote 1.0.21",
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
 ]
 
 [[package]]
 name = "serde_json"
-<<<<<<< HEAD
-version = "1.0.87"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6ce777b7b150d76b9cf60d28b55f5847135a003f7d7350c6be7a773508ce7d45"
-=======
 version = "1.0.89"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "020ff22c755c2ed3f8cf162dbb41a7268d934702f3ed3631656ea597e08fc3db"
->>>>>>> feat/redeem-forward-settle
 dependencies = [
  "itoa",
  "ryu",
@@ -3060,11 +2872,7 @@ dependencies = [
  "proc-macro2 1.0.47",
  "quote 1.0.21",
  "rustc_version",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
 ]
 
 [[package]]
@@ -3366,11 +3174,7 @@ dependencies = [
  "proc-macro2 1.0.47",
  "quote 1.0.21",
  "rustversion",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
 ]
 
 [[package]]
@@ -3568,15 +3372,9 @@ dependencies = [
 
 [[package]]
 name = "syn"
-<<<<<<< HEAD
-version = "1.0.103"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a864042229133ada95abf3b54fdc62ef5ccabe9515b64717bcb9a1919e59445d"
-=======
 version = "1.0.105"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "60b9b43d45702de4c839cb9b51d9f529c5dd26a4aff255b42b1ebc03e88ee908"
->>>>>>> feat/redeem-forward-settle
 dependencies = [
  "proc-macro2 1.0.47",
  "quote 1.0.21",
@@ -3591,11 +3389,7 @@ checksum = "f36bdaa60a83aca3921b5259d5400cbf5e90fc51931376a9bd4a0eb79aa7210f"
 dependencies = [
  "proc-macro2 1.0.47",
  "quote 1.0.21",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
  "unicode-xid 0.2.4",
 ]
 
@@ -3675,11 +3469,7 @@ checksum = "982d17546b47146b28f7c22e3d08465f6b8903d0ea13c1660d9d84a6e7adcdbb"
 dependencies = [
  "proc-macro2 1.0.47",
  "quote 1.0.21",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
 ]
 
 [[package]]
@@ -3755,11 +3545,7 @@ checksum = "d266c00fde287f55d3f1c3e96c500c362a2b8c695076ec180f27918820bc6df8"
 dependencies = [
  "proc-macro2 1.0.47",
  "quote 1.0.21",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
 ]
 
 [[package]]
@@ -3822,11 +3608,7 @@ checksum = "4017f8f45139870ca7e672686113917c71c7a6e02d4924eda67186083c03081a"
 dependencies = [
  "proc-macro2 1.0.47",
  "quote 1.0.21",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
 ]
 
 [[package]]
@@ -3984,11 +3766,7 @@ dependencies = [
 [[package]]
 name = "vyper-core"
 version = "0.1.0"
-<<<<<<< HEAD
-source = "git+https://github.com/vyper-protocol/vyper-core?tag=vyper_core_mainnet_v0.1.0#c5768fb22d33cb14730e031ed124eaa177550b61"
-=======
 source = "git+https://github.com/vyper-protocol/vyper-core?branch=dev#2fa059ea7f9f106a7240f70c767f436034b8de0f"
->>>>>>> feat/redeem-forward-settle
 dependencies = [
  "anchor-lang",
  "anchor-spl",
@@ -3997,59 +3775,14 @@ dependencies = [
  "rust_decimal",
  "rust_decimal_macros",
  "solana-security-txt",
-<<<<<<< HEAD
- "vyper-macros 0.1.0 (git+https://github.com/vyper-protocol/vyper-core?tag=vyper_core_mainnet_v0.1.0)",
- "vyper-utils 0.1.0 (git+https://github.com/vyper-protocol/vyper-core?tag=vyper_core_mainnet_v0.1.0)",
-=======
- "vyper-macros 0.1.0 (git+https://github.com/vyper-protocol/vyper-core?branch=dev)",
- "vyper-utils 0.1.0 (git+https://github.com/vyper-protocol/vyper-core?branch=dev)",
->>>>>>> feat/redeem-forward-settle
+ "vyper-macros",
+ "vyper-utils",
 ]
 
 [[package]]
 name = "vyper-macros"
 version = "0.1.0"
-<<<<<<< HEAD
-source = "git+https://github.com/vyper-protocol/vyper-core?tag=redeem_logic_settled_forward_mainnet_v0.1.0#04804762119b9f7c41139b87b2d242775d84634a"
-dependencies = [
- "quote 1.0.21",
- "syn 1.0.103",
-=======
 source = "git+https://github.com/vyper-protocol/vyper-core?branch=dev#2fa059ea7f9f106a7240f70c767f436034b8de0f"
-dependencies = [
- "quote 1.0.21",
- "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
-]
-
-[[package]]
-name = "vyper-macros"
-version = "0.1.0"
-<<<<<<< HEAD
-source = "git+https://github.com/vyper-protocol/vyper-core?tag=redeem_logic_settled_forward_mainnet_v0.1.1#b67b24fe75752429027046be1af3f283d53d76a8"
-dependencies = [
- "quote 1.0.21",
- "syn 1.0.103",
-]
-
-[[package]]
-name = "vyper-macros"
-version = "0.1.0"
-source = "git+https://github.com/vyper-protocol/vyper-core?tag=redeem_logic_vanilla_option_mainnet_v1.0.0#acce7862f48107b40729bfd204b3a5fc633950e0"
-dependencies = [
- "quote 1.0.21",
- "syn 1.0.103",
-]
-
-[[package]]
-name = "vyper-macros"
-version = "0.1.0"
-source = "git+https://github.com/vyper-protocol/vyper-core?tag=vyper_core_mainnet_v0.1.0#c5768fb22d33cb14730e031ed124eaa177550b61"
-dependencies = [
- "quote 1.0.21",
- "syn 1.0.103",
-=======
-source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#da36b6af40d89582636ef361327a186b53c9f0a6"
 dependencies = [
  "quote 1.0.21",
  "syn 1.0.105",
@@ -4059,66 +3792,6 @@ dependencies = [
 name = "vyper-utils"
 version = "0.1.0"
 source = "git+https://github.com/vyper-protocol/vyper-core?branch=dev#2fa059ea7f9f106a7240f70c767f436034b8de0f"
-dependencies = [
- "anchor-lang",
- "anchor-spl",
- "rust_decimal",
- "rust_decimal_macros",
->>>>>>> feat/redeem-forward-settle
-]
-
-[[package]]
-name = "vyper-utils"
-version = "0.1.0"
-<<<<<<< HEAD
-source = "git+https://github.com/vyper-protocol/vyper-core?tag=rate_switchboard_mainnet_v0.1.1#c5768fb22d33cb14730e031ed124eaa177550b61"
-dependencies = [
- "anchor-lang",
- "anchor-spl",
- "rust_decimal",
- "rust_decimal_macros",
-]
-
-[[package]]
-name = "vyper-utils"
-version = "0.1.0"
-source = "git+https://github.com/vyper-protocol/vyper-core?tag=redeem_logic_settled_forward_mainnet_v0.1.0#04804762119b9f7c41139b87b2d242775d84634a"
-dependencies = [
- "anchor-lang",
- "anchor-spl",
- "rust_decimal",
- "rust_decimal_macros",
-]
-
-[[package]]
-name = "vyper-utils"
-version = "0.1.0"
-source = "git+https://github.com/vyper-protocol/vyper-core?tag=redeem_logic_settled_forward_mainnet_v0.1.1#b67b24fe75752429027046be1af3f283d53d76a8"
-dependencies = [
- "anchor-lang",
- "anchor-spl",
- "rust_decimal",
- "rust_decimal_macros",
-]
-
-[[package]]
-name = "vyper-utils"
-version = "0.1.0"
-source = "git+https://github.com/vyper-protocol/vyper-core?tag=redeem_logic_vanilla_option_mainnet_v1.0.0#acce7862f48107b40729bfd204b3a5fc633950e0"
-dependencies = [
- "anchor-lang",
- "anchor-spl",
- "rust_decimal",
- "rust_decimal_macros",
-]
-
-[[package]]
-name = "vyper-utils"
-version = "0.1.0"
-source = "git+https://github.com/vyper-protocol/vyper-core?tag=vyper_core_mainnet_v0.1.0#c5768fb22d33cb14730e031ed124eaa177550b61"
-=======
-source = "git+https://github.com/vyper-protocol/vyper-core?branch=main#da36b6af40d89582636ef361327a186b53c9f0a6"
->>>>>>> feat/redeem-forward-settle
 dependencies = [
  "anchor-lang",
  "anchor-spl",
@@ -4186,11 +3859,7 @@ dependencies = [
  "once_cell",
  "proc-macro2 1.0.47",
  "quote 1.0.21",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
  "wasm-bindgen-shared",
 ]
 
@@ -4224,11 +3893,7 @@ checksum = "07bc0c051dc5f23e307b13285f9d75df86bfdf816c5721e573dec1f9b8aa193c"
 dependencies = [
  "proc-macro2 1.0.47",
  "quote 1.0.21",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
  "wasm-bindgen-backend",
  "wasm-bindgen-shared",
 ]
@@ -4261,9 +3926,9 @@ dependencies = [
 
 [[package]]
 name = "webpki-roots"
-version = "0.22.5"
+version = "0.22.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "368bfe657969fb01238bb756d351dcade285e0f6fcbd36dcb23359a5169975be"
+checksum = "b6c71e40d7d2c34a5106301fb632274ca37242cd0c9d3e64dbece371a40a2d87"
 dependencies = [
  "webpki",
 ]
@@ -4406,11 +4071,7 @@ checksum = "44bf07cb3e50ea2003396695d58bf46bc9887a1f362260446fad6bc4e79bd36c"
 dependencies = [
  "proc-macro2 1.0.47",
  "quote 1.0.21",
-<<<<<<< HEAD
- "syn 1.0.103",
-=======
  "syn 1.0.105",
->>>>>>> feat/redeem-forward-settle
  "synstructure",
 ]
 
