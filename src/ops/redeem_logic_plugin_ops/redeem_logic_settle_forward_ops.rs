@@ -54,7 +54,6 @@ pub fn handle_redeem_logic_settle_forward_command(redeem_logic_command: RedeemLo
             println_name_value("is_linear", &account.is_linear);
             println_name_value("strike",&Decimal::deserialize(account.strike));
             println_name_value("is_standard", &account.is_standard);
-            println_name_value("owner", &account.owner);
         },
         RedeemLogicSettleForwardSubcommand::Create(plugin_state) => {
             let plugin_config =  Keypair::new();
@@ -63,7 +62,6 @@ pub fn handle_redeem_logic_settle_forward_command(redeem_logic_command: RedeemLo
                 .signer(&plugin_config)
                 .accounts(InitializeContext {
                     redeem_logic_config: plugin_config.pubkey(),
-                    owner: authority,
                     payer: authority,
                     system_program: system_program::ID,
                 })
