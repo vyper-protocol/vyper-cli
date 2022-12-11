@@ -1,0 +1,26 @@
+name: deploy cargo docs
+on:
+  push:
+    branches:
+      - "dev"
+    paths:
+      - "**.rs"
+      - "**.toml"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: install libudev-dev
+        run: sudo apt-get install -yq libudev-dev
+      - uses: actions-rs/cargo@v1
+        with:
+          command: doc
+          args: --no-deps
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/doc
