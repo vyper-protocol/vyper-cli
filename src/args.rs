@@ -2,6 +2,7 @@ pub mod core_args;
 pub mod config_args;
 pub mod redeem_logic_plugin_args;
 pub mod rate_plugin_args;
+pub mod otc_args;
 use {
     core_args::CoreCommand,
     config_args::ConfigOptions,
@@ -14,7 +15,8 @@ use {
     clap::{
         Parser,
         Subcommand
-    }
+    },
+    otc_args::OtcCommand
 };
 
 
@@ -42,6 +44,8 @@ pub enum Vyper {
     /// Used to access redeem logic settle forward plugin
     RedeemLogicSettleForward(RedeemLogicSettleForwardCommand),
     /// Used to access redeem logic vanilla option plugin
-    RedeemLogicVanillaOption(RedeemLogicVanillaOptionCommand),
+    RedeemLogicVanillaOption(RedeemLogicVanillaOptionCommand),,
+    /// Used to access the vyper otc commands
+    Otc(OtcCommand)
 }
 

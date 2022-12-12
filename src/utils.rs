@@ -13,6 +13,7 @@ use anchor_client::solana_sdk::{
 
 use std::process::exit;
 use solana_cli_config::{CONFIG_FILE, Config};
+use chrono::prelude::*;
 
 
 
@@ -106,5 +107,32 @@ pub fn println_switchboard_aggregators(name: &str, aggregators: &[Option<Pubkey>
         first=false;
     }
     println!("]")
+}
+
+pub fn println_date(name: &str, timestamp: &i64) {
+    let naive = NaiveDateTime::from_timestamp_opt(*timestamp, 0).unwrap();
+    let datetime: DateTime<Utc> = DateTime::from_utc(naive, Utc);
+    let newdate = datetime.format("%Y-%m-%d %H:%M").to_string();
+    println!(
+        "{} : {:?} ",
+        style(name).bold(),
+        style(newdate),
+    );
+}
+
+pub fn println_beneficiary_value(name: &str, value: &Option<Pubkey>) {
+    if !value.is_none() {
+        println!(
+            "{} : {:?} ",
+            style(name).bold(),
+            style(value.unwrap()),
+        );
+    } else {
+        println!(
+            "{} : {:?} ",
+            style(name).bold(),
+            style("None"),
+        );
+    }
 }
 
