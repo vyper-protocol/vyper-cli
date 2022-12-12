@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":[["handle_redeem_logic_settle_forward_command",""]]};

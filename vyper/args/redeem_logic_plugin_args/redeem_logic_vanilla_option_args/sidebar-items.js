@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":[["RedeemLogicVanillaOptionSubcommand",""]],"struct":[["FetchState",""],["PluginState",""],["RedeemLogicVanillaOptionCommand",""]]};

@@ -113,6 +113,24 @@
 <span id="113">113</span>
 <span id="114">114</span>
 <span id="115">115</span>
+<span id="116">116</span>
+<span id="117">117</span>
+<span id="118">118</span>
+<span id="119">119</span>
+<span id="120">120</span>
+<span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
+<span id="124">124</span>
+<span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
+<span id="128">128</span>
+<span id="129">129</span>
+<span id="130">130</span>
+<span id="131">131</span>
+<span id="132">132</span>
+<span id="133">133</span>
 </pre><pre class="rust"><code><span class="kw">use </span>std::process::exit;
 <span class="kw">mod </span>args;
 <span class="kw">mod </span>ops;
@@ -125,6 +143,8 @@
     ops::core_ops::handle_core_command,
     ops::redeem_logic_plugin_ops::{
         redeem_logic_forward_ops::handle_redeem_logic_forward_command,
+        redeem_logic_settle_forward_ops::handle_redeem_logic_settle_forward_command,
+        redeem_logic_vanilla_option_ops::handle_redeem_logic_vanilla_option_command,
     },
     ops::rate_plugin_ops::{
         rate_switchboard_ops::handle_rate_switchboard_command
@@ -151,6 +171,8 @@
 <span class="kw">const </span>REDEEM_LOGIC_FORWARD: <span class="kw-2">&amp;</span>str = <span class="string">&quot;BrpV1re8MshA8qskKVxcEG8zXG3vf2uLX6myeTKAyhsK&quot;</span>;
 <span class="kw">const </span>RATE_SWITCHBOARD: <span class="kw-2">&amp;</span>str  = <span class="string">&quot;2hGXiH1oEQwjCXRx8bNdHTi49ScZp7Mj2bxcjxtULKe1&quot;</span>;
 <span class="kw">const </span>OTC: <span class="kw-2">&amp;</span>str = <span class="string">&quot;8aHSkExY28qCvg4gnTLU7y1Ev6HnpJ1NxuWb9XtEesVt&quot;</span>;
+<span class="kw">const </span>REDEEM_LOGIC_SETTLE_FORWARD: <span class="kw-2">&amp;</span>str = <span class="string">&quot;6vBg1GMtKj7EYDLWWt6tkHoDWLAAksNPbKWiXMic99qU&quot;</span>;
+<span class="kw">const </span>REDEEM_LOGIC_VANILLA_OPTION: <span class="kw-2">&amp;</span>str = <span class="string">&quot;8fSeRtFseNrjdf8quE2YELhuzLkHV7WEGRPA9Jz8xEVe&quot;</span>;
 
 <span class="kw">fn </span>main() {
 
@@ -218,7 +240,21 @@
              <span class="kw">let </span>rate_switchboard_program = client.program(rate_switchboard_program_id);
              <span class="comment">// command handler
              </span>handle_rate_switchboard_command(rate_switchboard_command, <span class="kw-2">&amp;</span>rate_switchboard_program);
-        }
+        },
+        Vyper::RedeemLogicSettleForward(redeem_logic_command) =&gt; {
+            <span class="comment">// redem logic settle forward program
+            </span><span class="kw">let </span>redeem_logic_settle_forward_program_id: Pubkey = Pubkey::new(<span class="kw-2">&amp;</span>bs58::decode(<span class="kw-2">&amp;</span>REDEEM_LOGIC_SETTLE_FORWARD).into_vec().expect(<span class="string">&quot;Invalid redeem logic forward program id&quot;</span>));
+            <span class="kw">let </span>redeem_logic_settle_forward_program = client.program(redeem_logic_settle_forward_program_id);
+            <span class="comment">// command handler
+            </span>handle_redeem_logic_settle_forward_command(redeem_logic_command, <span class="kw-2">&amp;</span>redeem_logic_settle_forward_program);
+        },
+        Vyper::RedeemLogicVanillaOption(redeem_logic_command) =&gt; {
+            <span class="comment">// redem logic vanilla option program
+            </span><span class="kw">let </span>redeem_logic_vanilla_option_program_id: Pubkey = Pubkey::new(<span class="kw-2">&amp;</span>bs58::decode(<span class="kw-2">&amp;</span>REDEEM_LOGIC_VANILLA_OPTION).into_vec().expect(<span class="string">&quot;Invalid redeem logic forward program id&quot;</span>));
+            <span class="kw">let </span>redeem_logic_vanilla_option_program = client.program(redeem_logic_vanilla_option_program_id);
+            <span class="comment">// command handler
+            </span>handle_redeem_logic_vanilla_option_command(redeem_logic_command, <span class="kw-2">&amp;</span>redeem_logic_vanilla_option_program);
+        },
         Vyper::Otc(otc_command) =&gt; {
             <span class="comment">// otc program
             </span><span class="kw">let </span>otc_program_id: Pubkey = Pubkey::new(<span class="kw-2">&amp;</span>bs58::decode(<span class="kw-2">&amp;</span>OTC).into_vec().expect(<span class="string">&quot;Invalid otc program id&quot;</span>));

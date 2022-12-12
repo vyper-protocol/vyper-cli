@@ -43,6 +43,12 @@
 <span id="43">43</span>
 <span id="44">44</span>
 <span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
 </pre><pre class="rust"><code><span class="kw">pub mod </span>core_args;
 <span class="kw">pub mod </span>config_args;
 <span class="kw">pub mod </span>redeem_logic_plugin_args;
@@ -53,6 +59,8 @@
     config_args::ConfigOptions,
     redeem_logic_plugin_args:: {
         redeem_logic_forward_args::RedeemLogicForwardCommand,
+        redeem_logic_settle_forward_args::RedeemLogicSettleForwardCommand,
+        redeem_logic_vanilla_option_args::RedeemLogicVanillaOptionCommand,
     },
     rate_plugin_args::rate_switchboard_args::RateSwitchboardCommand,
     clap::{
@@ -84,6 +92,10 @@
     </span>RedeemLogicForward(RedeemLogicForwardCommand),
     <span class="doccomment">/// Used to access rate-switchboard plugin
     </span>RateSwitchboard(RateSwitchboardCommand),
+    <span class="doccomment">/// Used to access redeem logic settle forward plugin
+    </span>RedeemLogicSettleForward(RedeemLogicSettleForwardCommand),
+    <span class="doccomment">/// Used to access redeem logic vanilla option plugin
+    </span>RedeemLogicVanillaOption(RedeemLogicVanillaOptionCommand),
     <span class="doccomment">/// Used to access the vyper otc commands
     </span>Otc(OtcCommand)
 }

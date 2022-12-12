@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":[["RedeemLogicSettleForwardSubcommand",""]],"struct":[["FetchState",""],["PluginState",""],["RedeemLogicSettleForwardCommand",""]]};
