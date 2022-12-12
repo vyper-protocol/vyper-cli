@@ -13,16 +13,16 @@ use {
 
 
 #[derive(Debug, Args)]
-pub struct RedeemLogicForwardCommand {
+pub struct RedeemLogicVanillaOptionCommand {
     #[clap(subcommand)]
-    pub command : RedeemLogicForwardSubcommand
+    pub command : RedeemLogicVanillaOptionSubcommand
 }
 
 #[derive(Debug, Subcommand)]
-pub enum RedeemLogicForwardSubcommand {
-    /// Gets the state of redeem logic forward plugin from the given public key.
+pub enum RedeemLogicVanillaOptionSubcommand {
+    /// Gets the state of redeem logic vanilla option plugin from the given public key.
     Fetch(FetchState),
-    /// Creates a redeem logic forward state with given configuration
+    /// Creates a redeem logic vanilla option state with given configuration
     Create(PluginState)
 }
 
@@ -35,7 +35,7 @@ pub struct FetchState {
 #[derive(Debug, Args)]
 pub struct PluginState {
     #[clap(long)]
-    /// notional value for plugin 
+    /// notinal value for plugin
     pub notional: u64,
     /// strike value for plugin
     #[clap(long)]
@@ -43,5 +43,8 @@ pub struct PluginState {
     /// linear value for plugin
     #[clap(long="linear", parse(try_from_str))]
     pub is_linear: bool,
+    /// call value for plugin
+    #[clap(long="call", parse(try_from_str))]
+    pub is_call: bool,
     
 }

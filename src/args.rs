@@ -8,6 +8,8 @@ use {
     config_args::ConfigOptions,
     redeem_logic_plugin_args:: {
         redeem_logic_forward_args::RedeemLogicForwardCommand,
+        redeem_logic_settle_forward_args::RedeemLogicSettleForwardCommand,
+        redeem_logic_vanilla_option_args::RedeemLogicVanillaOptionCommand,
     },
     rate_plugin_args::rate_switchboard_args::RateSwitchboardCommand,
     clap::{
@@ -39,6 +41,10 @@ pub enum Vyper {
     RedeemLogicForward(RedeemLogicForwardCommand),
     /// Used to access rate-switchboard plugin
     RateSwitchboard(RateSwitchboardCommand),
+    /// Used to access redeem logic settle forward plugin
+    RedeemLogicSettleForward(RedeemLogicSettleForwardCommand),
+    /// Used to access redeem logic vanilla option plugin
+    RedeemLogicVanillaOption(RedeemLogicVanillaOptionCommand),
     /// Used to access the vyper otc commands
     Otc(OtcCommand)
 }
