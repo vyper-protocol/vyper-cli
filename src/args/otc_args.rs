@@ -26,6 +26,6 @@ pub enum OtcSubcommand {
 
 #[derive(Debug, Args)]
 pub struct FetchOtc {
-    /// Public key of tranche configuration.
+    /// Public key of otc state.
     pub state_id: Pubkey
 }
