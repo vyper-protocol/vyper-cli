@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":[["Vyper",""]],"mod":[["config_args",""],["core_args",""],["rate_plugin_args",""],["redeem_logic_plugin_args",""]],"struct":[["VyperCliArgs",""]]};
+window.SIDEBAR_ITEMS = {"enum":[["Vyper",""]],"mod":[["config_args",""],["core_args",""],["otc_args",""],["rate_plugin_args",""],["redeem_logic_plugin_args",""]],"struct":[["VyperCliArgs",""]]};

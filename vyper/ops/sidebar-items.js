@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":[["core_ops",""],["rate_plugin_ops",""],["redeem_logic_plugin_ops",""]]};
+window.SIDEBAR_ITEMS = {"mod":[["core_ops",""],["otc_ops",""],["rate_plugin_ops",""],["redeem_logic_plugin_ops",""]]};

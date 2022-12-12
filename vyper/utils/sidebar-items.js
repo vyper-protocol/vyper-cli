@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"fn":[["get_solana_config",""],["println_error",""],["println_fair_value",""],["println_name_fair_value",""],["println_name_value",""],["println_switchboard_aggregators",""],["println_version",""]]};
+window.SIDEBAR_ITEMS = {"fn":[["get_solana_config",""],["println_beneficiary_value",""],["println_date",""],["println_error",""],["println_fair_value",""],["println_name_fair_value",""],["println_name_value",""],["println_switchboard_aggregators",""],["println_version",""]]};
