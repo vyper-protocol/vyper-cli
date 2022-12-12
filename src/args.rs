@@ -44,7 +44,7 @@ pub enum Vyper {
     /// Used to access redeem logic settle forward plugin
     RedeemLogicSettleForward(RedeemLogicSettleForwardCommand),
     /// Used to access redeem logic vanilla option plugin
-    RedeemLogicVanillaOption(RedeemLogicVanillaOptionCommand),,
+    RedeemLogicVanillaOption(RedeemLogicVanillaOptionCommand),
     /// Used to access the vyper otc commands
     Otc(OtcCommand)
 }
