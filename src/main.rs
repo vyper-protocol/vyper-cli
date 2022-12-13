@@ -126,8 +126,12 @@ fn main() {
             // otc program
             let otc_program_id: Pubkey = Pubkey::new(&bs58::decode(&OTC).into_vec().expect("Invalid otc program id"));
             let otc_program = client.program(otc_program_id);
+            // vyper core program
+            let core_program_id: Pubkey = Pubkey::new(&bs58::decode(&VYPER_CORE_ID).into_vec().expect("Invalid vyper core program id"));
+            let core_program = client.program(core_program_id);
+
             // command handler
-            handle_otc_command(otc_command, &otc_program);
+            handle_otc_command(otc_command, &otc_program, &core_program);
         }
     }
 }
