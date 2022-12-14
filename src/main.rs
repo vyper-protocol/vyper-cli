@@ -12,6 +12,7 @@ use {
         redeem_logic_forward_ops::handle_redeem_logic_forward_command,
         redeem_logic_settle_forward_ops::handle_redeem_logic_settle_forward_command,
         redeem_logic_vanilla_option_ops::handle_redeem_logic_vanilla_option_command,
+        redeem_logic_digital::handle_redeem_logic_digital_command
     },
     ops::rate_plugin_ops::{
         rate_switchboard_ops::handle_rate_switchboard_command
@@ -40,7 +41,7 @@ const RATE_SWITCHBOARD: &str  = "2hGXiH1oEQwjCXRx8bNdHTi49ScZp7Mj2bxcjxtULKe1";
 const OTC: &str = "8aHSkExY28qCvg4gnTLU7y1Ev6HnpJ1NxuWb9XtEesVt";
 const REDEEM_LOGIC_SETTLE_FORWARD: &str = "6vBg1GMtKj7EYDLWWt6tkHoDWLAAksNPbKWiXMic99qU";
 const REDEEM_LOGIC_VANILLA_OPTION: &str = "8fSeRtFseNrjdf8quE2YELhuzLkHV7WEGRPA9Jz8xEVe";
-
+const REDEEM_LOGIC_DIGITAL: &str = "5Dq9PjUJUG5dM9DzYFqKA4YZYeKJfGaM5Gy7NjpY3p5r";
 fn main() {
 
     // parsing arguments
@@ -128,6 +129,13 @@ fn main() {
             let otc_program = client.program(otc_program_id);
             // command handler
             handle_otc_command(otc_command, &otc_program);
-        }
+        },
+        Vyper::RedeemLogicDigital(redeem_logic_command) => {
+            // redem logic digital program
+            let redeem_logic_digital_program_id: Pubkey = Pubkey::new(&bs58::decode(&REDEEM_LOGIC_DIGITAL).into_vec().expect("Invalid redeem logic digital program id"));
+            let redeem_logic_digital_program = client.program(redeem_logic_digital_program_id);
+            // command handler
+            handle_redeem_logic_digital_command(redeem_logic_command, &redeem_logic_digital_program);
+        },
     }
 }
