@@ -1,11 +1,11 @@
 use {
     std::process::exit,
     crate::args::rate_plugin_args,
-    rate_plugin_args::rate_switchboard_args:: {
-        RateSwitchboardCommand,
-        RateSwitchboardSubcommand
+    rate_plugin_args::rate_pyth_args:: {
+        RatePythCommand,
+        RatePythSubcommand
     },
-    rate_switchboard::RateState,
+    rate_pyth::RateState,
     anchor_client::{
         Program,
         ClientError
@@ -21,10 +21,10 @@ use {
 
 
 
-pub fn handle_rate_switchboard_command(redeem_logic_command: RateSwitchboardCommand, program: &Program) {
-    let command = redeem_logic_command.command;
+pub fn handle_rate_pyth_command(rate_pyth_command: RatePythCommand, program: &Program) {
+    let command = rate_pyth_command.command;
     match command {
-        RateSwitchboardSubcommand::Fetch(fetch_state) => {
+        RatePythSubcommand::Fetch(fetch_state) => {
             let account:Result<RateState,ClientError> = program.account(fetch_state.state_id);
             let account = match account {
                 Ok(rate_state) => rate_state,
@@ -44,7 +44,7 @@ pub fn handle_rate_switchboard_command(redeem_logic_command: RateSwitchboardComm
             println_fair_value(&account.fair_value);
             println!("]");
             println_name_value("refreshed slot",&account.refreshed_slot);
-            println_aggregators("switchboard aggregators", &account.switchboard_aggregators)
+            println_aggregators("pyth oracles", &account.pyth_oracles);
         }
     }
 }

@@ -11,7 +11,10 @@ use {
         redeem_logic_settle_forward_args::RedeemLogicSettleForwardCommand,
         redeem_logic_vanilla_option_args::RedeemLogicVanillaOptionCommand,
     },
-    rate_plugin_args::rate_switchboard_args::RateSwitchboardCommand,
+    rate_plugin_args::{
+        rate_switchboard_args::RateSwitchboardCommand,
+        rate_pyth_args::RatePythCommand
+    },
     clap::{
         Parser,
         Subcommand
@@ -37,15 +40,18 @@ pub enum Vyper {
     
     /// Used to access vyper core commands
     Core(CoreCommand),
-    /// Used to access redeem logic forward commands
-    RedeemLogicForward(RedeemLogicForwardCommand),
     /// Used to access rate-switchboard plugin
     RateSwitchboard(RateSwitchboardCommand),
+    /// Used to access the rate-pyth plugin
+    RatePyth(RatePythCommand),
+    /// Used to access redeem logic forward commands
+    RedeemLogicForward(RedeemLogicForwardCommand),
     /// Used to access redeem logic settle forward plugin
     RedeemLogicSettleForward(RedeemLogicSettleForwardCommand),
     /// Used to access redeem logic vanilla option plugin
     RedeemLogicVanillaOption(RedeemLogicVanillaOptionCommand),
     /// Used to access the vyper otc commands
-    Otc(OtcCommand)
+    Otc(OtcCommand),
+    
 }
 

@@ -86,7 +86,7 @@ pub fn println_fair_value(fair_value: &[[u8; 16]]) {
     }
 }
 
-pub fn println_switchboard_aggregators(name: &str, aggregators: &[Option<Pubkey>; 10]) {
+pub fn println_aggregators(name: &str, aggregators: &[Option<Pubkey>; 10]) {
     print!(
         "{} : [",
         style(name).bold(),

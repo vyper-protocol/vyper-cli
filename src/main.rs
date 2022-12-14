@@ -14,7 +14,8 @@ use {
         redeem_logic_vanilla_option_ops::handle_redeem_logic_vanilla_option_command,
     },
     ops::rate_plugin_ops::{
-        rate_switchboard_ops::handle_rate_switchboard_command
+        rate_switchboard_ops::handle_rate_switchboard_command,
+        rate_pyth_ops::handle_rate_pyth_command
     },
     ops::otc_ops::handle_otc_command,
     anchor_client::{
@@ -35,9 +36,10 @@ use {
 
 
 const VYPER_CORE_ID: &str = "vyPErCcGJKQQBeeQ59gXcWrDyU4vBrq8qQfacwmsAsp";
-const REDEEM_LOGIC_FORWARD: &str = "BrpV1re8MshA8qskKVxcEG8zXG3vf2uLX6myeTKAyhsK";
 const RATE_SWITCHBOARD: &str  = "2hGXiH1oEQwjCXRx8bNdHTi49ScZp7Mj2bxcjxtULKe1";
+const RATE_PYTH: &str = "3mxtC2cGVhHucUg4p58MVzVqUKLyiy1zWqRkRQdgUBPT";
 const OTC: &str = "8aHSkExY28qCvg4gnTLU7y1Ev6HnpJ1NxuWb9XtEesVt";
+const REDEEM_LOGIC_FORWARD: &str = "BrpV1re8MshA8qskKVxcEG8zXG3vf2uLX6myeTKAyhsK";
 const REDEEM_LOGIC_SETTLE_FORWARD: &str = "6vBg1GMtKj7EYDLWWt6tkHoDWLAAksNPbKWiXMic99qU";
 const REDEEM_LOGIC_VANILLA_OPTION: &str = "8fSeRtFseNrjdf8quE2YELhuzLkHV7WEGRPA9Jz8xEVe";
 
@@ -128,6 +130,13 @@ fn main() {
             let otc_program = client.program(otc_program_id);
             // command handler
             handle_otc_command(otc_command, &otc_program);
-        }
+        },
+        Vyper::RatePyth(rate_pyth_command) => {
+            // rate switchboard program
+            let rate_pyth_program_id: Pubkey = Pubkey::new(&bs58::decode(&RATE_PYTH).into_vec().expect("Invalid rate pyth program id"));
+            let rate_pyth_program = client.program(rate_pyth_program_id);
+            // command handler
+            handle_rate_pyth_command(rate_pyth_command, &rate_pyth_program);
+       },
     }
 }
