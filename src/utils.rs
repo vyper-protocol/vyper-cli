@@ -1,21 +1,13 @@
-use console::style;
-use std::fmt::{Debug, Display};
-use vyper_core::state::{
-    SlotTracking
+use {
+    console::style,
+    std::fmt::{Debug, Display},
+    vyper_core::state::SlotTracking,
+    rust_decimal::Decimal,
+    anchor_client::solana_sdk::pubkey:: Pubkey,
+    std::process::exit,
+    solana_cli_config::{CONFIG_FILE, Config},
+    chrono::prelude::*
 };
-use rust_decimal::{
-    Decimal,
-};
-
-use anchor_client::solana_sdk::{
-        pubkey:: Pubkey
-};
-
-use std::process::exit;
-use solana_cli_config::{CONFIG_FILE, Config};
-use chrono::prelude::*;
-
-
 
 pub fn println_name_value<T:Debug>(name: &str, value: &T) {
     println!(

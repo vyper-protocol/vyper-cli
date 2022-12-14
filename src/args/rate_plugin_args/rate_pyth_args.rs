@@ -22,6 +22,8 @@ pub struct RatePythCommand {
 pub enum RatePythSubcommand {
     /// Gets the state of rate pyth plugin from the given public key.
     Fetch(FetchState),
+    /// Creates the rate-pyth plugin
+    Create
 }
 
 #[derive(Debug, Args)]

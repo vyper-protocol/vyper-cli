@@ -34,7 +34,7 @@ use {
     }
 };
 
-
+const DEVNET: &str = "https://api.devnet.solana.com";
 const VYPER_CORE_ID: &str = "vyPErCcGJKQQBeeQ59gXcWrDyU4vBrq8qQfacwmsAsp";
 const RATE_SWITCHBOARD: &str  = "2hGXiH1oEQwjCXRx8bNdHTi49ScZp7Mj2bxcjxtULKe1";
 const RATE_PYTH: &str = "3mxtC2cGVhHucUg4p58MVzVqUKLyiy1zWqRkRQdgUBPT";
@@ -42,6 +42,8 @@ const OTC: &str = "8aHSkExY28qCvg4gnTLU7y1Ev6HnpJ1NxuWb9XtEesVt";
 const REDEEM_LOGIC_FORWARD: &str = "BrpV1re8MshA8qskKVxcEG8zXG3vf2uLX6myeTKAyhsK";
 const REDEEM_LOGIC_SETTLE_FORWARD: &str = "6vBg1GMtKj7EYDLWWt6tkHoDWLAAksNPbKWiXMic99qU";
 const REDEEM_LOGIC_VANILLA_OPTION: &str = "8fSeRtFseNrjdf8quE2YELhuzLkHV7WEGRPA9Jz8xEVe";
+const PYTH_ORACLE_DEVNET: &str = "J83w4HKfqxwcq3BEMMkPFSppX3gqekLyLJBexebFVkix";
+const PYTH_ORACLE_MAINNET: &str = "Gnt27xtC473ZT2Mw5u8wZ68Z3gULkSTb5DuxJy7eJotD";
 
 fn main() {
 
@@ -87,7 +89,7 @@ fn main() {
     };
 
 
-    let client = Client::new(current_cluster, Rc::new(key_pair));
+    let client = Client::new(current_cluster.clone(), Rc::new(key_pair));
     match args.vyper {
         Vyper::Core(core) => {
             // vyper core program
@@ -135,8 +137,14 @@ fn main() {
             // rate switchboard program
             let rate_pyth_program_id: Pubkey = Pubkey::new(&bs58::decode(&RATE_PYTH).into_vec().expect("Invalid rate pyth program id"));
             let rate_pyth_program = client.program(rate_pyth_program_id);
+
+            let pyth_accounts = match current_cluster.url() {
+                DEVNET => PYTH_ORACLE_DEVNET,
+                _ => PYTH_ORACLE_MAINNET
+             };
+
             // command handler
-            handle_rate_pyth_command(rate_pyth_command, &rate_pyth_program);
+            handle_rate_pyth_command(rate_pyth_command, &rate_pyth_program,pyth_accounts);
        },
     }
 }

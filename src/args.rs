@@ -44,7 +44,7 @@ pub enum Vyper {
     RateSwitchboard(RateSwitchboardCommand),
     /// Used to access the rate-pyth plugin
     RatePyth(RatePythCommand),
-    /// Used to access redeem logic forward commands
+    /// Used to access redeem logic forward plugin
     RedeemLogicForward(RedeemLogicForwardCommand),
     /// Used to access redeem logic settle forward plugin
     RedeemLogicSettleForward(RedeemLogicSettleForwardCommand),

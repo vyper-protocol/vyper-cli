@@ -5,10 +5,21 @@ use {
         RatePythCommand,
         RatePythSubcommand
     },
-    rate_pyth::RateState,
+    rate_pyth::{
+        RateState,
+        accounts::InitializeContext,
+        instruction::Initialize
+    },
     anchor_client::{
         Program,
-        ClientError
+        ClientError,
+        solana_sdk:: {
+            signer::keypair::Keypair,
+            signer::Signer,
+            system_program,
+            pubkey::Pubkey
+        },
+        anchor_lang::prelude::AccountMeta
     },
     crate::utils:: {
         println_name_value,
@@ -21,7 +32,7 @@ use {
 
 
 
-pub fn handle_rate_pyth_command(rate_pyth_command: RatePythCommand, program: &Program) {
+pub fn handle_rate_pyth_command(rate_pyth_command: RatePythCommand, program: &Program, pyth_accounts: &str) {
     let command = rate_pyth_command.command;
     match command {
         RatePythSubcommand::Fetch(fetch_state) => {
@@ -45,6 +56,35 @@ pub fn handle_rate_pyth_command(rate_pyth_command: RatePythCommand, program: &Pr
             println!("]");
             println_name_value("refreshed slot",&account.refreshed_slot);
             println_aggregators("pyth oracles", &account.pyth_oracles);
+        }
+        RatePythSubcommand::Create => {
+            let rate_pyth_state = Keypair::new();                          
+            let signature = program.request()
+                .signer(&rate_pyth_state)
+                .accounts(InitializeContext {
+                    rate_data: rate_pyth_state.pubkey(),
+                    signer: program.payer(),
+                    system_program: system_program::ID
+                })
+                .accounts(AccountMeta::new_readonly(Pubkey::new(&bs58::decode(&pyth_accounts).into_vec().expect("Invalid aggregator accounts state id")), false))
+                .args(Initialize {})
+                .send(); 
+            let signature = match signature {
+                Ok(transaction) => transaction,
+                Err(err) => {
+                    match err {
+                        ClientError::AccountNotFound => println_error("Could not create a rate pyth state with given public key"),
+                        ClientError::AnchorError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::ProgramError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::SolanaClientError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::SolanaClientPubsubError(err) => println!("{} : {}",style("error").red().bold(),err),
+                        ClientError::LogParseError(err)=> println_error(&err)
+                    }
+                    exit(1);
+                }
+            };
+            println_name_value("Rate Pyth Plugin State successfully create at", &rate_pyth_state.pubkey());
+            println_name_value("Transaction Id", &signature);
         }
     }
 }
