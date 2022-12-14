@@ -25,4 +25,4 @@ requestty = "0.4.1"
 
 [[bin]]
 name = "vyper"
-path = "./main.rs"
+path = "./src/main.rs"

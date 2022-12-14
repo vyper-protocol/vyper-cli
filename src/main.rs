@@ -34,12 +34,12 @@ use {
 };
 
 
-const VYPER_CORE_ID: &str = "vyPErCcGJKQQBeeQ59gXcWrDyU4vBrq8qQfacwmsAsp";
-const REDEEM_LOGIC_FORWARD: &str = "BrpV1re8MshA8qskKVxcEG8zXG3vf2uLX6myeTKAyhsK";
-const RATE_SWITCHBOARD: &str  = "2hGXiH1oEQwjCXRx8bNdHTi49ScZp7Mj2bxcjxtULKe1";
-const OTC: &str = "8aHSkExY28qCvg4gnTLU7y1Ev6HnpJ1NxuWb9XtEesVt";
-const REDEEM_LOGIC_SETTLE_FORWARD: &str = "6vBg1GMtKj7EYDLWWt6tkHoDWLAAksNPbKWiXMic99qU";
-const REDEEM_LOGIC_VANILLA_OPTION: &str = "8fSeRtFseNrjdf8quE2YELhuzLkHV7WEGRPA9Jz8xEVe";
+pub const VYPER_CORE_ID: &str = "vyPErCcGJKQQBeeQ59gXcWrDyU4vBrq8qQfacwmsAsp";
+pub const REDEEM_LOGIC_FORWARD: &str = "BrpV1re8MshA8qskKVxcEG8zXG3vf2uLX6myeTKAyhsK";
+pub const RATE_SWITCHBOARD: &str  = "2hGXiH1oEQwjCXRx8bNdHTi49ScZp7Mj2bxcjxtULKe1";
+pub const OTC: &str = "8aHSkExY28qCvg4gnTLU7y1Ev6HnpJ1NxuWb9XtEesVt";
+pub const REDEEM_LOGIC_SETTLE_FORWARD: &str = "6vBg1GMtKj7EYDLWWt6tkHoDWLAAksNPbKWiXMic99qU";
+pub const REDEEM_LOGIC_VANILLA_OPTION: &str = "8fSeRtFseNrjdf8quE2YELhuzLkHV7WEGRPA9Jz8xEVe";
 
 fn main() {
 
@@ -85,7 +85,7 @@ fn main() {
     };
 
 
-    let client = Client::new(current_cluster, Rc::new(key_pair));
+    let client = Client::new(current_cluster.clone(), Rc::new(key_pair));
     match args.vyper {
         Vyper::Core(core) => {
             // vyper core program
@@ -131,7 +131,7 @@ fn main() {
             let core_program = client.program(core_program_id);
 
             // command handler
-            handle_otc_command(otc_command, &otc_program, &core_program);
+            handle_otc_command(otc_command, &otc_program, &core_program, &client, current_cluster);
         }
     }
 }
