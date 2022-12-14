@@ -12,7 +12,7 @@ use {
         redeem_logic_forward_ops::handle_redeem_logic_forward_command,
         redeem_logic_settle_forward_ops::handle_redeem_logic_settle_forward_command,
         redeem_logic_vanilla_option_ops::handle_redeem_logic_vanilla_option_command,
-        redeem_logic_digital::handle_redeem_logic_digital_command
+        redeem_logic_digital_ops::handle_redeem_logic_digital_command
     },
     ops::rate_plugin_ops::{
         rate_switchboard_ops::handle_rate_switchboard_command
