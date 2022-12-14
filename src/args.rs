@@ -10,6 +10,7 @@ use {
         redeem_logic_forward_args::RedeemLogicForwardCommand,
         redeem_logic_settle_forward_args::RedeemLogicSettleForwardCommand,
         redeem_logic_vanilla_option_args::RedeemLogicVanillaOptionCommand,
+        redeem_logic_digital_args::RedeemLogicDigitalCommand
     },
     rate_plugin_args::rate_switchboard_args::RateSwitchboardCommand,
     clap::{
@@ -46,6 +47,8 @@ pub enum Vyper {
     /// Used to access redeem logic vanilla option plugin
     RedeemLogicVanillaOption(RedeemLogicVanillaOptionCommand),
     /// Used to access the vyper otc commands
-    Otc(OtcCommand)
+    Otc(OtcCommand),
+    /// Used to access the redeem logic digital plugin
+    RedeemLogicDigital(RedeemLogicDigitalCommand)
 }
 
