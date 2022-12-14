@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":[["redeem_logic_forward_ops",""],["redeem_logic_settle_forward_ops",""],["redeem_logic_vanilla_option_ops",""]]};
+window.SIDEBAR_ITEMS = {"mod":[["redeem_logic_digital_ops",""],["redeem_logic_forward_ops",""],["redeem_logic_settle_forward_ops",""],["redeem_logic_vanilla_option_ops",""]]};

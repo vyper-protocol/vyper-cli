@@ -49,6 +49,9 @@
 <span id="49">49</span>
 <span id="50">50</span>
 <span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
 </pre><pre class="rust"><code><span class="kw">pub mod </span>core_args;
 <span class="kw">pub mod </span>config_args;
 <span class="kw">pub mod </span>redeem_logic_plugin_args;
@@ -61,6 +64,7 @@
         redeem_logic_forward_args::RedeemLogicForwardCommand,
         redeem_logic_settle_forward_args::RedeemLogicSettleForwardCommand,
         redeem_logic_vanilla_option_args::RedeemLogicVanillaOptionCommand,
+        redeem_logic_digital_args::RedeemLogicDigitalCommand
     },
     rate_plugin_args::rate_switchboard_args::RateSwitchboardCommand,
     clap::{
@@ -97,7 +101,9 @@
     <span class="doccomment">/// Used to access redeem logic vanilla option plugin
     </span>RedeemLogicVanillaOption(RedeemLogicVanillaOptionCommand),
     <span class="doccomment">/// Used to access the vyper otc commands
-    </span>Otc(OtcCommand)
+    </span>Otc(OtcCommand),
+    <span class="doccomment">/// Used to access the redeem logic digital plugin
+    </span>RedeemLogicDigital(RedeemLogicDigitalCommand)
 }
 
 </code></pre></div>

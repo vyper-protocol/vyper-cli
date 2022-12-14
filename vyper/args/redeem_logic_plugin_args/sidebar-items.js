@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":[["redeem_logic_forward_args",""],["redeem_logic_settle_forward_args",""],["redeem_logic_vanilla_option_args",""]]};
+window.SIDEBAR_ITEMS = {"mod":[["redeem_logic_digital_args",""],["redeem_logic_forward_args",""],["redeem_logic_settle_forward_args",""],["redeem_logic_vanilla_option_args",""]]};

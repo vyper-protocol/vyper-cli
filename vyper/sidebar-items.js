@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"constant":[["OTC",""],["RATE_SWITCHBOARD",""],["REDEEM_LOGIC_FORWARD",""],["REDEEM_LOGIC_SETTLE_FORWARD",""],["REDEEM_LOGIC_VANILLA_OPTION",""],["VYPER_CORE_ID",""]],"fn":[["main",""]],"mod":[["args",""],["ops",""],["utils",""]]};
+window.SIDEBAR_ITEMS = {"constant":[["OTC",""],["RATE_SWITCHBOARD",""],["REDEEM_LOGIC_DIGITAL",""],["REDEEM_LOGIC_FORWARD",""],["REDEEM_LOGIC_SETTLE_FORWARD",""],["REDEEM_LOGIC_VANILLA_OPTION",""],["VYPER_CORE_ID",""]],"fn":[["main",""]],"mod":[["args",""],["ops",""],["utils",""]]};
