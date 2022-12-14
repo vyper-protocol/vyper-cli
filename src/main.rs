@@ -40,6 +40,8 @@ const RATE_SWITCHBOARD: &str  = "2hGXiH1oEQwjCXRx8bNdHTi49ScZp7Mj2bxcjxtULKe1";
 const OTC: &str = "8aHSkExY28qCvg4gnTLU7y1Ev6HnpJ1NxuWb9XtEesVt";
 const REDEEM_LOGIC_SETTLE_FORWARD: &str = "6vBg1GMtKj7EYDLWWt6tkHoDWLAAksNPbKWiXMic99qU";
 const REDEEM_LOGIC_VANILLA_OPTION: &str = "8fSeRtFseNrjdf8quE2YELhuzLkHV7WEGRPA9Jz8xEVe";
+const SWITCHBOARD_AGG_DEVNET: &str = "9LNYQZLJG5DAyeACCTzBFG6H3sDhehP5xtYLdhrZtQkA";
+const SWITCHBOARD_AGG_MAINNET: &str = "7Y3nWv5B2rLiDBsNpkfXqa4cbJqszJos2sZVutF8R3FE";
 
 fn main() {
 
@@ -85,7 +87,7 @@ fn main() {
     };
 
 
-    let client = Client::new(current_cluster, Rc::new(key_pair));
+    let client = Client::new(current_cluster.clone(), Rc::new(key_pair));
     match args.vyper {
         Vyper::Core(core) => {
             // vyper core program
@@ -105,8 +107,12 @@ fn main() {
              // rate switchboard program
              let rate_switchboard_program_id: Pubkey = Pubkey::new(&bs58::decode(&RATE_SWITCHBOARD).into_vec().expect("Invalid rate switchboard program id"));
              let rate_switchboard_program = client.program(rate_switchboard_program_id);
+             let rate_accounts = match current_cluster.url() {
+                "https://api.devnet.solana.com" => SWITCHBOARD_AGG_DEVNET,
+                _ => SWITCHBOARD_AGG_MAINNET
+             };
              // command handler
-             handle_rate_switchboard_command(rate_switchboard_command, &rate_switchboard_program);
+             handle_rate_switchboard_command(rate_switchboard_command, &rate_switchboard_program, rate_accounts);
         },
         Vyper::RedeemLogicSettleForward(redeem_logic_command) => {
             // redem logic settle forward program
