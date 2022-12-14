@@ -55,12 +55,11 @@ pub fn handle_redeem_logic_digital_command(redeem_logic_command: RedeemLogicDigi
         },
         RedeemLogicDigitalSubcommand::Create(plugin_state) => {
             let plugin_config =  Keypair::new();
-            let authority = program.payer();
             let signature = program.request()
                 .signer(&plugin_config)
                 .accounts(InitializeContext {
                     redeem_logic_config: plugin_config.pubkey(),
-                    payer: authority,
+                    payer: program.payer(),
                     system_program: system_program::ID,
                 })
                 .args(Initialize {is_call:plugin_state.is_call, strike:plugin_state.strike})
