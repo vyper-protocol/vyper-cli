@@ -17,7 +17,6 @@ use {
             signer::keypair::Keypair,
             signer::Signer,
             system_program,
-            pubkey::Pubkey
         },
         anchor_lang::prelude::AccountMeta
     },
@@ -32,7 +31,7 @@ use {
 
 
 
-pub fn handle_rate_pyth_command(rate_pyth_command: RatePythCommand, program: &Program, pyth_accounts: &str) {
+pub fn handle_rate_pyth_command(rate_pyth_command: RatePythCommand, program: &Program) {
     let command = rate_pyth_command.command;
     match command {
         RatePythSubcommand::Fetch(fetch_state) => {
@@ -57,8 +56,11 @@ pub fn handle_rate_pyth_command(rate_pyth_command: RatePythCommand, program: &Pr
             println_name_value("refreshed slot",&account.refreshed_slot);
             println_aggregators("pyth oracles", &account.pyth_oracles);
         }
-        RatePythSubcommand::Create => {
-            let rate_pyth_state = Keypair::new();                          
+        RatePythSubcommand::Create(create_state) => {
+            let rate_pyth_state = Keypair::new(); 
+            let oracles:Vec<AccountMeta> = create_state.oracles.into_iter().map(|rate_account| {
+                AccountMeta::new_readonly(rate_account, false)
+            }).collect();                            
             let signature = program.request()
                 .signer(&rate_pyth_state)
                 .accounts(InitializeContext {
@@ -66,7 +68,7 @@ pub fn handle_rate_pyth_command(rate_pyth_command: RatePythCommand, program: &Pr
                     signer: program.payer(),
                     system_program: system_program::ID
                 })
-                .accounts(AccountMeta::new_readonly(Pubkey::new(&bs58::decode(&pyth_accounts).into_vec().expect("Invalid aggregator accounts state id")), false))
+                .accounts(oracles)
                 .args(Initialize {})
                 .send(); 
             let signature = match signature {
