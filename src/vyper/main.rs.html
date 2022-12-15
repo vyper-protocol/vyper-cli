@@ -139,6 +139,14 @@
 <span id="139">139</span>
 <span id="140">140</span>
 <span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
 </pre><pre class="rust"><code><span class="kw">use </span>std::process::exit;
 <span class="kw">mod </span>args;
 <span class="kw">mod </span>ops;
@@ -156,7 +164,8 @@
         redeem_logic_digital_ops::handle_redeem_logic_digital_command
     },
     ops::rate_plugin_ops::{
-        rate_switchboard_ops::handle_rate_switchboard_command
+        rate_switchboard_ops::handle_rate_switchboard_command,
+        rate_pyth_ops::handle_rate_pyth_command
     },
     ops::otc_ops::handle_otc_command,
     anchor_client::{
@@ -175,11 +184,11 @@
     }
 };
 
-
 <span class="kw">const </span>VYPER_CORE_ID: <span class="kw-2">&amp;</span>str = <span class="string">&quot;vyPErCcGJKQQBeeQ59gXcWrDyU4vBrq8qQfacwmsAsp&quot;</span>;
-<span class="kw">const </span>REDEEM_LOGIC_FORWARD: <span class="kw-2">&amp;</span>str = <span class="string">&quot;BrpV1re8MshA8qskKVxcEG8zXG3vf2uLX6myeTKAyhsK&quot;</span>;
 <span class="kw">const </span>RATE_SWITCHBOARD: <span class="kw-2">&amp;</span>str  = <span class="string">&quot;2hGXiH1oEQwjCXRx8bNdHTi49ScZp7Mj2bxcjxtULKe1&quot;</span>;
+<span class="kw">const </span>RATE_PYTH: <span class="kw-2">&amp;</span>str = <span class="string">&quot;3mxtC2cGVhHucUg4p58MVzVqUKLyiy1zWqRkRQdgUBPT&quot;</span>;
 <span class="kw">const </span>OTC: <span class="kw-2">&amp;</span>str = <span class="string">&quot;8aHSkExY28qCvg4gnTLU7y1Ev6HnpJ1NxuWb9XtEesVt&quot;</span>;
+<span class="kw">const </span>REDEEM_LOGIC_FORWARD: <span class="kw-2">&amp;</span>str = <span class="string">&quot;BrpV1re8MshA8qskKVxcEG8zXG3vf2uLX6myeTKAyhsK&quot;</span>;
 <span class="kw">const </span>REDEEM_LOGIC_SETTLE_FORWARD: <span class="kw-2">&amp;</span>str = <span class="string">&quot;6vBg1GMtKj7EYDLWWt6tkHoDWLAAksNPbKWiXMic99qU&quot;</span>;
 <span class="kw">const </span>REDEEM_LOGIC_VANILLA_OPTION: <span class="kw-2">&amp;</span>str = <span class="string">&quot;8fSeRtFseNrjdf8quE2YELhuzLkHV7WEGRPA9Jz8xEVe&quot;</span>;
 <span class="kw">const </span>REDEEM_LOGIC_DIGITAL: <span class="kw-2">&amp;</span>str = <span class="string">&quot;5Dq9PjUJUG5dM9DzYFqKA4YZYeKJfGaM5Gy7NjpY3p5r&quot;</span>;
@@ -236,19 +245,26 @@
             <span class="comment">// core command handler
             </span>handle_core_command(core,<span class="kw-2">&amp;</span>core_program);
         },
-        Vyper::RedeemLogicForward(redeem_logic_command) =&gt; {
-            <span class="comment">// redem logic forward program
-            </span><span class="kw">let </span>redeem_logic_forward_program_id: Pubkey = Pubkey::new(<span class="kw-2">&amp;</span>bs58::decode(<span class="kw-2">&amp;</span>REDEEM_LOGIC_FORWARD).into_vec().expect(<span class="string">&quot;Invalid redeem logic forward program id&quot;</span>));
-            <span class="kw">let </span>redeem_logic_forward_program = client.program(redeem_logic_forward_program_id);
-            <span class="comment">// command handler
-            </span>handle_redeem_logic_forward_command(redeem_logic_command, <span class="kw-2">&amp;</span>redeem_logic_forward_program);
-        },
         Vyper::RateSwitchboard(rate_switchboard_command) =&gt; {
              <span class="comment">// rate switchboard program
              </span><span class="kw">let </span>rate_switchboard_program_id: Pubkey = Pubkey::new(<span class="kw-2">&amp;</span>bs58::decode(<span class="kw-2">&amp;</span>RATE_SWITCHBOARD).into_vec().expect(<span class="string">&quot;Invalid rate switchboard program id&quot;</span>));
              <span class="kw">let </span>rate_switchboard_program = client.program(rate_switchboard_program_id);
              <span class="comment">// command handler
              </span>handle_rate_switchboard_command(rate_switchboard_command, <span class="kw-2">&amp;</span>rate_switchboard_program);
+        },
+        Vyper::RatePyth(rate_pyth_command) =&gt; {
+            <span class="comment">// rate switchboard program
+            </span><span class="kw">let </span>rate_pyth_program_id: Pubkey = Pubkey::new(<span class="kw-2">&amp;</span>bs58::decode(<span class="kw-2">&amp;</span>RATE_PYTH).into_vec().expect(<span class="string">&quot;Invalid rate pyth program id&quot;</span>));
+            <span class="kw">let </span>rate_pyth_program = client.program(rate_pyth_program_id);
+            <span class="comment">// command handler
+            </span>handle_rate_pyth_command(rate_pyth_command, <span class="kw-2">&amp;</span>rate_pyth_program);
+       },
+       Vyper::RedeemLogicForward(redeem_logic_command) =&gt; {
+            <span class="comment">// redem logic forward program
+            </span><span class="kw">let </span>redeem_logic_forward_program_id: Pubkey = Pubkey::new(<span class="kw-2">&amp;</span>bs58::decode(<span class="kw-2">&amp;</span>REDEEM_LOGIC_FORWARD).into_vec().expect(<span class="string">&quot;Invalid redeem logic forward program id&quot;</span>));
+            <span class="kw">let </span>redeem_logic_forward_program = client.program(redeem_logic_forward_program_id);
+            <span class="comment">// command handler
+            </span>handle_redeem_logic_forward_command(redeem_logic_command, <span class="kw-2">&amp;</span>redeem_logic_forward_program);
         },
         Vyper::RedeemLogicSettleForward(redeem_logic_command) =&gt; {
             <span class="comment">// redem logic settle forward program
@@ -264,19 +280,19 @@
             <span class="comment">// command handler
             </span>handle_redeem_logic_vanilla_option_command(redeem_logic_command, <span class="kw-2">&amp;</span>redeem_logic_vanilla_option_program);
         },
-        Vyper::Otc(otc_command) =&gt; {
-            <span class="comment">// otc program
-            </span><span class="kw">let </span>otc_program_id: Pubkey = Pubkey::new(<span class="kw-2">&amp;</span>bs58::decode(<span class="kw-2">&amp;</span>OTC).into_vec().expect(<span class="string">&quot;Invalid otc program id&quot;</span>));
-            <span class="kw">let </span>otc_program = client.program(otc_program_id);
-            <span class="comment">// command handler
-            </span>handle_otc_command(otc_command, <span class="kw-2">&amp;</span>otc_program);
-        },
         Vyper::RedeemLogicDigital(redeem_logic_command) =&gt; {
             <span class="comment">// redem logic digital program
             </span><span class="kw">let </span>redeem_logic_digital_program_id: Pubkey = Pubkey::new(<span class="kw-2">&amp;</span>bs58::decode(<span class="kw-2">&amp;</span>REDEEM_LOGIC_DIGITAL).into_vec().expect(<span class="string">&quot;Invalid redeem logic digital program id&quot;</span>));
             <span class="kw">let </span>redeem_logic_digital_program = client.program(redeem_logic_digital_program_id);
             <span class="comment">// command handler
             </span>handle_redeem_logic_digital_command(redeem_logic_command, <span class="kw-2">&amp;</span>redeem_logic_digital_program);
+        }
+        Vyper::Otc(otc_command) =&gt; {
+            <span class="comment">// otc program
+            </span><span class="kw">let </span>otc_program_id: Pubkey = Pubkey::new(<span class="kw-2">&amp;</span>bs58::decode(<span class="kw-2">&amp;</span>OTC).into_vec().expect(<span class="string">&quot;Invalid otc program id&quot;</span>));
+            <span class="kw">let </span>otc_program = client.program(otc_program_id);
+            <span class="comment">// command handler
+            </span>handle_otc_command(otc_command, <span class="kw-2">&amp;</span>otc_program);
         },
     }
 }

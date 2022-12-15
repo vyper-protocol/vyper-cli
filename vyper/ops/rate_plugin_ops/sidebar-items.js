@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":[["rate_switchboard_ops",""]]};
+window.SIDEBAR_ITEMS = {"mod":[["rate_pyth_ops",""],["rate_switchboard_ops",""]]};

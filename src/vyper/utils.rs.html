@@ -128,32 +128,16 @@
 <span id="128">128</span>
 <span id="129">129</span>
 <span id="130">130</span>
-<span id="131">131</span>
-<span id="132">132</span>
-<span id="133">133</span>
-<span id="134">134</span>
-<span id="135">135</span>
-<span id="136">136</span>
-<span id="137">137</span>
-<span id="138">138</span>
-</pre><pre class="rust"><code><span class="kw">use </span>console::style;
-<span class="kw">use </span>std::fmt::{Debug, Display};
-<span class="kw">use </span>vyper_core::state::{
-    SlotTracking
+</pre><pre class="rust"><code><span class="kw">use </span>{
+    console::style,
+    std::fmt::{Debug, Display},
+    vyper_core::state::SlotTracking,
+    rust_decimal::Decimal,
+    anchor_client::solana_sdk::pubkey:: Pubkey,
+    std::process::exit,
+    solana_cli_config::{CONFIG_FILE, Config},
+    chrono::prelude::*
 };
-<span class="kw">use </span>rust_decimal::{
-    Decimal,
-};
-
-<span class="kw">use </span>anchor_client::solana_sdk::{
-        pubkey:: Pubkey
-};
-
-<span class="kw">use </span>std::process::exit;
-<span class="kw">use </span>solana_cli_config::{CONFIG_FILE, Config};
-<span class="kw">use </span>chrono::prelude::<span class="kw-2">*</span>;
-
-
 
 <span class="kw">pub fn </span>println_name_value&lt;T:Debug&gt;(name: <span class="kw-2">&amp;</span>str, value: <span class="kw-2">&amp;</span>T) {
     <span class="macro">println!</span>(
@@ -224,7 +208,7 @@
     }
 }
 
-<span class="kw">pub fn </span>println_switchboard_aggregators(name: <span class="kw-2">&amp;</span>str, aggregators: <span class="kw-2">&amp;</span>[<span class="prelude-ty">Option</span>&lt;Pubkey&gt;; <span class="number">10</span>]) {
+<span class="kw">pub fn </span>println_aggregators(name: <span class="kw-2">&amp;</span>str, aggregators: <span class="kw-2">&amp;</span>[<span class="prelude-ty">Option</span>&lt;Pubkey&gt;; <span class="number">10</span>]) {
     <span class="macro">print!</span>(
         <span class="string">&quot;{} : [&quot;</span>,
         style(name).bold(),

@@ -52,6 +52,12 @@
 <span id="52">52</span>
 <span id="53">53</span>
 <span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
+<span id="59">59</span>
+<span id="60">60</span>
 </pre><pre class="rust"><code><span class="kw">pub mod </span>core_args;
 <span class="kw">pub mod </span>config_args;
 <span class="kw">pub mod </span>redeem_logic_plugin_args;
@@ -66,7 +72,10 @@
         redeem_logic_vanilla_option_args::RedeemLogicVanillaOptionCommand,
         redeem_logic_digital_args::RedeemLogicDigitalCommand
     },
-    rate_plugin_args::rate_switchboard_args::RateSwitchboardCommand,
+    rate_plugin_args::{
+        rate_switchboard_args::RateSwitchboardCommand,
+        rate_pyth_args::RatePythCommand
+    },
     clap::{
         Parser,
         Subcommand
@@ -92,18 +101,21 @@
     
     <span class="doccomment">/// Used to access vyper core commands
     </span>Core(CoreCommand),
-    <span class="doccomment">/// Used to access redeem logic forward commands
-    </span>RedeemLogicForward(RedeemLogicForwardCommand),
     <span class="doccomment">/// Used to access rate-switchboard plugin
     </span>RateSwitchboard(RateSwitchboardCommand),
+    <span class="doccomment">/// Used to access the rate-pyth plugin
+    </span>RatePyth(RatePythCommand),
+    <span class="doccomment">/// Used to access redeem logic forward plugin
+    </span>RedeemLogicForward(RedeemLogicForwardCommand),
     <span class="doccomment">/// Used to access redeem logic settle forward plugin
     </span>RedeemLogicSettleForward(RedeemLogicSettleForwardCommand),
     <span class="doccomment">/// Used to access redeem logic vanilla option plugin
     </span>RedeemLogicVanillaOption(RedeemLogicVanillaOptionCommand),
+    <span class="doccomment">/// Used to access the redeem logic digital plugin
+    </span>RedeemLogicDigital(RedeemLogicDigitalCommand),
     <span class="doccomment">/// Used to access the vyper otc commands
     </span>Otc(OtcCommand),
-    <span class="doccomment">/// Used to access the redeem logic digital plugin
-    </span>RedeemLogicDigital(RedeemLogicDigitalCommand)
+    
 }
 
 </code></pre></div>
