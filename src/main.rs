@@ -100,6 +100,7 @@ fn main() {
              // rate switchboard program
              let rate_switchboard_program_id: Pubkey = Pubkey::new(&bs58::decode(&RATE_SWITCHBOARD).into_vec().expect("Invalid rate switchboard program id"));
              let rate_switchboard_program = client.program(rate_switchboard_program_id);
+             
              // command handler
              handle_rate_switchboard_command(rate_switchboard_command, &rate_switchboard_program);
         },
