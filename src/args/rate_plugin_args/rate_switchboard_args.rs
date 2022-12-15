@@ -22,7 +22,7 @@ pub struct RateSwitchboardCommand {
 pub enum RateSwitchboardSubcommand {
     /// Gets the state of rate switchboard plugin from the given public key.
     Fetch(FetchState),
-    /// Creates rate switchboard plugin with suitable aggregators.
+    /// Creates rate switchboard plugin with given aggregators.
     Create(CreateState)
 }
 
