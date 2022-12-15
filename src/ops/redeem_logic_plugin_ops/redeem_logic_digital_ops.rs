@@ -1,14 +1,9 @@
 use {
     std::process::exit,
-    crate::args::rate_plugin_args,
-    rate_plugin_args::rate_switchboard_args:: {
-        RateSwitchboardCommand,
-        RateSwitchboardSubcommand
-    },
-    rate_switchboard::{
-        RateState,
-        accounts::InitializeContext,
-        instruction::Initialize
+    crate::args::redeem_logic_plugin_args,
+    redeem_logic_plugin_args::redeem_logic_digital_args:: {
+        RedeemLogicDigitalCommand,
+        RedeemLogicDigitalSubcommand
     },
     anchor_client::{
         Program,
@@ -17,30 +12,35 @@ use {
             signer::keypair::Keypair,
             signer::Signer,
             system_program
-        },
-        anchor_lang::prelude::AccountMeta
+        }
+    },
+    redeem_logic_digital:: {
+        RedeemLogicConfig,
+        accounts::InitializeContext,
+        instruction::Initialize,
     },
     crate::utils:: {
         println_name_value,
-        println_fair_value,
-        println_error,
-        println_aggregators
+        println_error
     },
-    console::style,
+    rust_decimal::{
+        Decimal
+    },
+    console::style
 };
 
 
 
-pub fn handle_rate_switchboard_command(rate_switchboard_command: RateSwitchboardCommand, program: &Program) {
-    let command = rate_switchboard_command.command;
+pub fn handle_redeem_logic_digital_command(redeem_logic_command: RedeemLogicDigitalCommand, program: &Program) {
+    let command = redeem_logic_command.command;
     match command {
-        RateSwitchboardSubcommand::Fetch(fetch_state) => {
-            let account:Result<RateState,ClientError> = program.account(fetch_state.state_id);
+        RedeemLogicDigitalSubcommand::Fetch(fetch_state) => {
+            let account:Result<RedeemLogicConfig,ClientError> = program.account(fetch_state.state_id);
             let account = match account {
-                Ok(rate_state) => rate_state,
+                Ok(redeem_config) => redeem_config,
                 Err(err) => {
                     match err {
-                        ClientError::AccountNotFound => println_error("Could not find a rate switchboard state with given public key"),
+                        ClientError::AccountNotFound => println_error("Could not find a redeem logic digital plugin state with given public key"),
                         ClientError::AnchorError(err) => println!("{} : {}",style("error").red().bold(),err),
                         ClientError::ProgramError(err) => println!("{} : {}",style("error").red().bold(),err),
                         ClientError::SolanaClientError(err) => println!("{} : {}",style("error").red().bold(),err),
@@ -48,28 +48,21 @@ pub fn handle_rate_switchboard_command(rate_switchboard_command: RateSwitchboard
                         ClientError::LogParseError(err)=> println_error(&err)
                     }
                     exit(1);
-                }
+                }   
             };
-            print!("{} : [",style("fair value").bold());
-            println_fair_value(&account.fair_value);
-            println!("]");
-            println_name_value("refreshed slot",&account.refreshed_slot);
-            println_aggregators("switchboard aggregators", &account.switchboard_aggregators)
+            println_name_value("strike",&Decimal::deserialize(account.strike));
+            println_name_value("is_call", &account.is_call);
         },
-        RateSwitchboardSubcommand::Create(create_state) => {
-            let rate_switchboard_state = Keypair::new();
-            let aggregators:Vec<AccountMeta> = create_state.aggregators.into_iter().map(|rate_account| {
-                AccountMeta::new_readonly(rate_account, false)
-            }).collect();                        
+        RedeemLogicDigitalSubcommand::Create(plugin_state) => {
+            let plugin_config =  Keypair::new();
             let signature = program.request()
-                .signer(&rate_switchboard_state)
+                .signer(&plugin_config)
                 .accounts(InitializeContext {
-                    rate_data: rate_switchboard_state.pubkey(),
-                    signer: program.payer(),
-                    system_program: system_program::ID
+                    redeem_logic_config: plugin_config.pubkey(),
+                    payer: program.payer(),
+                    system_program: system_program::ID,
                 })
-                .accounts(aggregators)
-                .args(Initialize {})
+                .args(Initialize {is_call:plugin_state.is_call, strike:plugin_state.strike})
                 .send(); 
             let signature = match signature {
                 Ok(transaction) => transaction,
@@ -85,8 +78,8 @@ pub fn handle_rate_switchboard_command(rate_switchboard_command: RateSwitchboard
                     exit(1);
                 }
             };
-            println_name_value("Rate Switchboard Plugin State successfully create at", &rate_switchboard_state.pubkey());
-            println_name_value("Transaction Id", &signature);
+            println_name_value("Redeem Logic Digital State successfully create at", &plugin_config.pubkey());
+            println_name_value("Transaction Id", &signature);                                       
         }
     }
 }

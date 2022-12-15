@@ -13,16 +13,16 @@ use {
 
 
 #[derive(Debug, Args)]
-pub struct RateSwitchboardCommand {
+pub struct RatePythCommand {
     #[clap(subcommand)]
-    pub command : RateSwitchboardSubcommand
+    pub command : RatePythSubcommand
 }
 
 #[derive(Debug, Subcommand)]
-pub enum RateSwitchboardSubcommand {
-    /// Gets the state of rate switchboard plugin from the given public key.
+pub enum RatePythSubcommand {
+    /// Gets the state of rate pyth plugin from the given public key.
     Fetch(FetchState),
-    /// Creates rate switchboard plugin with given aggregators.
+    /// Creates the rate-pyth plugin with given oracles
     Create(CreateState)
 }
 
@@ -35,6 +35,6 @@ pub struct FetchState {
 #[derive(Debug, Args)]
 pub struct CreateState {
     #[clap(required=true, max_values=10)]
-    /// Public key of switchboard aggregators upto 10 are supported.
-    pub aggregators: Vec<Pubkey>
+    /// Public key of oracles to be used within plugin upto 10.
+    pub oracles: Vec<Pubkey>
 }
