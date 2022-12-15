@@ -96,19 +96,26 @@ fn main() {
             // core command handler
             handle_core_command(core,&core_program);
         },
-        Vyper::RedeemLogicForward(redeem_logic_command) => {
-            // redem logic forward program
-            let redeem_logic_forward_program_id: Pubkey = Pubkey::new(&bs58::decode(&REDEEM_LOGIC_FORWARD).into_vec().expect("Invalid redeem logic forward program id"));
-            let redeem_logic_forward_program = client.program(redeem_logic_forward_program_id);
-            // command handler
-            handle_redeem_logic_forward_command(redeem_logic_command, &redeem_logic_forward_program);
-        },
         Vyper::RateSwitchboard(rate_switchboard_command) => {
              // rate switchboard program
              let rate_switchboard_program_id: Pubkey = Pubkey::new(&bs58::decode(&RATE_SWITCHBOARD).into_vec().expect("Invalid rate switchboard program id"));
              let rate_switchboard_program = client.program(rate_switchboard_program_id);
              // command handler
              handle_rate_switchboard_command(rate_switchboard_command, &rate_switchboard_program);
+        },
+        Vyper::RatePyth(rate_pyth_command) => {
+            // rate switchboard program
+            let rate_pyth_program_id: Pubkey = Pubkey::new(&bs58::decode(&RATE_PYTH).into_vec().expect("Invalid rate pyth program id"));
+            let rate_pyth_program = client.program(rate_pyth_program_id);
+            // command handler
+            handle_rate_pyth_command(rate_pyth_command, &rate_pyth_program);
+       },
+       Vyper::RedeemLogicForward(redeem_logic_command) => {
+            // redem logic forward program
+            let redeem_logic_forward_program_id: Pubkey = Pubkey::new(&bs58::decode(&REDEEM_LOGIC_FORWARD).into_vec().expect("Invalid redeem logic forward program id"));
+            let redeem_logic_forward_program = client.program(redeem_logic_forward_program_id);
+            // command handler
+            handle_redeem_logic_forward_command(redeem_logic_command, &redeem_logic_forward_program);
         },
         Vyper::RedeemLogicSettleForward(redeem_logic_command) => {
             // redem logic settle forward program
@@ -124,6 +131,13 @@ fn main() {
             // command handler
             handle_redeem_logic_vanilla_option_command(redeem_logic_command, &redeem_logic_vanilla_option_program);
         },
+        Vyper::RedeemLogicDigital(redeem_logic_command) => {
+            // redem logic digital program
+            let redeem_logic_digital_program_id: Pubkey = Pubkey::new(&bs58::decode(&REDEEM_LOGIC_DIGITAL).into_vec().expect("Invalid redeem logic digital program id"));
+            let redeem_logic_digital_program = client.program(redeem_logic_digital_program_id);
+            // command handler
+            handle_redeem_logic_digital_command(redeem_logic_command, &redeem_logic_digital_program);
+        }
         Vyper::Otc(otc_command) => {
             // otc program
             let otc_program_id: Pubkey = Pubkey::new(&bs58::decode(&OTC).into_vec().expect("Invalid otc program id"));
@@ -131,19 +145,5 @@ fn main() {
             // command handler
             handle_otc_command(otc_command, &otc_program);
         },
-        Vyper::RedeemLogicDigital(redeem_logic_command) => {
-            // redem logic digital program
-            let redeem_logic_digital_program_id: Pubkey = Pubkey::new(&bs58::decode(&REDEEM_LOGIC_DIGITAL).into_vec().expect("Invalid redeem logic digital program id"));
-            let redeem_logic_digital_program = client.program(redeem_logic_digital_program_id);
-            // command handler
-            handle_redeem_logic_digital_command(redeem_logic_command, &redeem_logic_digital_program);
-        },,
-        Vyper::RatePyth(rate_pyth_command) => {
-            // rate switchboard program
-            let rate_pyth_program_id: Pubkey = Pubkey::new(&bs58::decode(&RATE_PYTH).into_vec().expect("Invalid rate pyth program id"));
-            let rate_pyth_program = client.program(rate_pyth_program_id);
-            // command handler
-            handle_rate_pyth_command(rate_pyth_command, &rate_pyth_program);
-       },
     }
 }
