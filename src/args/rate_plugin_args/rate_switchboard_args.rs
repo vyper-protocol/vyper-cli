@@ -35,6 +35,6 @@ pub struct FetchState {
 #[derive(Debug, Args)]
 pub struct CreateState {
     #[clap(required=true, max_values=10)]
-    /// Public key of state of plugin.
+    /// Public key of switchboard aggregators upto 10 are supported.
     pub aggregators: Vec<Pubkey>
 }
