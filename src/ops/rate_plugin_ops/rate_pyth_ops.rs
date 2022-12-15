@@ -1,11 +1,11 @@
 use {
     std::process::exit,
     crate::args::rate_plugin_args,
-    rate_plugin_args::rate_switchboard_args:: {
-        RateSwitchboardCommand,
-        RateSwitchboardSubcommand
+    rate_plugin_args::rate_pyth_args:: {
+        RatePythCommand,
+        RatePythSubcommand
     },
-    rate_switchboard::{
+    rate_pyth::{
         RateState,
         accounts::InitializeContext,
         instruction::Initialize
@@ -16,7 +16,7 @@ use {
         solana_sdk:: {
             signer::keypair::Keypair,
             signer::Signer,
-            system_program
+            system_program,
         },
         anchor_lang::prelude::AccountMeta
     },
@@ -31,10 +31,10 @@ use {
 
 
 
-pub fn handle_rate_switchboard_command(rate_switchboard_command: RateSwitchboardCommand, program: &Program) {
-    let command = rate_switchboard_command.command;
+pub fn handle_rate_pyth_command(rate_pyth_command: RatePythCommand, program: &Program) {
+    let command = rate_pyth_command.command;
     match command {
-        RateSwitchboardSubcommand::Fetch(fetch_state) => {
+        RatePythSubcommand::Fetch(fetch_state) => {
             let account:Result<RateState,ClientError> = program.account(fetch_state.state_id);
             let account = match account {
                 Ok(rate_state) => rate_state,
@@ -54,28 +54,28 @@ pub fn handle_rate_switchboard_command(rate_switchboard_command: RateSwitchboard
             println_fair_value(&account.fair_value);
             println!("]");
             println_name_value("refreshed slot",&account.refreshed_slot);
-            println_aggregators("switchboard aggregators", &account.switchboard_aggregators)
-        },
-        RateSwitchboardSubcommand::Create(create_state) => {
-            let rate_switchboard_state = Keypair::new();
-            let aggregators:Vec<AccountMeta> = create_state.aggregators.into_iter().map(|rate_account| {
+            println_aggregators("pyth oracles", &account.pyth_oracles);
+        }
+        RatePythSubcommand::Create(create_state) => {
+            let rate_pyth_state = Keypair::new(); 
+            let oracles:Vec<AccountMeta> = create_state.oracles.into_iter().map(|rate_account| {
                 AccountMeta::new_readonly(rate_account, false)
-            }).collect();                        
+            }).collect();                            
             let signature = program.request()
-                .signer(&rate_switchboard_state)
+                .signer(&rate_pyth_state)
                 .accounts(InitializeContext {
-                    rate_data: rate_switchboard_state.pubkey(),
+                    rate_data: rate_pyth_state.pubkey(),
                     signer: program.payer(),
                     system_program: system_program::ID
                 })
-                .accounts(aggregators)
+                .accounts(oracles)
                 .args(Initialize {})
                 .send(); 
             let signature = match signature {
                 Ok(transaction) => transaction,
                 Err(err) => {
                     match err {
-                        ClientError::AccountNotFound => println_error("Could not create a state with given public key"),
+                        ClientError::AccountNotFound => println_error("Could not create a rate pyth state with given public key"),
                         ClientError::AnchorError(err) => println!("{} : {}",style("error").red().bold(),err),
                         ClientError::ProgramError(err) => println!("{} : {}",style("error").red().bold(),err),
                         ClientError::SolanaClientError(err) => println!("{} : {}",style("error").red().bold(),err),
@@ -85,7 +85,7 @@ pub fn handle_rate_switchboard_command(rate_switchboard_command: RateSwitchboard
                     exit(1);
                 }
             };
-            println_name_value("Rate Switchboard Plugin State successfully create at", &rate_switchboard_state.pubkey());
+            println_name_value("Rate Pyth Plugin State successfully create at", &rate_pyth_state.pubkey());
             println_name_value("Transaction Id", &signature);
         }
     }
