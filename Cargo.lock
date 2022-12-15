@@ -2259,6 +2259,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "redeem-logic-digital"
+version = "1.0.0"
+source = "git+https://github.com/vyper-protocol/vyper-core?branch=dev#2fa059ea7f9f106a7240f70c767f436034b8de0f"
+dependencies = [
+ "anchor-lang",
+ "rust_decimal",
+ "rust_decimal_macros",
+ "solana-security-txt",
+ "vyper-macros 0.1.0 (git+https://github.com/vyper-protocol/vyper-core?branch=dev)",
+ "vyper-utils 0.1.0 (git+https://github.com/vyper-protocol/vyper-core?branch=dev)",
+]
+
+[[package]]
 name = "redeem-logic-forward"
 version = "1.0.0"
 source = "git+https://github.com/vyper-protocol/vyper-core?branch=dev#2fa059ea7f9f106a7240f70c767f436034b8de0f"
@@ -3848,6 +3861,7 @@ dependencies = [
  "console",
  "rate-pyth",
  "rate-switchboard",
+ "redeem-logic-digital",
  "redeem-logic-forward",
  "redeem-logic-settled-forward",
  "redeem-logic-vanilla-option",
