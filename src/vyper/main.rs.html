@@ -147,6 +147,7 @@
 <span id="147">147</span>
 <span id="148">148</span>
 <span id="149">149</span>
+<span id="150">150</span>
 </pre><pre class="rust"><code><span class="kw">use </span>std::process::exit;
 <span class="kw">mod </span>args;
 <span class="kw">mod </span>ops;
@@ -249,6 +250,7 @@
              <span class="comment">// rate switchboard program
              </span><span class="kw">let </span>rate_switchboard_program_id: Pubkey = Pubkey::new(<span class="kw-2">&amp;</span>bs58::decode(<span class="kw-2">&amp;</span>RATE_SWITCHBOARD).into_vec().expect(<span class="string">&quot;Invalid rate switchboard program id&quot;</span>));
              <span class="kw">let </span>rate_switchboard_program = client.program(rate_switchboard_program_id);
+             
              <span class="comment">// command handler
              </span>handle_rate_switchboard_command(rate_switchboard_command, <span class="kw-2">&amp;</span>rate_switchboard_program);
         },

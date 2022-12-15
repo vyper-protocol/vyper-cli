@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":[["RateSwitchboardSubcommand",""]],"struct":[["FetchState",""],["RateSwitchboardCommand",""]]};
+window.SIDEBAR_ITEMS = {"enum":[["RateSwitchboardSubcommand",""]],"struct":[["CreateState",""],["FetchState",""],["RateSwitchboardCommand",""]]};
