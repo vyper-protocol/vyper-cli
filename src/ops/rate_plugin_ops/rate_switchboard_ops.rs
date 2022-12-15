@@ -14,7 +14,7 @@ use {
         println_name_value,
         println_fair_value,
         println_error,
-        println_switchboard_aggregators
+        println_aggregators
     },
     console::style,
 };
@@ -44,7 +44,7 @@ pub fn handle_rate_switchboard_command(redeem_logic_command: RateSwitchboardComm
             println_fair_value(&account.fair_value);
             println!("]");
             println_name_value("refreshed slot",&account.refreshed_slot);
-            println_switchboard_aggregators("switchboard aggregators", &account.switchboard_aggregators)
+            println_aggregators("switchboard aggregators", &account.switchboard_aggregators)
         }
     }
 }

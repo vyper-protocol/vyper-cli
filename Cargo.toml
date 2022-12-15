@@ -13,10 +13,11 @@ bs58 = "0.4.0"
 borsh = "0.9.3"
 vyper-core = { git = "https://github.com/vyper-protocol/vyper-core", branch = "dev", features = ["no-entrypoint"] }
 redeem-logic-forward = { git = "https://github.com/vyper-protocol/vyper-core", branch = "dev", features = ["no-entrypoint"] }
-rate-switchboard = { git = "https://github.com/vyper-protocol/vyper-core", branch = "dev", features = ["no-entrypoint"] }
 redeem-logic-settled-forward = { git = "https://github.com/vyper-protocol/vyper-core",branch = "dev", features = ["no-entrypoint"]}
 redeem-logic-vanilla-option = { git = "https://github.com/vyper-protocol/vyper-core",branch = "dev", features = ["no-entrypoint"]}
 redeem-logic-digital = { git = "https://github.com/vyper-protocol/vyper-core",branch = "dev", features = ["no-entrypoint"]}
+rate-switchboard = { git = "https://github.com/vyper-protocol/vyper-core", branch = "dev", features = ["no-entrypoint"] }
+rate-pyth = { git = "https://github.com/vyper-protocol/vyper-core", branch = "dev", features = ["no-entrypoint"] }
 vyper-otc = { git = "https://github.com/vyper-protocol/vyper-otc", branch = "dev", features = ["no-entrypoint"] }
 console = "0.15.1"
 rust_decimal = "1.26"
