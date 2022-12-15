@@ -16,8 +16,7 @@ use {
         solana_sdk:: {
             signer::keypair::Keypair,
             signer::Signer,
-            system_program,
-            pubkey::Pubkey
+            system_program
         },
         anchor_lang::prelude::AccountMeta
     },
@@ -32,7 +31,7 @@ use {
 
 
 
-pub fn handle_rate_switchboard_command(rate_switchboard_command: RateSwitchboardCommand, program: &Program, rate_accounts: &str) {
+pub fn handle_rate_switchboard_command(rate_switchboard_command: RateSwitchboardCommand, program: &Program) {
     let command = rate_switchboard_command.command;
     match command {
         RateSwitchboardSubcommand::Fetch(fetch_state) => {
@@ -57,8 +56,11 @@ pub fn handle_rate_switchboard_command(rate_switchboard_command: RateSwitchboard
             println_name_value("refreshed slot",&account.refreshed_slot);
             println_switchboard_aggregators("switchboard aggregators", &account.switchboard_aggregators)
         },
-        RateSwitchboardSubcommand::Create => {
-            let rate_switchboard_state = Keypair::new();                          
+        RateSwitchboardSubcommand::Create(create_state) => {
+            let rate_switchboard_state = Keypair::new();
+            let aggregators:Vec<AccountMeta> = create_state.aggregators.into_iter().map(|rate_account| {
+                AccountMeta::new_readonly(rate_account, false)
+            }).collect();                        
             let signature = program.request()
                 .signer(&rate_switchboard_state)
                 .accounts(InitializeContext {
@@ -66,7 +68,7 @@ pub fn handle_rate_switchboard_command(rate_switchboard_command: RateSwitchboard
                     signer: program.payer(),
                     system_program: system_program::ID
                 })
-                .accounts(AccountMeta::new_readonly(Pubkey::new(&bs58::decode(&rate_accounts).into_vec().expect("Invalid aggregator accounts state id")), false))
+                .accounts(aggregators)
                 .args(Initialize {})
                 .send(); 
             let signature = match signature {

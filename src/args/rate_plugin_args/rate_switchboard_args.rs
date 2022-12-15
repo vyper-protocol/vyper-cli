@@ -23,11 +23,18 @@ pub enum RateSwitchboardSubcommand {
     /// Gets the state of rate switchboard plugin from the given public key.
     Fetch(FetchState),
     /// Creates rate switchboard plugin with suitable aggregators.
-    Create
+    Create(CreateState)
 }
 
 #[derive(Debug, Args)]
 pub struct FetchState {
     /// Public key of state of plugin.
     pub state_id: Pubkey
+}
+
+#[derive(Debug, Args)]
+pub struct CreateState {
+    #[clap(required=true, max_values=10)]
+    /// Public key of state of plugin.
+    pub aggregators: Vec<Pubkey>
 }
