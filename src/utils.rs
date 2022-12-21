@@ -3,10 +3,15 @@ use {
     std::fmt::{Debug, Display},
     vyper_core::state::SlotTracking,
     rust_decimal::Decimal,
-    anchor_client::solana_sdk::pubkey:: Pubkey,
+    anchor_client::solana_sdk::{
+        pubkey:: Pubkey,
+        signature::Signature
+    },
+    anchor_client::ClientError,
     std::process::exit,
     solana_cli_config::{CONFIG_FILE, Config},
-    chrono::prelude::*
+    chrono::prelude::*,
+    inquire::{InquireError}
 };
 
 pub fn println_name_value<T:Debug>(name: &str, value: &T) {
@@ -126,5 +131,34 @@ pub fn println_beneficiary_value(name: &str, value: &Option<Pubkey>) {
             style("None"),
         );
     }
+}
+
+pub fn inquire_input<T>(input: Result<T,InquireError>) -> T{
+    let value = match input {
+        Ok(value) => value,
+        Err(_) => {
+            println_error("Could not parse the given input");
+            exit(1);
+        }
+    };
+    return value;
+}
+
+pub fn error_handler(signature: Result<Signature,ClientError>) -> Signature {
+    let signature = match signature {
+        Ok(transaction) => transaction,
+        Err(err) => {
+            match err {
+                ClientError::AccountNotFound => println_error("Could not find a account with given public key"),
+                ClientError::AnchorError(err) => println!("{} : {}",style("error").red().bold(),err),
+                ClientError::ProgramError(err) => println!("{} : {}",style("error").red().bold(),err),
+                ClientError::SolanaClientError(err) => println!("{} : {}",style("error").red().bold(),err),
+                ClientError::SolanaClientPubsubError(err) => println!("{} : {}",style("error").red().bold(),err),
+                ClientError::LogParseError(err)=> println_error(&err)
+            }
+            exit(1);
+        }
+    };
+    return signature;
 }
 
