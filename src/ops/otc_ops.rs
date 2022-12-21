@@ -248,7 +248,7 @@ pub fn handle_otc_command(otc_command: OtcCommand, otc_program: &Program, core_p
                         payer: redeem_plugin_program.payer(),
                         system_program: system_program::ID,
                     })
-                    .args(RedeemLogicForwardInitialize { notional: notional,is_linear:is_linear, strike:strike});
+                    .args(RedeemLogicForwardInitialize { notional,is_linear,strike});
 
             } else if redeem_plugin_choice == "Redeem Settled Forward" {
                 let redeem_logic_settle_forward_program_id: Pubkey = Pubkey::new(&bs58::decode(&REDEEM_LOGIC_SETTLE_FORWARD).into_vec().expect("Invalid redeem logic forward program id"));
@@ -278,7 +278,7 @@ pub fn handle_otc_command(otc_command: OtcCommand, otc_program: &Program, core_p
                         payer: redeem_plugin_program.payer(),
                         system_program: system_program::ID,
                     })
-                    .args(RedeemLogicSettledForwardInitialize { notional: notional,is_linear:is_linear, strike:strike, is_standard:is_standard});
+                    .args(RedeemLogicSettledForwardInitialize { notional,is_linear, strike, is_standard});
                 
             } else if redeem_plugin_choice == "Redeem Digital" {
                 let redeem_logic_digital_program_id: Pubkey = Pubkey::new(&bs58::decode(&REDEEM_LOGIC_DIGITAL).into_vec().expect("Invalid redeem logic digital program id"));
@@ -300,7 +300,7 @@ pub fn handle_otc_command(otc_command: OtcCommand, otc_program: &Program, core_p
                         payer: redeem_plugin_program.payer(),
                         system_program: system_program::ID,
                     })
-                    .args(RedeemLogicDigitalInitialize {is_call:is_call, strike:strike});
+                    .args(RedeemLogicDigitalInitialize {is_call, strike});
                     
             } else if redeem_plugin_choice == "Redeem Vanilla Option" {
                 let redeem_logic_vanilla_option_program_id: Pubkey = Pubkey::new(&bs58::decode(&REDEEM_LOGIC_VANILLA_OPTION).into_vec().expect("Invalid redeem logic forward program id"));
@@ -330,7 +330,7 @@ pub fn handle_otc_command(otc_command: OtcCommand, otc_program: &Program, core_p
                         payer: redeem_plugin_program.payer(),
                         system_program: system_program::ID,
                     })
-                    .args(RedeemLogicVanillaOptionInitialize { notional: notional, is_call: is_call, is_linear:is_linear, strike:strike});
+                    .args(RedeemLogicVanillaOptionInitialize { notional, is_call, is_linear, strike});
             } else {
                 println_error("Please choose a valid Redeem Logic Plugin");
                 exit(1);
@@ -357,13 +357,13 @@ pub fn handle_otc_command(otc_command: OtcCommand, otc_program: &Program, core_p
                     payer: core_program.payer(),
                     owner: otc_authority,
                     tranche_config: tranche_config.pubkey(),
-                    tranche_authority: tranche_authority,
+                    tranche_authority,
                     rate_program: rate_plugin_program.id(),
                     rate_program_state: rate_plugin_state.pubkey(),
                     redeem_logic_program: redeem_plugin_program.id(),
                     redeem_logic_program_state: redeem_plugin_state.pubkey(),
                     reserve_mint: collateral_mint,
-                    reserve: reserve,
+                    reserve,
                     junior_tranche_mint: junior_tranche_mint.pubkey(),
                     senior_tranche_mint: senior_tranche_mint.pubkey(),
                     system_program: system_program::ID,
@@ -408,8 +408,8 @@ pub fn handle_otc_command(otc_command: OtcCommand, otc_program: &Program, core_p
             let otc_junior_tranche_token_account = Keypair::new();
             
             let otc_initial_input = OtcInitialInput{
-                senior_deposit_amount: senior_deposit_amount,
-                junior_deposit_amount: junior_deposit_amount,
+                senior_deposit_amount,
+                junior_deposit_amount,
                 deposit_start: Option::Some(deposit_start.timestamp()),
                 deposit_end: deposit_end.timestamp(),
                 settle_start: settle_start.timestamp(),
@@ -420,7 +420,7 @@ pub fn handle_otc_command(otc_command: OtcCommand, otc_program: &Program, core_p
                 .accounts(OtcInitializeContext{
                     signer: otc_program.payer(),
                     reserve_mint: collateral_mint,
-                    otc_authority: otc_authority,
+                    otc_authority,
                     otc_state: otc_state.pubkey(),
                     junior_tranche_mint: junior_tranche_mint.pubkey(),
                     senior_tranche_mint: senior_tranche_mint.pubkey(),

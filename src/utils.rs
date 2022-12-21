@@ -134,18 +134,17 @@ pub fn println_beneficiary_value(name: &str, value: &Option<Pubkey>) {
 }
 
 pub fn inquire_input<T>(input: Result<T,InquireError>) -> T{
-    let value = match input {
+    match input {
         Ok(value) => value,
         Err(_) => {
             println_error("Could not parse the given input");
             exit(1);
         }
-    };
-    return value;
+    }
 }
 
 pub fn error_handler(signature: Result<Signature,ClientError>) -> Signature {
-    let signature = match signature {
+    match signature {
         Ok(transaction) => transaction,
         Err(err) => {
             match err {
@@ -158,7 +157,6 @@ pub fn error_handler(signature: Result<Signature,ClientError>) -> Signature {
             }
             exit(1);
         }
-    };
-    return signature;
+    }
 }
 
