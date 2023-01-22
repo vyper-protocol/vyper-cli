@@ -43,6 +43,8 @@ const REDEEM_LOGIC_FORWARD: &str = "BrpV1re8MshA8qskKVxcEG8zXG3vf2uLX6myeTKAyhsK
 const REDEEM_LOGIC_SETTLE_FORWARD: &str = "6vBg1GMtKj7EYDLWWt6tkHoDWLAAksNPbKWiXMic99qU";
 const REDEEM_LOGIC_VANILLA_OPTION: &str = "8fSeRtFseNrjdf8quE2YELhuzLkHV7WEGRPA9Jz8xEVe";
 const REDEEM_LOGIC_DIGITAL: &str = "5Dq9PjUJUG5dM9DzYFqKA4YZYeKJfGaM5Gy7NjpY3p5r";
+const SOLANA_RPC_DEVNET: &str = "https://api.devnet.solana.com";
+const SOLANA_RPC_MAINNET: &str = "https://api.mainnet-beta.solana.com";
 
 fn main() {
 
@@ -88,7 +90,7 @@ fn main() {
     };
 
 
-    let client = Client::new(current_cluster, Rc::new(key_pair));
+    let client = Client::new(current_cluster.clone(), Rc::new(key_pair));
     match args.vyper {
         Vyper::Core(core) => {
             // vyper core program
@@ -148,7 +150,13 @@ fn main() {
             let core_program_id: Pubkey = Pubkey::new(&bs58::decode(&VYPER_CORE_ID).into_vec().expect("Invalid vyper core program id"));
             let core_program = client.program(core_program_id);
             // command handler
-            handle_otc_command(otc_command, &otc_program, &core_program, &client);
+            let cur_rpc_url = Cluster::url(&current_cluster); 
+            let inuse_cluster = match cur_rpc_url {
+                SOLANA_RPC_DEVNET => Cluster::Devnet,
+                SOLANA_RPC_MAINNET => Cluster::Mainnet,
+                &_ => Cluster::Localnet
+            };
+            handle_otc_command(otc_command, &otc_program, &core_program, &client, &inuse_cluster);
         }
     }
 }

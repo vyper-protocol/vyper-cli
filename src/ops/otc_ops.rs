@@ -16,6 +16,7 @@ use {
     },
     anchor_client::{
         Client,
+        Cluster,
         Program,
         RequestBuilder,
         ClientError,
@@ -66,13 +67,17 @@ use {
     console::style,
     crate::{RATE_SWITCHBOARD, RATE_PYTH,REDEEM_LOGIC_FORWARD,REDEEM_LOGIC_SETTLE_FORWARD,REDEEM_LOGIC_DIGITAL,REDEEM_LOGIC_VANILLA_OPTION},
     inquire::{CustomType,Select,Confirm},
-    chrono::NaiveDateTime
+    chrono::{
+        NaiveDateTime
+    }
 };
 
+const USDC_MAINNET: &str = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v";
+const DEV_USD: &str = "7XSvJnS19TodrQJSbjUR6tEGwmYyL1i9FX7Z5ZQHc53W";
 
 
 
-pub fn handle_otc_command(otc_command: OtcCommand, otc_program: &Program, core_program: &Program, client: &Client) {
+pub fn handle_otc_command(otc_command: OtcCommand, otc_program: &Program, core_program: &Program, client: &Client, current_cluster: &Cluster) {
     let command = otc_command.command;
     match command {
         OtcSubcommand::Fetch(fetch_otc) => {
@@ -113,8 +118,15 @@ pub fn handle_otc_command(otc_command: OtcCommand, otc_program: &Program, core_p
         }
 
         OtcSubcommand::Create => {
+
+            let default_collateral_mint = match &current_cluster {
+                Cluster::Mainnet => USDC_MAINNET,
+                _ => DEV_USD
+            };
+
             // collateral mint input
             let collateral_mint= CustomType::<Pubkey>::new("Collateral Mint")
+                .with_default(Pubkey::new(&bs58::decode(&default_collateral_mint).into_vec().expect("Invalid collateral mint")))
                 .with_error_message("Please type enter valid Public key")
                 .prompt();
             let collateral_mint = inquire_input(collateral_mint);
@@ -383,20 +395,27 @@ pub fn handle_otc_command(otc_command: OtcCommand, otc_program: &Program, core_p
                 .with_error_message("Please type a amount")
                 .prompt();
             let junior_deposit_amount = inquire_input(junior_deposit_amount);
+
+            let default_deposit_start = chrono::Local::now()-chrono::Duration::hours(1);
             let deposit_start = CustomType::<NaiveDateTime>::new("Deposit Start")
                 .with_placeholder("yyyy-mm-dd hh:mm:ss")
+                .with_default(default_deposit_start.naive_local())
                 .with_parser(&|i| NaiveDateTime::parse_from_str(i, "%Y-%m-%d %H:%M:%S").map_err(|_| ()))
                 .with_error_message("Please type a valid date and time")
                 .prompt();
             let deposit_start = inquire_input(deposit_start);
+            let default_deposit_end = chrono::Local::now()+chrono::Duration::minutes(5);
             let deposit_end = CustomType::<NaiveDateTime>::new("Deposit End")
+                .with_default(default_deposit_end.naive_local())
                 .with_placeholder("yyyy-mm-dd hh:mm:ss")
                 .with_parser(&|i| NaiveDateTime::parse_from_str(i, "%Y-%m-%d %H:%M:%S").map_err(|_| ()))
                 .with_error_message("Please type a valid date and time")
                 .prompt();
             let deposit_end = inquire_input(deposit_end);
+            let settle_start_default = chrono::Local::now()+chrono::Duration::minutes(15);
             let settle_start = CustomType::<NaiveDateTime>::new("Settle Start")
                 .with_placeholder("yyyy-mm-dd hh:mm:ss")
+                .with_default(settle_start_default.naive_local())
                 .with_parser(&|i| NaiveDateTime::parse_from_str(i, "%Y-%m-%d %H:%M:%S").map_err(|_| ()))
                 .with_error_message("Please type a valid date and time")
                 .prompt();
@@ -440,7 +459,9 @@ pub fn handle_otc_command(otc_command: OtcCommand, otc_program: &Program, core_p
                 .signer(&otc_junior_reserve_token_account)
                 .signer(&otc_senior_tranche_token_account)
                 .signer(&otc_junior_tranche_token_account);
-            
+
+            println_name_value("Tx Sending ...",&"");
+
             let rate_plugin_transaction = rate_plugin_transaction.send();
             let _rate_plugin_signature = error_handler(rate_plugin_transaction);
 
@@ -453,7 +474,6 @@ pub fn handle_otc_command(otc_command: OtcCommand, otc_program: &Program, core_p
             let otc_transaction = otc_transaction.send();
             let otc_signature = error_handler(otc_transaction);
             
-
             println_name_value("Otc contract successfully created at", &otc_state.pubkey());
             println_name_value("Transaction Id", &otc_signature);
         }
