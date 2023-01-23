@@ -23,6 +23,8 @@ console = "0.15.1"
 rust_decimal = "1.26"
 rust_decimal_macros = "1.26"
 chrono = "0.4.23"
+inquire = "0.5.2"
+spl-token = "3.2.0"
 
 [[bin]]
 name = "vyper"

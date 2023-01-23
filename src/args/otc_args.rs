@@ -22,6 +22,8 @@ pub struct OtcCommand {
 pub enum OtcSubcommand {
     /// Gets the configuration of otc from given public key.
     Fetch(FetchOtc),
+    /// Creates the otc with given input configuration
+    Create
 }
 
 #[derive(Debug, Args)]
