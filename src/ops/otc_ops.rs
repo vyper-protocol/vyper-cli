@@ -74,8 +74,10 @@ use {
 
 const USDC_MAINNET: &str = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v";
 const DEV_USD: &str = "7XSvJnS19TodrQJSbjUR6tEGwmYyL1i9FX7Z5ZQHc53W";
-
-
+const RATE_SWITCHBOARD_SOLUSD_MAINNET :&str = "GvDMxPzN1sCj7L26YDK2HnMRXEQmQ2aemov8YBtPS7vR";
+const RATE_SWITCHBOARD_SOLUSD_DEVNET: &str = "GvDMxPzN1sCj7L26YDK2HnMRXEQmQ2aemov8YBtPS7vR";
+const RATE_PYTH_SOLUSD_ORACLE_MAINNET: &str = "H6ARHf6YXhGYeQfUzQNGk6rDNnLBQKrenN712K4AQJEG";
+const RATE_PYTH_SOLUSD_ORACLE_DEVNET: &str = "J83w4HKfqxwcq3BEMMkPFSppX3gqekLyLJBexebFVkix";
 
 pub fn handle_otc_command(otc_command: OtcCommand, otc_program: &Program, core_program: &Program, client: &Client, current_cluster: &Cluster) {
     let command = otc_command.command;
@@ -157,10 +159,17 @@ pub fn handle_otc_command(otc_command: OtcCommand, otc_program: &Program, core_p
                 let tot_aggregators = inquire_input(tot_aggregators);
                 let mut cnt=0;
                 let mut rate_accounts = Vec::new();
+                
+                let default_aggregator = match &current_cluster {
+                    Cluster::Mainnet => RATE_SWITCHBOARD_SOLUSD_MAINNET,
+                    _ => RATE_SWITCHBOARD_SOLUSD_DEVNET
+                };
+
                 while cnt<tot_aggregators {
                     let mut message = String::from("Aggregator #");
                     message+=&(cnt+1).to_string();
                     let aggregator = CustomType::<Pubkey>::new(&message)
+                        .with_default(Pubkey::new(&bs58::decode(&default_aggregator).into_vec().expect("Invalid rate switchboard aggregator")))
                         .with_error_message("Please enter a vaid Public key")
                         .prompt();
                     let aggregator = inquire_input(aggregator);
@@ -192,11 +201,16 @@ pub fn handle_otc_command(otc_command: OtcCommand, otc_program: &Program, core_p
                 let tot_oracles = inquire_input(tot_oracles);
                 let mut cnt=0;
                 let mut rate_accounts = Vec::new();
+                let default_oracle = match &current_cluster {
+                    Cluster::Mainnet => RATE_PYTH_SOLUSD_ORACLE_MAINNET,
+                    _ => RATE_PYTH_SOLUSD_ORACLE_DEVNET
+                };
                 while cnt<tot_oracles {
                     let mut message = String::from("Oracle #");
                     message+=&(cnt+1).to_string();
                     let oracle = CustomType::<Pubkey>::new(&message)
                         .with_error_message("Please enter a vaid Public key")
+                        .with_default(Pubkey::new(&bs58::decode(&default_oracle).into_vec().expect("Invalid rate pyth oracle")))
                         .prompt();
                     let oracle = inquire_input(oracle);  
                     rate_accounts.push(oracle);
@@ -460,7 +474,7 @@ pub fn handle_otc_command(otc_command: OtcCommand, otc_program: &Program, core_p
                 .signer(&otc_senior_tranche_token_account)
                 .signer(&otc_junior_tranche_token_account);
 
-            println_name_value("Tx Sending ...",&"");
+            println!("Tx Sending ...");
 
             let rate_plugin_transaction = rate_plugin_transaction.send();
             let _rate_plugin_signature = error_handler(rate_plugin_transaction);
